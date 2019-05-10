@@ -12,9 +12,11 @@ Ohjelma, jossa voi salata tekstiä ja purkaa sen avaimen avulla. Ohjelmassa voi 
 
 [Testausdokumentti](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/testausdokumentti.md)
 
+[Tuntikirjanpito](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/tuntikirjanpito.md)
+
 
 ### Viikkoraportit
 
-[Viikkoraportti 1](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/Viikkoraportti1)
+[Viikkoraportti 1](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/Viikkoraportti1.md)
 
 
