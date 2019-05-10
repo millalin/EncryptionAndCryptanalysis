@@ -5,6 +5,7 @@
  */
 package cryptanalysis.ui;
 
+import cryptanalysis.ciphers.CaesarCipher;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -26,6 +27,14 @@ public class CryptUi extends Application {
     }
 
     public static void main(String[] args) throws Exception {
+        CaesarCipher c = new CaesarCipher();
+        String original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        int n = 23; 
+        System.out.println("Text  : " + original); 
+        System.out.println("Shift : " + n); 
+        System.out.println("Cipher text: " + c.encryption(original, n)); 
+        String changed ="XYZABCDEFGHIJKLMNOPQRSTUVW";
+        System.out.println("Original: " + c.decryption(changed, n)); 
         launch(args);
     }
 

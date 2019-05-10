@@ -1,6 +1,6 @@
 # EncryptionAndCryptanalysis
 
-Ohjelma, jossa voi salata tekstiä ja purkaa sen avaimen avulla. Ohjelmassa voi myös kokeilla murtaa salauksen ilman avainta. 
+Ohjelma, jossa voi salata tekstiä ja purkaa sen avaimen avulla. Ohjelmassa voi myös kokeilla murtaa salauksen ilman avainta. Työ on toteutettu kurssilla Tietorakenteiden harjoitustyö. 
 
 ### Dokumentaatio
 

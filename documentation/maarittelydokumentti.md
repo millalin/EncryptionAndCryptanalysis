@@ -13,7 +13,7 @@ Tarkoituksena on yrittää murtaa/purkaa eri salausmenetelmiä sekä tehdä aina
 
 ### Toteutettavat algoritmit ja tietorakenteet
 
-Toteutetaan tunnettuja salausmenetelmiä aloittaen yksinkertaisesta Caesar salakirjoituksesta [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). Lisäksi toteutetaan ainakin Vigenèren salaus [Vigenère cipher] (https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Frequency_analysis). Tarkoitus on toteuttaa myös [Blowfish](https://fi.wikipedia.org/wiki/Blowfish) salakirjoitusalgoritmi, joka on kehitetty syrjäyttämään DES. 
+Toteutetaan tunnettuja salausmenetelmiä aloittaen yksinkertaisesta Caesar salakirjoituksesta [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). Lisäksi toteutetaan ainakin Vigenèren salaus [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Frequency_analysis). Tarkoitus on toteuttaa myös [Blowfish](https://fi.wikipedia.org/wiki/Blowfish) salakirjoitusalgoritmi, joka on kehitetty syrjäyttämään DES. 
 
 Lisäksi toteutetaan [frekvenssianalyysi](https://learncryptography.com/attack-vectors/frequency-analysis), jota käytetään salakirjoituksen purkamiseen yksinkertaisessa korvaussalakirjoituksessa. Toteutus tehdään englannin kielellä. [Kasinskin menetelmää](https://en.wikipedia.org/wiki/Kasiski_examination) käytetään salausavaimen pituuden selvittämiseen Vigenère cipherin murtamisessa. 
 
@@ -34,3 +34,15 @@ Salausalgoritmien luominen tapahtuu erittäin nopeasti vakioajassa.
 Ceasar cipherissä joka kirjainta siirretään vakio x määrän, joka tuottaa vain 26 mahdollista yhdistelmää. Vigenère cipher on moniaakkosellinen salakirjoitus, jossa siirto on erilainen joka merkillä. Tällöin arvauksien määrä kasvaa eksponentiaalisesti. Aikavaativuus murtoon riippuu avaimen pituudesta. Avaimen pituuden ollessa k, aikavaativuus on o(26^k). Avaimen pituuden selvittämisellä voidaan tehostaa Vigeneren murtoa. 
 
 ### Lähteet      
+
+Muita ylläolevien linkkien lähteiden lisäksi on käytetty lähteitä:
+
+https://en.wikipedia.org/wiki/Encryption
+
+https://en.wikipedia.org/wiki/Cryptography
+
+https://crypto.interactive-maths.com/introduction-to-cryptography.html
+
+http://practicalcryptography.com/ciphers/caesar-cipher/
+
+ 
