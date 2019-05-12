@@ -15,14 +15,27 @@ public class CaesarCipher {
         String encrypted = "";
 
         for (int i = 0; i < text.length(); i++) {
+
             if (Character.isLowerCase(text.charAt(i))) {
-                char ch = (char) (((int) text.charAt(i)
-                        + n - 97) % 26 + 97);
-                encrypted = encrypted + ch;
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    encrypted = encrypted + c;
+                } else {
+                    char c = (char) (((int) text.charAt(i)
+                            + n - 97) % 26 + 97);
+                    encrypted = encrypted + c;
+                }
+
             } else {
-                char ch = (char) (((int) text.charAt(i)
-                        + n - 65) % 26 + 65);
-                encrypted = encrypted + ch;
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    encrypted = encrypted + c;
+                } else {
+                    char ch = (char) (((int) text.charAt(i)
+                            + n - 65) % 26 + 65);
+                    encrypted = encrypted + ch;
+                }
+
             }
         }
         return encrypted;
@@ -30,17 +43,29 @@ public class CaesarCipher {
 
     public static String decryption(String text, int n) {
         String decrypted = "";
-       n = 26 -n ;
-        
+        n = 26 - n;
+
         for (int i = 0; i < text.length(); i++) {
             if (Character.isLowerCase(text.charAt(i))) {
-                char ch = (char) (((int) text.charAt(i)
-                        + n - 97 ) % 26 + 97  );
-                decrypted = decrypted + ch;
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    decrypted = decrypted + c;
+                } else {
+                    char ch = (char) (((int) text.charAt(i)
+                            + n - 97) % 26 + 97);
+                    decrypted = decrypted + ch;
+                }
+
             } else {
-                char ch = (char) (((int) text.charAt(i)
-                        + n - 65 ) % 26 + 65  );
-                decrypted = decrypted + ch;
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    decrypted = decrypted + c;
+                } else {
+                    char ch = (char) (((int) text.charAt(i)
+                            + n - 65) % 26 + 65);
+                    decrypted = decrypted + ch;
+                }
+
             }
         }
 
