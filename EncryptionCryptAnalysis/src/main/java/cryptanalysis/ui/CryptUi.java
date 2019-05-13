@@ -8,6 +8,7 @@ package cryptanalysis.ui;
 import cryptanalysis.braking.BreakingCeasarCipher;
 import cryptanalysis.braking.FrequencyAnalysis;
 import cryptanalysis.ciphers.CaesarCipher;
+import cryptanalysis.ciphers.VigenereCipher;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,10 +36,18 @@ public class CryptUi extends Application {
     public void start(Stage stage) {
 
         CaesarCipher ceasar = new CaesarCipher();
+        VigenereCipher vigenere = new VigenereCipher();
         BreakingCeasarCipher b = new BreakingCeasarCipher();
         FrequencyAnalysis f = new FrequencyAnalysis();
 
         BorderPane start = new BorderPane();
+        Button testCeasar = new Button("Test Ceasar");
+        Button testVinenere = new Button("Test Vigenère");
+        HBox startbuttons = new HBox();
+        startbuttons.getChildren().addAll(testCeasar, testVinenere);
+        startbuttons.setSpacing(10);
+        start.setCenter(startbuttons);
+        start.setPadding(new Insets(10, 10, 10, 10));
 
         GridPane pane = new GridPane();
 
@@ -89,13 +98,25 @@ public class CryptUi extends Application {
         group.setVgap(25);
         group.setPadding(new Insets(10, 10, 10, 10));
 
+        Scene ceasarScene = new Scene(group);
+
+        testCeasar.setOnAction((event) -> {
+            stage.setScene(ceasarScene);
+        });
+
         enButton.setOnAction((event) -> {
 
+            // TESTAUSTA
+            String key1 = vigenere.makeKey("hellot", "key");
+            System.out.println(key1);
+            String encr = vigenere.encryption("TESTTEXT", "KEY");
+            System.out.println(encr);
+            // YLLÄ TEST
+            
             String original = encryption.getText();
             int n = (int) c.getValue();
             String s = ceasar.encryption(original, n);
             decryption.setText(s);
-            
 
         });
 
@@ -126,7 +147,7 @@ public class CryptUi extends Application {
 
         });
 
-        Scene startScene = new Scene(group);
+        Scene startScene = new Scene(start);
         stage.setScene(startScene);
         stage.show();
     }
@@ -143,6 +164,7 @@ public class CryptUi extends Application {
         System.out.println("Original: " + c.decryption(changed, n));
         System.out.print("options:");
         b.breaking(changed); */
+        
         launch(args);
     }
 

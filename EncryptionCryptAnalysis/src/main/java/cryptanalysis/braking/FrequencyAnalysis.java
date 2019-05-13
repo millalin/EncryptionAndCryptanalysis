@@ -25,7 +25,6 @@ public class FrequencyAnalysis {
 
             // char c = (char)((int) text.charAt(i));
             int ch = ((int) text.charAt(i));
-            System.out.println(ch);
 
             if (Character.isLowerCase(text.charAt(i))) {
                 if (ch > 96 && ch < 123) {
@@ -57,29 +56,7 @@ public class FrequencyAnalysis {
 
        key = mostUsed - 101; //value of e =101
 
-        return key;//mostUsed; //palauttaa indeksin joka eniten käytetty eli taul[3]
-    }
-    /*
-    public int analyze(String text) {
-        int key = 0;
-
-        int[] frequencys = new int[26];
-
-        int mostUsed = 0;
-        int mostUsedInd = -1;
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) >= 'a' && text.charAt(i) <= 'z') {
-                int count = frequencys[text.charAt(i) - 'a']++;
-
-                if (count > mostUsed) {
-                    mostUsed = count;
-                    mostUsedInd = i;
-                }
-            }
-        }
-
-        key = mostUsedInd - ('e' - 'a'); // Can also directly use 4 instead of 'e' - 'a'
-
         return key;
-    }*/
+    }
+ 
 }
