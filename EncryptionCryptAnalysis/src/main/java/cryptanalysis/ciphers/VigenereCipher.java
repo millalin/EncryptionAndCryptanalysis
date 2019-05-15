@@ -15,15 +15,21 @@ public class VigenereCipher {
 
         String newKey = "";
         int j = 0;
+        char c = ' ';
 
         for (int i = 0; i < text.length(); i++) {
 
             if (j > key.length() - 1) {
                 j = 0;
             }
-            char c = key.charAt(j);
+            if ((int) text.charAt(i) == 32) {
+                c = text.charAt(i);
+            } else {
+                c = key.charAt(j);
+                j++;
+            }
+
             newKey += c;
-            j++;
 
         }
 
@@ -37,12 +43,17 @@ public class VigenereCipher {
 
         for (int i = 0; i < text.length(); i++) {
 
+            if (Character.isLowerCase(keyGenerated.charAt(i))) {
+                n = (int) keyGenerated.charAt(i) - 97;
+            } else {
+                n = (int) keyGenerated.charAt(i) - 65;
+            }
+
             if (Character.isLowerCase(text.charAt(i))) {
                 if ((int) text.charAt(i) == 32) {
                     char c = (char) ((int) text.charAt(i));
                     encrypted = encrypted + c;
                 } else {
-                    n = (int) keyGenerated.charAt(i) - 97;
                     char c = (char) (((int) text.charAt(i)
                             + n - 97) % 26 + 97);
                     encrypted = encrypted + c;
@@ -53,7 +64,7 @@ public class VigenereCipher {
                     char c = (char) ((int) text.charAt(i));
                     encrypted = encrypted + c;
                 } else {
-                    n = (int) keyGenerated.charAt(i) - 65;
+
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
                     encrypted = encrypted + ch;
@@ -62,6 +73,45 @@ public class VigenereCipher {
             }
         }
         return encrypted;
+    }
+    
+       public String decryption(String text, String key) {
+        String decrypted = "";
+        int n = 0;
+        String keyGenerated = this.makeKey(text, key);
+
+        for (int i = 0; i < text.length(); i++) {
+
+            if (Character.isLowerCase(keyGenerated.charAt(i))) {
+                n = 26 - ((int) keyGenerated.charAt(i) - 97);
+            } else {
+                n = 26 - ( (int) keyGenerated.charAt(i) - 65);
+            }
+
+            if (Character.isLowerCase(text.charAt(i))) {
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    decrypted = decrypted + c;
+                } else {
+                    char c = (char) (((int) text.charAt(i)
+                            + n - 97) % 26 + 97);
+                    decrypted = decrypted + c;
+                }
+
+            } else {
+                if ((int) text.charAt(i) == 32) {
+                    char c = (char) ((int) text.charAt(i));
+                    decrypted = decrypted + c;
+                } else {
+
+                    char ch = (char) (((int) text.charAt(i)
+                            + n - 65) % 26 + 65);
+                    decrypted = decrypted + ch;
+                }
+
+            }
+        }
+        return decrypted;
     }
 
 }

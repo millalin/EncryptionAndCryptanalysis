@@ -6,4 +6,5 @@ päivä |  aika |  mitä tein
 9.5 | 1 | aiheen tutkimista, määrittelydokumentin muokkaus ja pieni muokkaus viikkoraporttiin
 12.5 | 3 | käyttöliittymäkokeiluja, ceasar cipher murtamistestejä ja eri vaihtoehtojen hakuja, frekvenssin laskemista
 13.5 | 2 | Vigenere salauksen tekoa, käyttöliittymämuokkausta
-yht | 8 |
+15.5 | 9 | Testien tekoa, kasiski examination tutkimista ja toteutusta, vigenere decryption 
+yht | 19 | 

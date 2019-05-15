@@ -29,7 +29,7 @@ Tarkoituksena on, että salattava tieto annetaan tekstimuodossa (String).
 
 ### Tavoitteena olevat aika- ja tilavaativuudet
 
-Salausalgoritmien luominen tapahtuu erittäin nopeasti vakioajassa. 
+Salausalgoritmien luomisen ja salaamisen aikavaativuus on yleensä lineaarinen. 
 
 Ceasar cipherissä joka kirjainta siirretään vakio x määrän, joka tuottaa vain 26 mahdollista yhdistelmää. Vigenère cipher on moniaakkosellinen salakirjoitus, jossa siirto on erilainen joka merkillä. Tällöin arvauksien määrä kasvaa eksponentiaalisesti. Aikavaativuus murtoon riippuu avaimen pituudesta. Avaimen pituuden ollessa k, aikavaativuus on o(26^k). Avaimen pituuden selvittämisellä voidaan tehostaa Vigeneren murtoa. 
 

@@ -6,12 +6,18 @@
 package cryptanalysis.ciphers;
 
 /**
- *
+ * Class that creates encryption and decryption useing Caesar Cipher
  * @author milla
  */
 public class CaesarCipher {
-
-    public static String encryption(String text, int n) {
+    
+    /**
+     * Encrypts given text with Caesar Cipher
+     * @param text text that will be encrypted
+     * @param n key length
+     * @return encrypted text
+     */
+    public String encryption(String text, int n) {
         String encrypted = "";
 
         for (int i = 0; i < text.length(); i++) {
@@ -41,7 +47,13 @@ public class CaesarCipher {
         return encrypted;
     }
 
-    public static String decryption(String text, int n) {
+    /**
+     * Decrypts given text with Caesar Cipher
+     * @param text text that will be decrypted
+     * @param n key length
+     * @return decrypted text
+     */
+    public String decryption(String text, int n) {
         String decrypted = "";
         n = 26 - n;
 
