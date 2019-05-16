@@ -65,7 +65,8 @@ public class BreakingVigenereCipher {
                     for (Integer fact : factors) {
                         if (erot.containsKey(fact)) {
                             Integer temp = erot.get(fact);
-                            erot.put(fact, ++temp); //tekijä ja monta kpl on tekijää
+                            temp++;
+                            erot.put(fact, temp); //tekijä ja monta kpl on tekijää
                         } else {
                             erot.put(fact, 1);
                         }
