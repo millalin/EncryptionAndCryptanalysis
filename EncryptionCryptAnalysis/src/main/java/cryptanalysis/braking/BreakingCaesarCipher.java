@@ -1,15 +1,10 @@
 package cryptanalysis.braking;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author milla
+ * Class that  will break text that is encrypted with Caesar Cipher using brute force.
+ * 
  */
-public class BreakingCeasarCipher {
+public class BreakingCaesarCipher {
 
     /**
      * Goes through all options with every possible key and lists them according to key

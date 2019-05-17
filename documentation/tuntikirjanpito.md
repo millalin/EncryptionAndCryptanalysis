@@ -8,4 +8,5 @@ päivä |  aika |  mitä tein
 13.5 | 2 | Vigenere salauksen tekoa, käyttöliittymämuokkausta
 15.5 | 9 | Testien tekoa, kasiski examination tutkimista ja toteutusta, vigenere decryption 
 16.5 | 2 | käyttöliittymämuokkaus vigenereen, testausta toiminnasta, dokumentaation muokkausta
+17.5 | 3 | checkstyle, jacoco, testien tekoa, koodin pientä siistimistä
 yht | 21 | 

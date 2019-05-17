@@ -6,7 +6,7 @@
 package cryptanalysis.ciphers;
 
 /**
- * Class that creates encryption and decryption useing Caesar Cipher
+ * Class that creates encryption and decryption using Caesar Cipher
  * @author milla
  */
 public class CaesarCipher {

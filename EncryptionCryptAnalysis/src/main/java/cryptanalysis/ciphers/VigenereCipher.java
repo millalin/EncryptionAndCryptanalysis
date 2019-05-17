@@ -6,11 +6,19 @@
 package cryptanalysis.ciphers;
 
 /**
+ * Class that will create encryption and decryption from given text with
+ * Vigenère cipher
  *
- * @author milla
  */
 public class VigenereCipher {
 
+    /**
+     * Creates key of which length is equal to plaintext. Iqnores spaces.
+     *
+     * @param text plaintext that will be encrypted
+     * @param key key of encryption
+     * @return new key to help execute encryption
+     */
     public String makeKey(String text, String key) {
 
         String newKey = "";
@@ -36,6 +44,13 @@ public class VigenereCipher {
         return newKey;
     }
 
+    /**
+     * Encrypts given text.
+     *
+     * @param text plaintext that will be encrypted
+     * @param key key of encryption
+     * @return encrypted text
+     */
     public String encryption(String text, String key) {
         String encrypted = "";
         int n = 0;
@@ -74,40 +89,48 @@ public class VigenereCipher {
         }
         return encrypted;
     }
-    
-       public String decryption(String text, String key) {
+
+    /**
+     * Decrypts given text.
+     *
+     * @param text crypt text that will be decrypted
+     * @param key key of encrypted text
+     * @return decrypted text
+     */
+    public String decryption(String text, String key) {
         String decrypted = "";
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
+        char c = ' ';
 
         for (int i = 0; i < text.length(); i++) {
 
             if (Character.isLowerCase(keyGenerated.charAt(i))) {
                 n = 26 - ((int) keyGenerated.charAt(i) - 97);
             } else {
-                n = 26 - ( (int) keyGenerated.charAt(i) - 65);
+                n = 26 - ((int) keyGenerated.charAt(i) - 65);
             }
 
             if (Character.isLowerCase(text.charAt(i))) {
                 if ((int) text.charAt(i) == 32) {
-                    char c = (char) ((int) text.charAt(i));
-                    decrypted = decrypted + c;
+                    c = (char) ((int) text.charAt(i));
+
                 } else {
-                    char c = (char) (((int) text.charAt(i)
+                    c = (char) (((int) text.charAt(i)
                             + n - 97) % 26 + 97);
-                    decrypted = decrypted + c;
+
                 }
+                decrypted = decrypted + c;
 
             } else {
                 if ((int) text.charAt(i) == 32) {
-                    char c = (char) ((int) text.charAt(i));
-                    decrypted = decrypted + c;
+                    c = (char) ((int) text.charAt(i));
                 } else {
 
-                    char ch = (char) (((int) text.charAt(i)
+                    c = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
-                    decrypted = decrypted + ch;
                 }
+                decrypted = decrypted + c;
 
             }
         }

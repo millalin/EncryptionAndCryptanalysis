@@ -10,11 +10,15 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
+ * Class that will break and decrypt text that has been encrypted with Vigenère
+ * cipher. Finds out the key length and then guesses used key word.
  *
- * @author milla
  */
 public class BreakingVigenereCipher {
 
+    /**
+     * Probabilities of english alphabet
+     */
     public BreakingVigenereCipher() {
         double[] prob = {0.08167, 0.01492, 0.02782, 0.04253,
             0.12702, 0.02228, 0.02015, 0.06094, 0.06966, 0.00153,
@@ -27,6 +31,12 @@ public class BreakingVigenereCipher {
 
     }
 
+    /**
+     * Makes set of 3 from letters in text and counts length differences. 
+     *
+     * @param text encrypted text
+     * @return best guess of the key length used in encryption
+     */
     public int analyzingText(String text) {
         HashMap<String, ArrayList<Integer>> blocks = new HashMap();
         ArrayList<String> list = new ArrayList();
@@ -48,51 +58,66 @@ public class BreakingVigenereCipher {
 
         }
 
-        HashMap<Integer, Integer> erot = new HashMap<Integer, Integer>();
+        return countDiff(list, blocks);
+    }
+
+    /**
+     * Counts length differences of 3 letter sets. Uses
+     * sets of 3 letters that appears more than once.
+     *
+     * @param list list of 3 letter sets
+     * @param blocks map of 3 letter sets and their length differences
+     * @return
+     */
+    public int countDiff(ArrayList<String> list, HashMap<String, ArrayList<Integer>> blocks) {
+        HashMap<Integer, Integer> differences = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < list.size(); i++) {
             String set = list.get(i);
             ArrayList<Integer> indexes = blocks.get(set);
             System.out.println("jono: " + indexes.toString());
-            if (indexes.size() == 1) {
-                //älä tee mtn
-            } else {
+            if (indexes.size() > 1) {
                 for (int j = 0; j < indexes.size() - 1; j++) { //yhden 3 kirj yhdistelmän välit
                     int difference = indexes.get(j + 1) - indexes.get(j); //yksi ero 
                     System.out.println(set + "  ero  " + difference);
                     ArrayList<Integer> factors = listFactors(difference);
 
-                    for (Integer fact : factors) {
-                        if (erot.containsKey(fact)) {
-                            Integer temp = erot.get(fact);
-                            temp++;
-                            erot.put(fact, temp); //tekijä ja monta kpl on tekijää
+                    for (Integer factor : factors) {
+                        if (differences.containsKey(factor)) {
+                            Integer v = differences.get(factor);
+                            v++;
+                            differences.put(factor, v); //tekijä ja monta kpl on tekijää
                         } else {
-                            erot.put(fact, 1);
+                            differences.put(factor, 1);
                         }
                     }
-
                 }
             }
-
         }
-        System.out.println("erot  " + erot.toString());
-        return countedKeyLength(erot);
+        System.out.println("erot  " + differences.toString());
+        return countedKeyLength(differences);
     }
 
-    public static int countedKeyLength(HashMap<Integer, Integer> erot) {
-        Set<Integer> keys = erot.keySet();
-        
+    /**
+     * Counts key length that is most probable based on
+     *
+     * @param differences HashMap where is factors and how many of each factors
+     * there is
+     * @return suggested key length
+     */
+    public static int countedKeyLength(HashMap<Integer, Integer> differences) {
+        Set<Integer> keys = differences.keySet();
+
         int keyL = 0;
-        int suurin = 0;
+        int biggest = 0;
 
         for (int key : keys) {
             if (key == 1 || key == 2) {
                 //ohi
             } else {
-                int luku = erot.get(key);
-                if (luku > suurin) {
-                    suurin = luku;
+                int luku = differences.get(key);
+                if (luku > biggest) {
+                    biggest = luku;
                     keyL = key;
                 }
             }
@@ -103,6 +128,12 @@ public class BreakingVigenereCipher {
 
     }
 
+    /**
+     * Counts factors
+     *
+     * @param x difference from same set of letters
+     * @return factors
+     */
     public ArrayList<Integer> listFactors(int x) {
         ArrayList<Integer> factors = new ArrayList<Integer>();
 

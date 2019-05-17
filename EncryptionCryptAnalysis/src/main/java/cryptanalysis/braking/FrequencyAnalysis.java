@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cryptanalysis.braking;
 
 /**
- *
- * @author milla
+ * Class that makes frequency analysis from english text
+ * 
  */
 public class FrequencyAnalysis {
 
@@ -75,9 +71,6 @@ public class FrequencyAnalysis {
         return key;
     }
 
-    public int[] freq() {
-
-        return letters;
-    }
+   
 
 }
