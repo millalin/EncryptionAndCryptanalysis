@@ -1,9 +1,8 @@
-
 package cryptanalysis.braking;
 
 /**
  * Class that makes frequency analysis from english text
- * 
+ *
  */
 public class FrequencyAnalysis {
 
@@ -18,7 +17,7 @@ public class FrequencyAnalysis {
      * letters to lowerCase
      *
      * @param text text to be analyzed
-     * @return countKey()  key that decrypts text
+     * @return countKey() key that decrypts text
      */
     public int countFrequencies(String text) {
         letters = new int[123]; //"ABCDEFGHIJKLMNOPQRSTUWXYZ";
@@ -43,7 +42,8 @@ public class FrequencyAnalysis {
     }
 
     /**
-     * Finds out what letter comes up most often in the text and counts key using that information.
+     * Finds out what letter comes up most often in the text and counts key
+     * using that information.
      *
      * @return key key number that will decrypt the text
      */
@@ -71,6 +71,9 @@ public class FrequencyAnalysis {
         return key;
     }
 
-   
+    public int[] freq() {
+
+        return letters;
+    }
 
 }

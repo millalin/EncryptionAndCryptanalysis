@@ -21,7 +21,7 @@ Salausalgoritmit toteutetaan taulukoita käyttäen. Salauksen purkamisessa käyt
 
 #### Valinnat
 
-Valinnat on tehty sen pohjalta, että halutaan nähdä, miten yksinkertaisempia salakirjoituksia on mahdollista murtaa ja myös miten ne toteutetaan. Caesar cipherin salakirjoitus on varmastikin kohtuu yksinkertainen toteuttaa, mutta sen murtaminen ja ajankäyttö siinä vaikuttaa kiinnostavalta. Etenkin kiinnostaa myös monimutkaisempien salakirjoitusten mahdollinen murtaminen.  
+Valinnat on tehty sen pohjalta, että halutaan nähdä, miten yksinkertaisempia salakirjoituksia on mahdollista murtaa ja myös miten ne toteutetaan. Caesar cipherin salakirjoitus on varmastikin kohtuu yksinkertainen toteuttaa. Myös vigenere on kohtuullisen yksinkertainen mutta sen murtaminen ja ajankäyttö siinä vaikuttaa kiinnostavalta. Etenkin kiinnostaa myös monimutkaisempien salakirjoitusten mahdollinen murtaminen.  
 
 #### Mitä syötteitä saa ja miten käytetään
 

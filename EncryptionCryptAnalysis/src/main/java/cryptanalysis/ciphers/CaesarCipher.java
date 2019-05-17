@@ -23,14 +23,11 @@ public class CaesarCipher {
         for (int i = 0; i < text.length(); i++) {
 
             if (Character.isLowerCase(text.charAt(i))) {
-                if ((int) text.charAt(i) == 32) {
-                    char c = (char) ((int) text.charAt(i));
-                    encrypted = encrypted + c;
-                } else {
+              
                     char c = (char) (((int) text.charAt(i)
                             + n - 97) % 26 + 97);
                     encrypted = encrypted + c;
-                }
+                
 
             } else {
                 if ((int) text.charAt(i) == 32) {
@@ -59,14 +56,11 @@ public class CaesarCipher {
 
         for (int i = 0; i < text.length(); i++) {
             if (Character.isLowerCase(text.charAt(i))) {
-                if ((int) text.charAt(i) == 32) {
-                    char c = (char) ((int) text.charAt(i));
-                    decrypted = decrypted + c;
-                } else {
+               
                     char ch = (char) (((int) text.charAt(i)
                             + n - 97) % 26 + 97);
                     decrypted = decrypted + ch;
-                }
+                
 
             } else {
                 if ((int) text.charAt(i) == 32) {

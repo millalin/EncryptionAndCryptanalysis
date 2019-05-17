@@ -47,6 +47,13 @@ public class VigenereTest {
         String result = vigenere.decryption(testText, key);
         assertEquals("THIS IS SECRET TEST TEXT", result);
     }
+    
+    @Test
+    public void vigenereCipherDecryptsTextRightLowercase() {
+        testText = "dlgc mq ciabir diqd xchx";
+        String result = vigenere.decryption(testText, key);
+        assertEquals("this is secret test text", result);
+    }
 
     @Test
     public void vigenereCipherEncryptionChancesWhenKeyDifferent() {

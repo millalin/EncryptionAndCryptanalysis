@@ -65,14 +65,10 @@ public class VigenereCipher {
             }
 
             if (Character.isLowerCase(text.charAt(i))) {
-                if ((int) text.charAt(i) == 32) {
-                    char c = (char) ((int) text.charAt(i));
-                    encrypted = encrypted + c;
-                } else {
-                    char c = (char) (((int) text.charAt(i)
-                            + n - 97) % 26 + 97);
-                    encrypted = encrypted + c;
-                }
+
+                char c = (char) (((int) text.charAt(i)
+                        + n - 97) % 26 + 97);
+                encrypted = encrypted + c;
 
             } else {
                 if ((int) text.charAt(i) == 32) {
@@ -112,14 +108,9 @@ public class VigenereCipher {
             }
 
             if (Character.isLowerCase(text.charAt(i))) {
-                if ((int) text.charAt(i) == 32) {
-                    c = (char) ((int) text.charAt(i));
-
-                } else {
                     c = (char) (((int) text.charAt(i)
                             + n - 97) % 26 + 97);
 
-                }
                 decrypted = decrypted + c;
 
             } else {
