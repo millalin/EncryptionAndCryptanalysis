@@ -52,7 +52,7 @@ public class FrequencyAnalysis {
         int biggest = 0;
         int mostUsed = 0;
 
-        for (int i = 96; i < letters.length; i++) {
+        for (int i = 0; i < letters.length; i++) {
             int letter = letters[i];
             if (letter > biggest) {
                 biggest = letter;
@@ -60,9 +60,8 @@ public class FrequencyAnalysis {
             }
 
         }
-        if (mostUsed == 101) {
-            key = 26;
-        } else if (mostUsed < 101) {
+        System.out.println("most used: "+mostUsed);
+        if (mostUsed < 101) {
             key = 26 + mostUsed - 101;
         } else {
             key = mostUsed - 101; //value of e =101

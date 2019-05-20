@@ -137,6 +137,7 @@ public class CryptUi extends Application {
 
         Button keyLength = new Button("Suggested key length");
         Label keyLengthLabel = new Label("Key length: ");
+        Label suggestedKey = new Label("Suggested key: ");
 
         vigenerePane.add(keyLabel, 1, 1);
         vigenerePane.add(keywordText, 1, 2);
@@ -145,6 +146,7 @@ public class CryptUi extends Application {
         vigenerePane.add(buttons3, 2, 4);
         vigenerePane.add(keyLength, 3, 5);
         vigenerePane.add(keyLengthLabel, 3, 6);
+        vigenerePane.add(suggestedKey, 3, 7);
         vigenerePane.setHgap(5);
         vigenerePane.setVgap(25);
         vigenerePane.setPadding(new Insets(10, 10, 10, 10));
@@ -242,7 +244,13 @@ public class CryptUi extends Application {
 
             String vinCipher = cipherText.getText();
             int x = breaking.analyzingText(vinCipher);
-            keyLengthLabel.setText("Suggested key length: " + x);
+            if (x == 0) {
+                keyLengthLabel.setText("Too short text. There can't be found any factors");
+            } else {
+                keyLengthLabel.setText("Suggested key length: " + x);
+                suggestedKey.setText("Suggested key: " + breaking.guessingKey(vinCipher, x));
+            }
+
         });
 
         Scene startScene = new Scene(start);

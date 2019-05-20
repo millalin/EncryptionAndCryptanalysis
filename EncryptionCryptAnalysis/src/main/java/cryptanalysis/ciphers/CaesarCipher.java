@@ -53,6 +53,7 @@ public class CaesarCipher {
     public String decryption(String text, int n) {
         String decrypted = "";
         n = 26 - n;
+        System.out.println("ännä "+n);
 
         for (int i = 0; i < text.length(); i++) {
             if (Character.isLowerCase(text.charAt(i))) {

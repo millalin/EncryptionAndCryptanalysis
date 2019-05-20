@@ -16,6 +16,8 @@ import java.util.Set;
  */
 public class BreakingVigenereCipher {
 
+    FrequencyAnalysis analysis = new FrequencyAnalysis();
+
     /**
      * Probabilities of english alphabet
      */
@@ -32,7 +34,7 @@ public class BreakingVigenereCipher {
     }
 
     /**
-     * Makes set of 3 from letters in text and counts length differences. 
+     * Makes set of 3 from letters in text and counts length differences.
      *
      * @param text encrypted text
      * @return best guess of the key length used in encryption
@@ -62,15 +64,15 @@ public class BreakingVigenereCipher {
     }
 
     /**
-     * Counts length differences of 3 letter sets. Uses
-     * sets of 3 letters that appears more than once.
+     * Counts length differences of 3 letter sets. Uses sets of 3 letters that
+     * appears more than once.
      *
      * @param list list of 3 letter sets
      * @param blocks map of 3 letter sets and their length differences
-     * @return
+     * @return countedKeyLehgth
      */
     public int countDiff(ArrayList<String> list, HashMap<String, ArrayList<Integer>> blocks) {
-        HashMap<Integer, Integer> differences = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> differences = new HashMap();
 
         for (int i = 0; i < list.size(); i++) {
             String set = list.get(i);
@@ -149,4 +151,29 @@ public class BreakingVigenereCipher {
 
         return factors;
     }
+
+    public String guessingKey(String text, int keyLength) {
+        System.out.println("avain pituus: " + keyLength);
+
+        String textBasedOnKeyIndex[] = new String[keyLength];
+        String guessedKey = "";
+
+        for (int i = 0; i < keyLength; i++) {
+            textBasedOnKeyIndex[i] = "";
+
+        }
+        for (int i = 0; i < text.length(); i++) {
+            textBasedOnKeyIndex[i % keyLength] += text.charAt(i);
+        }
+
+        for (int i = 0; i < keyLength; i++) {
+            int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);   
+            
+            guessedKey += (char)(shift + 'a');
+        }
+
+        return guessedKey;
+    }
+   
+    
 }
