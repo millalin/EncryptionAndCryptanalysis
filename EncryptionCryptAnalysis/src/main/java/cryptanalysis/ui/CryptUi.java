@@ -5,12 +5,13 @@
  */
 package cryptanalysis.ui;
 
+import cryptanalysis.blowfish.Blowfish;
+import cryptanalysis.blowfish.testB;
 import cryptanalysis.braking.BreakingCaesarCipher;
 import cryptanalysis.braking.BreakingVigenereCipher;
 import cryptanalysis.braking.FrequencyAnalysis;
 import cryptanalysis.ciphers.CaesarCipher;
 import cryptanalysis.ciphers.VigenereCipher;
-import java.awt.TextField;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -138,6 +139,7 @@ public class CryptUi extends Application {
         Button keyLength = new Button("Suggested key length");
         Label keyLengthLabel = new Label("Key length: ");
         Label suggestedKey = new Label("Suggested key: ");
+        Label vigenereTime = new Label("Time: ");
 
         vigenerePane.add(keyLabel, 1, 1);
         vigenerePane.add(keywordText, 1, 2);
@@ -147,6 +149,7 @@ public class CryptUi extends Application {
         vigenerePane.add(keyLength, 3, 5);
         vigenerePane.add(keyLengthLabel, 3, 6);
         vigenerePane.add(suggestedKey, 3, 7);
+        vigenerePane.add(vigenereTime, 3, 8);
         vigenerePane.setHgap(5);
         vigenerePane.setVgap(25);
         vigenerePane.setPadding(new Insets(10, 10, 10, 10));
@@ -243,12 +246,19 @@ public class CryptUi extends Application {
         keyLength.setOnAction((event) -> {
 
             String vinCipher = cipherText.getText();
+            long startTime = System.currentTimeMillis();
             int x = breaking.analyzingText(vinCipher);
             if (x == 0) {
                 keyLengthLabel.setText("Too short text. There can't be found any factors");
             } else {
+                String guessedKeyString = breaking.guessingKey(vinCipher, x);
+                long stopTime = System.currentTimeMillis();
                 keyLengthLabel.setText("Suggested key length: " + x);
-                suggestedKey.setText("Suggested key: " + breaking.guessingKey(vinCipher, x));
+                suggestedKey.setText("Suggested key: " + guessedKeyString);
+
+                long timePassed = stopTime - startTime;
+                vigenereTime.setText("Time: " + timePassed);
+
             }
 
         });
@@ -270,7 +280,18 @@ public class CryptUi extends Application {
         System.out.println("Original: " + c.decryption(changed, n));
         System.out.print("options:");
         b.breaking(changed); */
-
+        long alku = System.currentTimeMillis();
+        Blowfish bl = new Blowfish("milla","blowfish");
+        String salattu = bl.encryption();
+        long loppu = System.currentTimeMillis();
+        long aika = loppu-alku;
+        System.out.println("Salattu: " + salattu);
+        System.out.println("aika: " + aika);
+       // bl.encryption("testi", "key");
+       testB test = new testB();
+       String salaus = test.te("milla"); //TÄMÄ TOIMII OIKEIN
+        System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
+       
         launch(args);
     }
 
