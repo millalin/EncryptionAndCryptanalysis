@@ -20,8 +20,15 @@ public class testB {
     public testB() throws Exception {
 
     }
-// JAVAN VALMIS OMA SALAUS
 
+    /**
+     * java version of Blowfish encryption. This class is to test how it
+     * compares with my own implementation.
+     *
+     * @param text text to encrypted
+     * @return encrypted text
+     * @throws Exception
+     */
     public String te(String text) throws Exception {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
