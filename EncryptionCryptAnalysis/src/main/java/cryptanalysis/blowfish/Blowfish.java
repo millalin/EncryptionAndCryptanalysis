@@ -29,8 +29,8 @@ public class Blowfish {
         for (int i = 0; i < 18; ++i) {
             P[i] ^= k[i % keyLength];
         }
-        left = 0;
-        right = 0;
+        left = 0x00000000;
+        right = 0x00000000;
         for (int i = 0; i < 18; i += 2) {
             encrypt(left, right);
             P[i] = left;
@@ -47,9 +47,10 @@ public class Blowfish {
     }
 
     public String encryption() throws Exception {
-
-        data = splitToBytes(input, 8); //data arraylist
+// VAIHDA STRING BYTE ARRAYKSI
+        data = splitToBytes(input, 4); //data arraylist
         String encoder = null;
+        String salausmuunnos = "";
 
         byte[] encrypted = null;
         byte[] jep = new byte[3];
@@ -58,38 +59,39 @@ public class Blowfish {
             osio = String.format("%-8s", osio).replace(' ', '-');
 
             System.out.println("osio: " + osio);
-            //plainteksti 2 osaseks 32bittiseksi == 4 tavua
-            left = tohexLong(osio.substring(0, 4)); //test -> t on byte 116 hex 74
-            right = tohexLong(osio.substring(4, 8));
 
+            //plainteksti 2 osaseks 32bittiseksi == 4 tavua
+            left = tohexLong(osio.substring(0, 2)); //test -> t on byte 116 hex 74
+            right = tohexLong(osio.substring(2, 4));
+
+            System.out.println("long 0x243f6a88L");
             System.out.println(left + " right " + right);
             encrypt(left, right);
-
+            System.out.println(left + " right " + right);
             encrypted = longtobyte(left, right);
 
-        }
+            int apu = encrypted.length;
+            for (int i = 0; i < encrypted.length; i += 3) {
+                apu -= 3;
+                if (apu < 1) {
+                    jep[0] = encrypted[i];
+                    jep[1] = 00;
+                    jep[2] = 00;
+                } else if (apu < 2) {
+                    jep[0] = encrypted[i];
+                    jep[1] = encrypted[i + 1];
+                    jep[2] = 00;
+                } else {
+                    byte b = encrypted[i];
+                    jep[0] = b;
+                    jep[1] = encrypted[i + 1];
+                    jep[2] = encrypted[i + 2];
+                }
 
-        String salausmuunnos = "";
-        int apu = encrypted.length;
-        for (int i = 0; i < encrypted.length; i += 3) {
-            apu -= 3;
-            if (apu < 1) {
-                jep[0] = encrypted[i];
-                jep[1] = 00;
-                jep[2] = 00;
-            } else if (apu < 2) {
-                jep[0] = encrypted[i];
-                jep[1] = encrypted[i + 1];
-                jep[2] = 00;
-            } else {
-                byte b = encrypted[i];
-                jep[0] = b;
-                jep[1] = encrypted[i + 1];
-                jep[2] = encrypted[i + 2];
+                salausmuunnos += sal(jep);
             }
-
-            salausmuunnos += sal(jep);
         }
+
         System.out.println("noooo entäää " + salausmuunnos);
         //TULOSTUS mitä javan oma testaa ja katsotaan matchaako
         encoder = Base64.getEncoder().encodeToString(encrypted);
@@ -106,15 +108,28 @@ public class Blowfish {
         return splitted;
     }
 
-    public long tohexLong(String data) {
+    public long tohexLong(String data) { //4 kirjainta
         String hex = "";
         for (byte b : data.getBytes()) {
             System.out.println("byte: " + b);
             hex += Long.toHexString(b);
             System.out.println("hex: " + hex);
         }
+        long xxx = Long.parseLong(hex, 16);
         // return Integer.parseInt(hex);
-        return Long.parseLong(hex, 16);
+        System.out.println("xxxxxxxxx " + xxx);
+        return xxx;
+
+    }
+
+    public long tohexLong1(String data) {
+        byte[] b = data.getBytes();
+        long result = 0;
+        for (int i = 0; i < 4; i++) {
+            result <<= 4;
+            result |= (b[i] & 0xFF);
+        }
+        return result;
     }
 
     public byte[] longtobyte(long left, long right) {

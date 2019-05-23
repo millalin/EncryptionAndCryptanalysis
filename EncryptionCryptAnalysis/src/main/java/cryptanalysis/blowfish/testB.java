@@ -26,7 +26,7 @@ public class testB {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
 
-        String Key = "blowfish";
+        String Key = "test";
         byte[] KeyData = Key.getBytes();
         SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");

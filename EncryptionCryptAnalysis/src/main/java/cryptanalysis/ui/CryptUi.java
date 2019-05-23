@@ -281,7 +281,7 @@ public class CryptUi extends Application {
         System.out.print("options:");
         b.breaking(changed); */
         long alku = System.currentTimeMillis();
-        Blowfish bl = new Blowfish("milla","blowfish");
+        Blowfish bl = new Blowfish("testthis","test");
         String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu-alku;
@@ -289,7 +289,7 @@ public class CryptUi extends Application {
         System.out.println("aika: " + aika);
        // bl.encryption("testi", "key");
        testB test = new testB();
-       String salaus = test.te("milla"); //TÄMÄ TOIMII OIKEIN
+       String salaus = test.te("testthis"); //TÄMÄ TOIMII OIKEIN
         System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
        
         launch(args);
