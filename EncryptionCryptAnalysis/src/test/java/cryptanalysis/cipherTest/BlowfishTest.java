@@ -6,6 +6,8 @@
 package cryptanalysis.cipherTest;
 
 import cryptanalysis.blowfish.Blowfish;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -15,7 +17,7 @@ import org.junit.Test;
  */
 public class BlowfishTest {
 
-    Blowfish bf = new Blowfish("testthis", "test");
+    Blowfish bf = new Blowfish("testmessage", "test");
 
     @Test
     public void lengthOfEncryptionIsRight() {
@@ -23,7 +25,7 @@ public class BlowfishTest {
         String encrypt = bf.encryption();
         int l = encrypt.length();
 
-        assertEquals(12, l);
+        assertEquals(24, l);
     }
 
     @Test
@@ -36,8 +38,8 @@ public class BlowfishTest {
 
         assertEquals(abc, "====");
     }
-    
-       @Test
+
+    @Test
     public void abcChangedToFourCharsYWJj() {
         byte[] threeBytes = new byte[3];
         threeBytes[0] = 'a';
@@ -46,5 +48,34 @@ public class BlowfishTest {
         String abc = bf.bitsToChar(threeBytes);
 
         assertEquals(abc, "YWJj");
+    }
+
+    @Test
+    public void splitsStringsRight() {
+        List<String> testlist = new ArrayList();
+        String test = "teststringsplit1";
+        testlist = bf.splitToBytes(test, 8);
+        String first = testlist.get(0);
+
+        assertEquals(first, "teststri");
+    }
+
+    @Test
+    public void toLongChangesLong() {
+        String test = "test";
+
+        long x = bf.tohexLong(test);
+
+        assertEquals(x, 1952805748);
+    }
+
+    @Test
+    public void changesTo8Bytes() {
+        String test = "test";
+        byte[] b = new byte[8];
+        b = bf.longtobyte(1952805748, 0);
+        int x = b[0]; 
+
+        assertEquals(x, 116);
     }
 }

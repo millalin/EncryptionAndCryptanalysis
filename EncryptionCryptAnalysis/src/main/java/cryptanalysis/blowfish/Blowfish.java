@@ -30,19 +30,6 @@ public class Blowfish {
      * @param key key used in encryption
      */
     public Blowfish(String text, String key) {
-        /*  char[] key = key1.toCharArray();
-        int w = 0;
-        for (int i = 0; i < 16 + 2; ++i) {
-            long datat = 0x00000000;
-            for (int k = 0; k < 4; ++k) {
-                datat = (datat << 8) | key[w];
-                w = w + 1;
-                if (w >= key1.length()) {
-                    w = 0;
-                }
-            }
-             P[i] = P[i] ^ datat;
-        }*/
 
         int keyLength = key.length();
         byte[] k = key.getBytes();
@@ -87,7 +74,7 @@ public class Blowfish {
             //plainteksti 2 osaseks 32bittiseksi == 
             left = tohexLong(osio.substring(0, 4));
             right = tohexLong(osio.substring(4, 8));
-
+           
             encrypt(left, right);
             encrypted = longtobyte(left, right);
 
@@ -145,43 +132,17 @@ public class Blowfish {
      */
     public long tohexLong(String data) { //4 kirjainta
 
-        byte[] buf = data.getBytes();
-        long val = 0;
-        int len = 8;
-        len = Math.min(len, 8);
-        for (int i = (len - 1); i >= 0; i--) {
-            val <<= 8;
-            //  val |= (byteArray[i] & 0x00FF);
-        }
+        byte[] bytes = data.getBytes();
+        System.out.println("bytes "+bytes[0]);
         long lo
-                = ((buf[0] & 0xFFL) << 24)
-                | ((buf[1] & 0xFFL) << 16)
-                | ((buf[2] & 0xFFL) << 8)
-                | ((buf[3] & 0xFFL) << 0);
+                = ((bytes[0] & 0xFFL) << 24)
+                | ((bytes[1] & 0xFFL) << 16)
+                | ((bytes[2] & 0xFFL) << 8)
+                | ((bytes[3] & 0xFFL) << 0);
 
         return lo;
-
-        /*String hex = "";
-        for (byte b : data.getBytes()) {
-            System.out.println("byte: " + b);
-            hex += Long.toHexString(b);
-            System.out.println("hex: " + hex);
-        }
-        long xxx = Long.parseLong(hex, 16);
-        // return Integer.parseInt(hex);
-        System.out.println("xxxxxxxxx " + xxx);
-        return xxx;*/
     }
 
-    /*  public long tohexLong1(String data) {
-        byte[] b = data.getBytes();
-        long result = 0;
-        for (int i = 0; i < 4; i++) {
-            result <<= 4;
-            result |= (b[i] & 0xFF);
-        }
-        return result;
-    }*/
     /**
      * Puts left and right parts to byte[]
      *
@@ -270,7 +231,7 @@ public class Blowfish {
 
     /**
      * Splits bytes changed to bits into 6 bit parts and makes them chars using
-     * chars char[]
+     * chars char[]. Own Base64.
      *
      * @param in bytes
      * @return changed text

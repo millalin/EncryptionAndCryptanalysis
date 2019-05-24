@@ -281,16 +281,20 @@ public class CryptUi extends Application {
         System.out.print("options:");
         b.breaking(changed); */
         long alku = System.currentTimeMillis();
-        Blowfish bl = new Blowfish("testthis","test");
+        Blowfish bl = new Blowfish("testmessage","thisisthir");
         String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu-alku;
         System.out.println("Salattu: " + salattu);
+        int pituus1 = salattu.length();
+        System.out.println("pituus: "+pituus1);
         System.out.println("aika: " + aika);
        // bl.encryption("testi", "key");
        testB test = new testB();
-       String salaus = test.te("testthis"); //TÄMÄ TOIMII OIKEIN
+       String salaus = test.te("testmessage"); //TÄMÄ TOIMII OIKEIN
         System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
+        int pituus =salaus.length();
+        System.out.println("pituus "+pituus);
        
         launch(args);
     }

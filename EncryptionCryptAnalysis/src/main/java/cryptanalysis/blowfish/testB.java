@@ -33,7 +33,7 @@ public class testB {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
 
-        String Key = "test";
+        String Key = "longekey";
         byte[] KeyData = Key.getBytes();
         SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");
@@ -42,7 +42,7 @@ public class testB {
         //Cipher cipher = Cipher.getInstance("blowfish");
         //    cipher.init(cipher.ENCRYPT_MODE, secretKey);
         String input = text;
-        byte[] encrypt = cipher.doFinal(input.getBytes("ASCII"));
+        byte[] encrypt = cipher.doFinal(input.getBytes());
         //   String e = new String(encrypt);
 
         cipher.init(Cipher.DECRYPT_MODE, KS);
@@ -52,7 +52,7 @@ public class testB {
         String e = new String(encrypt.toString());
         e = new BASE64Encoder().encode(encrypt);
         String d = new String(decrypted);
-        return e + " de:  " + d;
+        return e;// + " de:  " + d;
     }
 
 }
