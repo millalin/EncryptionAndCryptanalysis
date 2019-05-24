@@ -12,5 +12,6 @@ päivä |  aika |  mitä tein
 20.5 | 9 | vigenere cipher avainsanan selvitystä, Blowfish selvitystä
 21.5 | 8 | Blowfish salauksen selvitystä ja tekoa
 22.5 | 7 | Blowfish salauksen tekoa ja oman muunnoksen tekoa kun lopuksi jaetaan 6 bitin osioihin ja muunnetaan se kirjaimeksi
-23.5 | 4 | Blowfish salausksen tekoa 
-yht | 54 | 
+23.5 | 4 | Blowfish salaukssen tekoa 
+24.5 | 4 | Blowfish salauksen tekoa ja tutkimista sekä muutama testi
+yht | 58 | 

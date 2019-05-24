@@ -70,8 +70,8 @@ public class BlowfishTest {
     }
 
     @Test
-    public void changesTo8Bytes() {
-        String test = "test";
+    public void changesTo8BytesTexttestAndFirstByteMatches() {
+        // 1952805748 is test which is first 4 bytes so first is t and byte 116
         byte[] b = new byte[8];
         b = bf.longtobyte(1952805748, 0);
         int x = b[0]; 
