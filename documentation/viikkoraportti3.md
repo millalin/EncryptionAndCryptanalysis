@@ -6,7 +6,7 @@ Olen tutkinut ja toteuttanut Blowfish salausta
 
 ### Miten ohjelma on edistynyt?
 
-Ohjelma ei ole edistynyt niin paljoa, sillä koko Blowfish salauksen selvitykseen kului paljon aikaa. Ohjelmaan on saatu kuitenkin Blowfish salaus, joka käy tarvittavat kierrokset läpi ja salaa tekstin. 
+Ohjelma ei ole edistynyt niin paljoa, sillä koko Blowfish salauksen selvitykseen on kulunut paljon aikaa. Ohjelmaan on saatu kuitenkin Blowfish salaus, joka käy tarvittavat kierrokset läpi ja salaa tekstin, joskaan ei täysin oikein ilmeisesti.  
 
 ### Mitä opin tällä viikolla?
 
@@ -18,4 +18,5 @@ Blowfish osoittautui haastavaksi, kun netin muunnokset antavat eri tuloksia, on 
 
 ### Mitä teen seuraavaksi? 
 
+Yritän ajan puitteissa selvittää Blowfish salausta toimimaan paremmin ja alan toteuttaa omaa tietorakennetta, aloittaen ArrayLististä (sen jälkeen HashMap). Blowfishin osalta testaus myös tulee toteuttaa kattavammin kunhan sitä saisi vähän enemmän toimimaan. 
 

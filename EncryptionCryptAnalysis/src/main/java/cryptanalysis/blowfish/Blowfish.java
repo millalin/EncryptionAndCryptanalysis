@@ -30,6 +30,20 @@ public class Blowfish {
      * @param key key used in encryption
      */
     public Blowfish(String text, String key) {
+        /*  char[] key = key1.toCharArray();
+        int w = 0;
+        for (int i = 0; i < 16 + 2; ++i) {
+            long datat = 0x00000000;
+            for (int k = 0; k < 4; ++k) {
+                datat = (datat << 8) | key[w];
+                w = w + 1;
+                if (w >= key1.length()) {
+                    w = 0;
+                }
+            }
+             P[i] = P[i] ^ datat;
+        }*/
+
         int keyLength = key.length();
         byte[] k = key.getBytes();
         for (int i = 0; i < 18; ++i) {
@@ -53,26 +67,26 @@ public class Blowfish {
     }
 
     /**
+     * Handles encryption
      *
      * @return @throws Exception
      */
-    public String encryption() throws Exception {
-        data = splitToBytes(input, 4); //data arraylist
-     
+    public String encryption() {
+        data = splitToBytes(input, 8); //data arraylist
+
         String encoder = null;
         String changeEncryption = "";
 
         byte[] encrypted = null;
         byte[] threeBytes = new byte[3];
 
-        for (String osio : data) { //joka osio on 4 kirjainta/4 tavua = 32 bittiä
-            osio = String.format("%-4s", osio).replace(' ', '-');
+        for (String osio : data) { //joka osio on 8 kirjainta/8 tavua = 64 bittiä
+            osio = String.format("%-8s", osio).replace(' ', '-');
 
             //System.out.println("osio: " + osio);
-
-            //plainteksti 2 osaseks 32bittiseksi == 2x2 tavua
-            left = tohexLong(osio.substring(0, 2));
-            right = tohexLong(osio.substring(2, 4));
+            //plainteksti 2 osaseks 32bittiseksi == 
+            left = tohexLong(osio.substring(0, 4));
+            right = tohexLong(osio.substring(4, 8));
 
             encrypt(left, right);
             encrypted = longtobyte(left, right);
@@ -107,10 +121,12 @@ public class Blowfish {
     }
 
     /**
-     * Splits text to certain size of parts and saves it to ArrayList. In this case size 4. 
+     * Splits text to certain size of parts and saves it to ArrayList. In this
+     * case size 4.
+     *
      * @param text text to be splitted
      * @param s size of parts
-     * @return 
+     * @return
      */
     public List<String> splitToBytes(String text, int s) {
 
@@ -122,12 +138,30 @@ public class Blowfish {
     }
 
     /**
-     * Changes data to bytes and changes it from  hex to long
+     * Changes data to bytes and changes it from hex to long
+     *
      * @param data 4 letter string
-     * @return  data changed to long
+     * @return data changed to long
      */
     public long tohexLong(String data) { //4 kirjainta
-        String hex = "";
+
+        byte[] buf = data.getBytes();
+        long val = 0;
+        int len = 8;
+        len = Math.min(len, 8);
+        for (int i = (len - 1); i >= 0; i--) {
+            val <<= 8;
+            //  val |= (byteArray[i] & 0x00FF);
+        }
+        long lo
+                = ((buf[0] & 0xFFL) << 24)
+                | ((buf[1] & 0xFFL) << 16)
+                | ((buf[2] & 0xFFL) << 8)
+                | ((buf[3] & 0xFFL) << 0);
+
+        return lo;
+
+        /*String hex = "";
         for (byte b : data.getBytes()) {
             System.out.println("byte: " + b);
             hex += Long.toHexString(b);
@@ -136,11 +170,10 @@ public class Blowfish {
         long xxx = Long.parseLong(hex, 16);
         // return Integer.parseInt(hex);
         System.out.println("xxxxxxxxx " + xxx);
-        return xxx;
-
+        return xxx;*/
     }
 
-  /*  public long tohexLong1(String data) {
+    /*  public long tohexLong1(String data) {
         byte[] b = data.getBytes();
         long result = 0;
         for (int i = 0; i < 4; i++) {
@@ -149,12 +182,12 @@ public class Blowfish {
         }
         return result;
     }*/
-
     /**
-     * Puts left and right part to byte[]
+     * Puts left and right parts to byte[]
+     *
      * @param left 2 bytes
      * @param right
-     * @return 
+     * @return byte[]
      */
     public byte[] longtobyte(long left, long right) {
 
@@ -172,6 +205,12 @@ public class Blowfish {
         return bytes;
     }
 
+    /**
+     * Encryption routine of Blowfish cipher.
+     *
+     * @param L
+     * @param R
+     */
     public void encrypt(long L, long R) {
         for (int i = 0; i < 16; i += 2) {
             L ^= P[i]; // L = L XOR P[i]
@@ -191,6 +230,13 @@ public class Blowfish {
 
     }
 
+    /**
+     * The F-function splits the 32-bit input into four eight-bit quarters, and
+     * uses the quarters as input to the S-boxes
+     *
+     * @param x long from encrypt routine
+     * @return changed long
+     */
     public long f(long x) {
 
         long h = S[0][(int) (x >> 24)] & S[1][(int) (x >> 16 & 0xff)];
@@ -201,7 +247,7 @@ public class Blowfish {
     /**
      * Takes three bytes and changes it to binary string which length is 24 bits
      *
-     * @param bytes 
+     * @param bytes
      * @return
      */
     public String ownEncoder(byte[] bytes) {
@@ -221,27 +267,36 @@ public class Blowfish {
         }
         return bits;
     }
-/**
- * 
- * @param in bytes
- * @return 
- */
+
+    /**
+     * Splits bytes changed to bits into 6 bit parts and makes them chars using
+     * chars char[]
+     *
+     * @param in bytes
+     * @return changed text
+     */
     public String bitsToChar(byte[] in) {
         String input = ownEncoder(in);
-        String bits = "";
+        String encText = "";
         String[] parts = split(input); // jaa 6 bit 
         for (String b : parts) {
             int n = Integer.parseUnsignedInt(b, 2);
             if (n == 0) {
-                bits += "=";
+                encText += "=";
             } else {
-                bits += chars[n];
+                encText += chars[n];
             }
 
         }
-        return bits;
+        return encText;
     }
 
+    /**
+     * Takes 24 bits and splits them to 4 6 bit parts
+     *
+     * @param input binary representation String that contains 24 bits
+     * @return 4 parts each containing 6 bits
+     */
     private static String[] split(String input) {
         int osa = 0;
         int bit = 0;

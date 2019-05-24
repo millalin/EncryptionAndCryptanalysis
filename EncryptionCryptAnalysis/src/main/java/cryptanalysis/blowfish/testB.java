@@ -42,7 +42,7 @@ public class testB {
         //Cipher cipher = Cipher.getInstance("blowfish");
         //    cipher.init(cipher.ENCRYPT_MODE, secretKey);
         String input = text;
-        byte[] encrypt = cipher.doFinal(input.getBytes());
+        byte[] encrypt = cipher.doFinal(input.getBytes("ASCII"));
         //   String e = new String(encrypt);
 
         cipher.init(Cipher.DECRYPT_MODE, KS);

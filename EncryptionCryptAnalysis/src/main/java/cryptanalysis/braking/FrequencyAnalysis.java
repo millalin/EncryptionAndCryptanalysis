@@ -61,6 +61,9 @@ public class FrequencyAnalysis {
 
         }
         System.out.println("most used: "+mostUsed);
+        if (mostUsed == 101)     {
+            key = 26;
+        } else
         if (mostUsed < 101) {
             key = 26 + mostUsed - 101;
         } else {
