@@ -290,7 +290,7 @@ public class CryptUi extends Application {
         System.out.println("pituus: "+pituus1);
         System.out.println("aika: " + aika);
        // bl.encryption("testi", "key");
-       testB test = new testB();
+       //testB test = new testB();
       
        
      //  String salaus = test.te("testmessage"); //TÄMÄ TOIMII OIKEIN

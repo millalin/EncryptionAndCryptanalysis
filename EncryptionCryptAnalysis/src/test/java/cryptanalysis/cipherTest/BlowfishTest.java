@@ -6,8 +6,7 @@
 package cryptanalysis.cipherTest;
 
 import cryptanalysis.blowfish.Blowfish;
-import java.util.ArrayList;
-import java.util.List;
+import cryptanalysis.dataStructures.MyArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -34,7 +33,7 @@ public class BlowfishTest {
 
     @Test
     public void splitsStringsRight() {
-        List<String> testlist = new ArrayList();
+        MyArrayList<String> testlist = new MyArrayList();
         String test = "teststringsplit1";
         testlist = bf.splitToParts(test, 8);
         String first = testlist.get(0);

@@ -5,7 +5,7 @@
  */
 package cryptanalysis.braking;
 
-import java.util.ArrayList;
+import cryptanalysis.dataStructures.MyArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -40,8 +40,8 @@ public class BreakingVigenereCipher {
      * @return best guess of the key length used in encryption
      */
     public int analyzingText(String text) {
-        HashMap<String, ArrayList<Integer>> blocks = new HashMap();
-        ArrayList<String> list = new ArrayList();
+        HashMap<String, MyArrayList<Integer>> blocks = new HashMap();
+        MyArrayList list = new MyArrayList();
         for (int i = 0; i < text.length() - 2; i++) {
             char a = (char) text.charAt(i);
             char b = (char) text.charAt(i + 1);
@@ -53,7 +53,7 @@ public class BreakingVigenereCipher {
 
                 blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
             } else {
-                blocks.put(set, new ArrayList());
+                blocks.put(set, new MyArrayList());
                 blocks.get(set).add(i);
                 list.add(set);
             }
@@ -71,19 +71,32 @@ public class BreakingVigenereCipher {
      * @param blocks map of 3 letter sets and their length differences
      * @return countedKeyLehgth
      */
-    public int countDiff(ArrayList<String> list, HashMap<String, ArrayList<Integer>> blocks) {
+    public int countDiff(MyArrayList<String> list, HashMap<String, MyArrayList<Integer>> blocks) {
         HashMap<Integer, Integer> differences = new HashMap();
 
         for (int i = 0; i < list.size(); i++) {
             String set = list.get(i);
-            ArrayList<Integer> indexes = blocks.get(set);
-            System.out.println("jono: " + indexes.toString());
+            System.out.println("set "+set);
+            MyArrayList<Integer> indexes = blocks.get(set);
+            System.out.println("jono: " );
             if (indexes.size() > 1) {
                 for (int j = 0; j < indexes.size() - 1; j++) { //yhden 3 kirj yhdistelmän välit
                     int difference = indexes.get(j + 1) - indexes.get(j); //yksi ero 
                     System.out.println(set + "  ero  " + difference);
-                    ArrayList<Integer> factors = listFactors(difference);
+                    MyArrayList<Integer> factors = listFactors(difference);
 
+                    for (int k = 0; k < factors.size(); k++) {
+                        int factor = factors.get(k);
+                        System.out.println("factor "+factor);
+                         if (differences.containsKey(factor)) {
+                            Integer v = differences.get(factor);
+                            v++;
+                            differences.put(factor, v); //tekijä ja monta kpl on tekijää
+                        } else {
+                            differences.put(factor, 1);
+                        }
+                    }
+                    /*
                     for (Integer factor : factors) {
                         if (differences.containsKey(factor)) {
                             Integer v = differences.get(factor);
@@ -92,7 +105,7 @@ public class BreakingVigenereCipher {
                         } else {
                             differences.put(factor, 1);
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -136,8 +149,8 @@ public class BreakingVigenereCipher {
      * @param x difference from same set of letters
      * @return factors
      */
-    public ArrayList<Integer> listFactors(int x) {
-        ArrayList<Integer> factors = new ArrayList<Integer>();
+    public MyArrayList<Integer> listFactors(int x) {
+        MyArrayList<Integer> factors = new MyArrayList<Integer>();
 
         for (int i = 1; i <= (int) Math.sqrt(x); i++) {
             if (x % i == 0) {

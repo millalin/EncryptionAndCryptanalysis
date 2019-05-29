@@ -5,6 +5,7 @@
  */
 package cryptanalysis.blowfish;
 
+import cryptanalysis.dataStructures.MyArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Blowfish {
     public long[] P = new Boxes().pbox;
     public long[][] S = new Boxes().SBox;
     public long left = 0, right = 0;
-    List<String> list = new ArrayList();
+    MyArrayList<String> list = new MyArrayList();
     String textString;
 
     /**
@@ -62,7 +63,9 @@ public class Blowfish {
 
         byte[] encrypted = null;
         String hex = "";
-        for (String part : list) {
+        
+        for (int i = 0; i < list.size(); i++) {
+            String part = list.get(i);
             part = String.format("%-8s", part).replace(' ', '-');
 
             left = changingToLong(part.substring(0, 4));
@@ -72,7 +75,9 @@ public class Blowfish {
 
             encrypted = toBytes(left, right);
             hex += this.changeToHex(encrypted);
+            
         }
+        
         return hex;
     }
 
@@ -119,9 +124,9 @@ public class Blowfish {
      * @param s size of parts
      * @return
      */
-    public List<String> splitToParts(String text, int s) {
+    public MyArrayList<String> splitToParts(String text, int s) {
 
-        List<String> splitted = new ArrayList();
+        MyArrayList<String> splitted = new MyArrayList();
         for (int i = 0; i < text.length(); i += s) {
             splitted.add(text.substring(i, Math.min(text.length(), i + s)));
         }

@@ -14,4 +14,6 @@ päivä |  aika |  mitä tein
 22.5 | 7 | Blowfish salauksen tekoa ja oman muunnoksen tekoa kun lopuksi jaetaan 6 bitin osioihin ja muunnetaan se kirjaimeksi
 23.5 | 4 | Blowfish salaukssen tekoa 
 24.5 | 4 | Blowfish salauksen tekoa ja tutkimista sekä muutama testi
-yht | 58 | 
+28.5 | 4 | Blowfish salauksen purkamista
+29.5 | 6 | Blowfish salauksen purkaminen ja oma arraylist toteutus
+yht | 68 | 
