@@ -6,7 +6,6 @@
 package cryptanalysis.blowfish;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 /**
@@ -20,8 +19,8 @@ public class Blowfish {
     public long[] P = new Boxes().pbox;
     public long[][] S = new Boxes().SBox;
     public long left = 0, right = 0;
-    List<String> data = new ArrayList();
-    String input;
+    List<String> list = new ArrayList();
+    String textString;
 
     /**
      * Initializing the P-array and S-boxes with values derived from pi
@@ -50,61 +49,66 @@ public class Blowfish {
                 S[i][j + 1] = right;
             }
         } // yhteensä tuli 521 iteraatiota
-        input = text;
+        textString = text;
     }
 
     /**
      * Handles encryption
      *
-     * @return @throws Exception
+     * @return hex
      */
     public String encryption() {
-        data = splitToBytes(input, 8); //data arraylist
-
-        String encoder = null;
-        String changeEncryption = "";
+        list = splitToParts(textString, 8);
 
         byte[] encrypted = null;
-        byte[] threeBytes = new byte[3];
+        String hex = "";
+        for (String part : list) {
+            part = String.format("%-8s", part).replace(' ', '-');
 
-        for (String osio : data) { //joka osio on 8 kirjainta/8 tavua = 64 bittiä
-            osio = String.format("%-8s", osio).replace(' ', '-');
+            left = changingToLong(part.substring(0, 4));
+            right = changingToLong(part.substring(4, 8));
 
-            //System.out.println("osio: " + osio);
-            //plainteksti 2 osaseks 32bittiseksi == 
-            left = tohexLong(osio.substring(0, 4));
-            right = tohexLong(osio.substring(4, 8));
-           
             encrypt(left, right);
-            encrypted = longtobyte(left, right);
 
-            int l = encrypted.length;
-            for (int i = 0; i < encrypted.length; i += 3) {
-                l -= 3;
-                if (l < 1) {
-                    threeBytes[0] = encrypted[i];
-                    threeBytes[1] = 00;
-                    threeBytes[2] = 00;
-                } else if (l < 2) {
-                    threeBytes[0] = encrypted[i];
-                    threeBytes[1] = encrypted[i + 1];
-                    threeBytes[2] = 00;
-                } else {
-                    byte b = encrypted[i];
-                    threeBytes[0] = b;
-                    threeBytes[1] = encrypted[i + 1];
-                    threeBytes[2] = encrypted[i + 2];
-                }
-
-                changeEncryption += bitsToChar(threeBytes);
-            }
+            encrypted = toBytes(left, right);
+            hex += this.changeToHex(encrypted);
         }
+        return hex;
+    }
 
-        System.out.println("oma " + changeEncryption);
-        //TULOSTUS mitä javan oma testaa ja katsotaan matchaako
-        encoder = Base64.getEncoder().encodeToString(encrypted);
-        System.out.println("PITÄISI OLLA: " + encoder);
-        return changeEncryption;
+    public String decryption(String text) {
+        //hex to byte
+        byte[] bytes = this.HexStringToBytes(text);
+        String decrypted = "";
+
+        for (int i = 0; i < bytes.length; i += 8) {
+            byte[] b = new byte[8];
+            int j = 0;
+
+            for (int k = 0; k < b.length; k++) {
+                byte c = bytes[i + k];
+                b[j + k] = c;
+
+            }
+
+            defineLeftAndRight(b);
+
+            decrypt(left, right);
+            decrypted += new String(toBytes(left, right));
+        }
+        return decrypted;
+
+    }
+
+    public void defineLeftAndRight(byte[] b) {
+        left = 0;
+        right = 0;
+        for (int i = 0; i < 4; i++) {
+
+            left = (left << 8) + (b[i] & 0xff);
+            right = (right << 8) + (b[i + 4] & 0xff);
+
+        }
     }
 
     /**
@@ -115,7 +119,7 @@ public class Blowfish {
      * @param s size of parts
      * @return
      */
-    public List<String> splitToBytes(String text, int s) {
+    public List<String> splitToParts(String text, int s) {
 
         List<String> splitted = new ArrayList();
         for (int i = 0; i < text.length(); i += s) {
@@ -130,10 +134,9 @@ public class Blowfish {
      * @param data 4 letter string
      * @return data changed to long
      */
-    public long tohexLong(String data) { //4 kirjainta
+    public long changingToLong(String data) { //4 kirjainta
 
         byte[] bytes = data.getBytes();
-        System.out.println("bytes "+bytes[0]);
         long lo
                 = ((bytes[0] & 0xFFL) << 24)
                 | ((bytes[1] & 0xFFL) << 16)
@@ -150,7 +153,7 @@ public class Blowfish {
      * @param right
      * @return byte[]
      */
-    public byte[] longtobyte(long left, long right) {
+    public byte[] toBytes(long left, long right) {
 
         byte[] bytes = new byte[8];
         bytes[0] = (byte) (left >> 24 & 0xff);
@@ -162,7 +165,6 @@ public class Blowfish {
         bytes[6] = (byte) (right >> 8 & 0xff);
         bytes[7] = (byte) (right & 0xff);
 
-        System.out.println("muutos yht " + bytes);
         return bytes;
     }
 
@@ -191,6 +193,22 @@ public class Blowfish {
 
     }
 
+    public void decrypt(long L, long R) {
+        for (int i = 16; i > 0; i -= 2) {
+            L ^= P[i + 1];
+            R ^= f(L);
+            R ^= P[i];
+            L ^= f(R);
+        }
+        L ^= P[1];
+        R ^= P[0];
+        long help = L;
+        L = R;
+        R = help;
+        left = L;
+        right = R;
+    }
+
     /**
      * The F-function splits the 32-bit input into four eight-bit quarters, and
      * uses the quarters as input to the S-boxes
@@ -205,76 +223,47 @@ public class Blowfish {
         return h;
     }
 
-    /**
-     * Takes three bytes and changes it to binary string which length is 24 bits
-     *
-     * @param bytes
-     * @return
-     */
-    public String ownEncoder(byte[] bytes) {
-        String bits = "";
-        for (int i = 0; i < bytes.length; i += 3) {
-            byte b = bytes[i];
-            byte b2 = bytes[i + 1];
-            byte b3 = bytes[i + 2];
-
-            System.out.println("bbb  " + b);
-            String binary = String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
-            String binary2 = String.format("%8s", Integer.toBinaryString(b2 & 0xFF)).replace(' ', '0');
-            String binary3 = String.format("%8s", Integer.toBinaryString(b3 & 0xFF)).replace(' ', '0');
-            System.out.println("binary: " + binary);
-            bits = binary + binary2 + binary3; //24 kpl
-
+    public byte[] HexStringToBytes(String hex) {
+        if (hex.length() % 2 == 1) {
+            throw new IllegalArgumentException(
+                    "Not allowed");
         }
-        return bits;
+
+        byte[] bytes = new byte[hex.length() / 2];
+        for (int i = 0; i < hex.length(); i += 2) {
+            bytes[i / 2] = hexToByte(hex.substring(i, i + 2));
+        }
+        return bytes;
     }
 
-    /**
-     * Splits bytes changed to bits into 6 bit parts and makes them chars using
-     * chars char[]. Own Base64.
-     *
-     * @param in bytes
-     * @return changed text
-     */
-    public String bitsToChar(byte[] in) {
-        String input = ownEncoder(in);
-        String encText = "";
-        String[] parts = split(input); // jaa 6 bit 
-        for (String b : parts) {
-            int n = Integer.parseUnsignedInt(b, 2);
-            if (n == 0) {
-                encText += "=";
-            } else {
-                encText += chars[n];
-            }
-
-        }
-        return encText;
+    public byte hexToByte(String hexString) {
+        int first = changeToint(hexString.charAt(0));
+        int sec = changeToint(hexString.charAt(1));
+        return (byte) ((first << 4) + sec);
     }
 
-    /**
-     * Takes 24 bits and splits them to 4 6 bit parts
-     *
-     * @param input binary representation String that contains 24 bits
-     * @return 4 parts each containing 6 bits
-     */
-    private static String[] split(String input) {
-        int osa = 0;
-        int bit = 0;
-
-        String[] parts = new String[4]; // 24 bittiä 6 bittiä eli 4 kirj;
-
-        StringBuilder sb;
-        while (bit < 24) {
-            sb = new StringBuilder();
-            for (int i = 0; i < 6; i++) {
-                sb.append(input.charAt(bit));
-                bit++;
-            }
-            parts[osa] = sb.toString();
-            osa++;
+    private int changeToint(char c) {
+        int changed = Character.digit(c, 16);
+        if (changed == -1) {
+            throw new IllegalArgumentException(
+                    "Not hex char: " + c);
         }
-        return parts;
+        return changed;
+    }
+
+    public String changeToHex(byte[] bytes) {
+        StringBuffer hexb = new StringBuffer();
+        for (int i = 0; i < bytes.length; i++) {
+            hexb.append(byteToHex(bytes[i]));
+        }
+        return hexb.toString();
+    }
+
+    public String byteToHex(byte num) {
+        char[] hexDigits = new char[2];
+        hexDigits[0] = Character.forDigit((num >> 4) & 0xF, 16);
+        hexDigits[1] = Character.forDigit((num & 0xF), 16);
+        return new String(hexDigits);
     }
 
     static char[] chars

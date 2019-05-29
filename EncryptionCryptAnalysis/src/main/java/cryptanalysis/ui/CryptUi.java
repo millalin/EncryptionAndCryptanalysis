@@ -291,10 +291,13 @@ public class CryptUi extends Application {
         System.out.println("aika: " + aika);
        // bl.encryption("testi", "key");
        testB test = new testB();
-       String salaus = test.te("testmessage"); //TÄMÄ TOIMII OIKEIN
-        System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
-        int pituus =salaus.length();
-        System.out.println("pituus "+pituus);
+      
+       
+     //  String salaus = test.te("testmessage"); //TÄMÄ TOIMII OIKEIN
+        //System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
+     //   int pituus =salaus.length();
+       // System.out.println("pituus "+pituus);
+        System.out.println("takaisin: " +bl.decryption("f06ffc85ff846316bf2ef3aa3b641796"));
        
         launch(args);
     }

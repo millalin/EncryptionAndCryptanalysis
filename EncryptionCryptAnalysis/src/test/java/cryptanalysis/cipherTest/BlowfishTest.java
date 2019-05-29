@@ -25,36 +25,18 @@ public class BlowfishTest {
         String encrypt = bf.encryption();
         int l = encrypt.length();
 
-        assertEquals(24, l);
+        assertEquals(32, l);
     }
 
-    @Test
-    public void bytesChangedToFourCharsWhenZero() {
-        byte[] threeBytes = new byte[3];
-        threeBytes[0] = 00;
-        threeBytes[1] = 00;
-        threeBytes[2] = 00;
-        String abc = bf.bitsToChar(threeBytes);
+ 
 
-        assertEquals(abc, "====");
-    }
-
-    @Test
-    public void abcChangedToFourCharsYWJj() {
-        byte[] threeBytes = new byte[3];
-        threeBytes[0] = 'a';
-        threeBytes[1] = 'b';
-        threeBytes[2] = 'c';
-        String abc = bf.bitsToChar(threeBytes);
-
-        assertEquals(abc, "YWJj");
-    }
+ 
 
     @Test
     public void splitsStringsRight() {
         List<String> testlist = new ArrayList();
         String test = "teststringsplit1";
-        testlist = bf.splitToBytes(test, 8);
+        testlist = bf.splitToParts(test, 8);
         String first = testlist.get(0);
 
         assertEquals(first, "teststri");
@@ -64,7 +46,7 @@ public class BlowfishTest {
     public void toLongChangesLong() {
         String test = "test";
 
-        long x = bf.tohexLong(test);
+        long x = bf.changingToLong(test);
 
         assertEquals(x, 1952805748);
     }
@@ -73,7 +55,7 @@ public class BlowfishTest {
     public void changesTo8BytesTexttestAndFirstByteMatches() {
         // 1952805748 is test which is first 4 bytes so first is t and byte 116
         byte[] b = new byte[8];
-        b = bf.longtobyte(1952805748, 0);
+        b = bf.toBytes(1952805748, 0);
         int x = b[0]; 
 
         assertEquals(x, 116);
