@@ -29,7 +29,7 @@ public class Blowfish {
      * @param text text to encrypt
      * @param key key used in encryption
      */
-    public Blowfish(String text, String key) {
+    public Blowfish(String key) {
 
         int keyLength = key.length();
         byte[] k = key.getBytes();
@@ -50,7 +50,7 @@ public class Blowfish {
                 S[i][j + 1] = right;
             }
         } // yhteensä tuli 521 iteraatiota
-        textString = text;
+        
     }
 
     /**
@@ -58,7 +58,8 @@ public class Blowfish {
      *
      * @return hex
      */
-    public String encryption() {
+    public String encryption(String text) {
+        textString = text;
         list = splitToParts(textString, 8);
 
         byte[] encrypted = null;

@@ -6,12 +6,13 @@
 package cryptanalysis.ui;
 
 import cryptanalysis.blowfish.Blowfish;
-import cryptanalysis.blowfish.testB;
 import cryptanalysis.braking.BreakingCaesarCipher;
 import cryptanalysis.braking.BreakingVigenereCipher;
 import cryptanalysis.braking.FrequencyAnalysis;
 import cryptanalysis.ciphers.CaesarCipher;
 import cryptanalysis.ciphers.VigenereCipher;
+import java.io.File;
+import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -44,18 +45,22 @@ public class CryptUi extends Application {
 
         CaesarCipher caesar = new CaesarCipher();
         VigenereCipher vigenere = new VigenereCipher();
+
         BreakingCaesarCipher b = new BreakingCaesarCipher();
         BreakingVigenereCipher breaking = new BreakingVigenereCipher();
         f = new FrequencyAnalysis();
 
         BorderPane start = new BorderPane();
+
         Button testCeasar = new Button("Test Ceasar");
         Button testVinenere = new Button("Test Vigenère");
+        Button testBlowfish = new Button("Test Blowfish");
+
         HBox startbuttons = new HBox();
-        startbuttons.getChildren().addAll(testCeasar, testVinenere);
+        startbuttons.getChildren().addAll(testCeasar, testVinenere, testBlowfish);
         startbuttons.setSpacing(10);
         start.setCenter(startbuttons);
-        start.setPadding(new Insets(10, 10, 10, 10));
+        start.setPadding(new Insets(30, 30, 30, 30));
 
         Label cipher = new Label("Ceasar cipher");
         Label encrypt = new Label("Plaintext");
@@ -130,6 +135,7 @@ public class CryptUi extends Application {
         TextArea plainText = new TextArea();
         TextArea cipherText = new TextArea();
         cipherText.setWrapText(true);
+        plainText.setWrapText(true);
         Button encButton = new Button("Encrypt");
         Button decButton = new Button("Decrypt");
         VBox buttons3 = new VBox();
@@ -154,7 +160,36 @@ public class CryptUi extends Application {
         vigenerePane.setVgap(25);
         vigenerePane.setPadding(new Insets(10, 10, 10, 10));
 
+        //BLOWFISH
+        GridPane blowfishPane = new GridPane();
+        blowfishPane.setHgap(5);
+        blowfishPane.setVgap(25);
+        blowfishPane.setPadding(new Insets(10, 10, 10, 10));
+        Label plainlabel = new Label("Plaintext");
+        Label cipherlabel = new Label("ciphertext");
+        Label bfkeyLabel = new Label("Insert keyword (32-448 bit)");
+        TextArea bfkeywordText = new TextArea();
+        bfkeywordText.setPrefSize(20, 5);
+        Button encBut = new Button("Encrypt");
+        Button decBut = new Button("Decrypt");
+
+        TextArea bfplainText = new TextArea();
+        TextArea bfcipherText = new TextArea();
+        bfcipherText.setWrapText(true);
+        bfplainText.setWrapText(true);
+
+        VBox buttons4 = new VBox();
+        buttons4.getChildren().addAll(encBut, decBut);
+        buttons4.setSpacing(10);
+
+        blowfishPane.add(bfkeyLabel, 1, 1);
+        blowfishPane.add(bfkeywordText, 1, 2);
+        blowfishPane.add(bfplainText, 1, 4);
+        blowfishPane.add(bfcipherText, 3, 4);
+        blowfishPane.add(buttons4, 2, 4);
+
         Scene vigenereScene = new Scene(vigenerePane);
+        Scene blowfishScene = new Scene(blowfishPane);
 
         testCeasar.setOnAction((event) -> {
             stage.setScene(ceasarScene);
@@ -162,6 +197,10 @@ public class CryptUi extends Application {
 
         testVinenere.setOnAction((event) -> {
             stage.setScene(vigenereScene);
+        });
+
+        testBlowfish.setOnAction((event) -> {
+            stage.setScene(blowfishScene);
         });
 
         enButton.setOnAction((event) -> {
@@ -263,42 +302,41 @@ public class CryptUi extends Application {
 
         });
 
+        encBut.setOnAction((event) -> {
+
+            String original = bfplainText.getText();
+            String keyText = bfkeywordText.getText();
+            Blowfish bf = new Blowfish(keyText);
+            String encryptText = bf.encryption(original);
+
+            bfcipherText.setText(encryptText);
+
+        });
+
+        decBut.setOnAction((event) -> {
+
+            String vinCipher = bfcipherText.getText();
+            String keyText = bfkeywordText.getText();
+            Blowfish bf = new Blowfish(keyText);
+            String decryptText = bf.decryption(vinCipher);
+
+            bfplainText.setText(decryptText);
+
+        });
+
         Scene startScene = new Scene(start);
         stage.setScene(startScene);
         stage.show();
     }
 
     public static void main(String[] args) throws Exception {
-        /*  CaesarCipher c = new CaesarCipher();
-        BreakingCeasarCipher b = new BreakingCeasarCipher();
-        String original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int n = 23;
-        System.out.println("Text  : " + original);
-        System.out.println("Shift : " + n);
-        System.out.println("Cipher text: " + c.encryption(original, n));
-        String changed = "XYZABCDEFGHIJKLMNOPQRSTUVW";
-        System.out.println("Original: " + c.decryption(changed, n));
-        System.out.print("options:");
-        b.breaking(changed); */
-        long alku = System.currentTimeMillis();
-        Blowfish bl = new Blowfish("testmessage","thisisthir");
-        String salattu = bl.encryption();
-        long loppu = System.currentTimeMillis();
-        long aika = loppu-alku;
-        System.out.println("Salattu: " + salattu);
-        int pituus1 = salattu.length();
-        System.out.println("pituus: "+pituus1);
-        System.out.println("aika: " + aika);
-       // bl.encryption("testi", "key");
-       //testB test = new testB();
-      
-       
-     //  String salaus = test.te("testmessage"); //TÄMÄ TOIMII OIKEIN
-        //System.out.println("onko oikein? 442DEDE74AD5018E " + salaus);
-     //   int pituus =salaus.length();
-       // System.out.println("pituus "+pituus);
-        System.out.println("takaisin: " +bl.decryption("f06ffc85ff846316bf2ef3aa3b641796"));
-       
+
+        TimeTesting tt = new TimeTesting();
+        System.out.println("java: " + tt.VigenereTimeArray());
+        System.out.println("own: " + tt.VigenereTimeOwnArray());
+
+        tt.testBf();
+
         launch(args);
     }
 

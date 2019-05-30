@@ -16,4 +16,5 @@ päivä |  aika |  mitä tein
 24.5 | 4 | Blowfish salauksen tekoa ja tutkimista sekä muutama testi
 28.5 | 4 | Blowfish salauksen purkamista
 29.5 | 6 | Blowfish salauksen purkaminen ja oma arraylist toteutus
-yht | 68 | 
+30.5 | 3 | nopeustestauksia ja toteutusdokumentin ja testausdokumentin aloitusta
+yht | 71 | 

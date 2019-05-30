@@ -1,5 +1,7 @@
 # Toteutusdokumentti
 
+Ohjelma toteuttaa kolme eri salausargoritmia: Caesar Cipher, Vigenere Cipher ja lohkosalausalgoritmin Blowfish. Caasar Cipher ja Vigenere Cipher ovat yksinkertaisempia salausmenetelmiä ja ohjelma toteuttaa myös niiden murtamisyritykset, silloin kun salausavain ei ole tiedossa. 
+
 ### Ohjelman yleisrakenne
 
 Ohjelma koostuu seuraavista pakkauksista:
@@ -24,6 +26,14 @@ Sisältää kaikkien omien tietorakenteiden toteutukset. Sisältää luokat MyAr
 
 testiluokka, joka testaa saĺauksia
 
+
+### Salaus
+
+#### Caesar Cipher
+
+#### Vigenere Cipher
+
+#### Blowfish
 
 
 [Kasiski](https://crypto.interactive-maths.com/kasiski-analysis-breaking-the-code.html)

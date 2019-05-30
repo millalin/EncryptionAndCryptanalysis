@@ -1,12 +1,15 @@
 # Testausdokumentti
 
-### Mitä on testattu?
+### Yksikkötestaus
 
-Testeissä on testattu, että salaukset toimivat oikein ja myös purkavat salauksen oikein takaisin. Testit on tehty käyttäen JUnitia. Testien oikeat salaustulokset on tarkistettu osin käsin sekä valmiilla salausohjelmilla. 
+Testeissä on testattu, että salaukset toimivat oikein ja myös purkavat salauksen oikein takaisin. Testit on tehty käyttäen JUnitia. Testien oikeat salaustulokset on tarkistettu myös osin käsin sekä valmiilla salausohjelmilla. 
 
-### Minkälaisilla syötteillä testaus tehtiin?
+### Suorituskykytestaus
 
-Syötteet ovat String muotoisia, kuten myös ohjelmassa tehtäessä salausta.
+Suorituskykytesteissä testataan Blowfish salauksen nopeutta salatessa ja salausta purkaessa eri kokoisilla tekstitiedostoilla. Vigenere ja Caesar salauksissa nopeutta testataan tapauksissa, joissa salaus yritetään murtaa tietämättä avainta. 
+
+Käytetty Java versio oli 1.8.0_211 ja käyttöjärjestelmä Ubuntu 18.04. 
+
 
 ### Miten testit voidaan toistaa?
 
@@ -14,3 +17,4 @@ Syötteet ovat String muotoisia, kuten myös ohjelmassa tehtäessä salausta.
 ### Testauksen tuloksia ja suorituskyky
 
 Salauksien nopeuksia sekä murtoyrityksien nopeuksia tutkitaan Javan System.currenttimeMillis() -metodin avulla. 
+
