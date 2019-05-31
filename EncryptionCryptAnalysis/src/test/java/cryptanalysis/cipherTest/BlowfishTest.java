@@ -37,14 +37,7 @@ public class BlowfishTest {
         assertEquals(first, "teststri");
     }
 
-    @Test
-    public void toLongChangesLong() {
-        String test = "test";
-
-        long x = bf.changingToLong(test);
-
-        assertEquals(x, 1952805748);
-    }
+   
 
     @Test
     public void changesTo8BytesTexttestAndFirstByteMatches() {

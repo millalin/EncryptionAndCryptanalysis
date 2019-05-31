@@ -64,7 +64,6 @@ public class Blowfish {
         for (int i = 0; i < list.size(); i++) {
             String part = list.get(i);
             part = String.format("%-8s", part).replace(' ', '-');
-
             byte [] block = new byte[8];
             block = part.getBytes();
                left = ((block[3] & 0xffL))| ((block[2] & 0xFFL) << 8) | ((block[1] & 0xFFL) << 16) | ((block[0] & 0xFFL) << 24); //
