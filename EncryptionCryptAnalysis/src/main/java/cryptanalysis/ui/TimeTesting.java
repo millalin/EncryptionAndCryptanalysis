@@ -74,7 +74,7 @@ public class TimeTesting {
         String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-        System.out.println("Salattu: " + salattu);
+       // System.out.println("Salattu: " + salattu);
         int pituus1 = salattu.length();
         System.out.println("pituus: " + pituus1);
         System.out.println("aika oma: " + aika);
@@ -93,7 +93,7 @@ public class TimeTesting {
         String en = b.te(rivi);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-        System.out.println("java salattu: "+en);
+     //   System.out.println("java salattu: "+en);
         System.out.println("Aika java bf: "+aika);
         int pituus1 = en.length();
         System.out.println("pituus: " + pituus1);
