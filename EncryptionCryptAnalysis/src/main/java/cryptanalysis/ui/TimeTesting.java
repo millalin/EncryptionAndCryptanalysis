@@ -26,7 +26,7 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("test2.txt"));
+        Scanner tiedosto = new Scanner(new File("test4.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
@@ -79,6 +79,12 @@ public class TimeTesting {
         System.out.println("pituus: " + pituus1);
         System.out.println("aika oma: " + aika);
 
+        long alku2 = System.currentTimeMillis();
+        String avattu = bl.decryption(salattu);
+        long loppu2 = System.currentTimeMillis();
+        long aika2 = loppu2 - alku2;
+        System.out.println("Aika decryption oma: "+aika2);
+        
         System.out.println("takaisin: " + bl.decryption("7d867072c98910af4abc69c2eb9dffab")); //helloworld
     }
 

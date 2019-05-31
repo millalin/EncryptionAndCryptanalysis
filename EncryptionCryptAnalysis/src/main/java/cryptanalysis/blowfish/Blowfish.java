@@ -60,13 +60,15 @@ public class Blowfish {
 
         byte[] encrypted = null;
         String hex = "";
-int x =list.size()-1;
-        for (int i = x; i>0; i--) {
+
+        for (int i = 0; i < list.size(); i++) {
             String part = list.get(i);
             part = String.format("%-8s", part).replace(' ', '-');
 
-            left = changingToLong(part.substring(0, 4));
-            right = changingToLong(part.substring(4, 8));
+            byte [] block = new byte[8];
+            block = part.getBytes();
+               left = ((block[3] & 0xffL))| ((block[2] & 0xFFL) << 8) | ((block[1] & 0xFFL) << 16) | ((block[0] & 0xFFL) << 24); //
+               right = ((block[7] & 0xffL))| ((block[6] & 0xFFL) << 8) | ((block[5] & 0xFFL) << 16) | ((block[4] & 0xFFL) << 24); //
 
             encrypt(left, right);
             encrypted = toBytes(left, right);
@@ -87,9 +89,7 @@ int x =list.size()-1;
         byte[] bytes = this.HexStringToBytes(text);
         String decrypted = "";
 
-        for (byte b:bytes)  {
-            
-        }
+     
         for (int i = 0; i < bytes.length; i += 8) {
             byte[] b = new byte[8];
             int j = 0;
@@ -148,14 +148,14 @@ int x =list.size()-1;
      * @param data 4 letter string
      * @return data changed to long
      */
-    public long changingToLong(String data) { //4 kirjainta
+    public long changingToLong(byte[] data) { //4 kirjainta
 
-        byte[] bytes = data.getBytes();
+       // byte[] bytes = data.getBytes();
         long lo
-                = ((bytes[0] & 0xFFL) << 24)
-                | ((bytes[1] & 0xFFL) << 16)
-                | ((bytes[2] & 0xFFL) << 8)
-                | ((bytes[3] & 0xFFL) << 0);
+                = ((data[0] & 0xFFL) << 24)
+                | ((data[1] & 0xFFL) << 16)
+                | ((data[2] & 0xFFL) << 8)
+                | ((data[3] & 0xFFL) << 0);
 
         return lo;
     }
@@ -226,7 +226,6 @@ int x =list.size()-1;
         R = help;
         left = L;
         right = R;
-        System.out.println("decrypt " + left);
     }
 
     /**
