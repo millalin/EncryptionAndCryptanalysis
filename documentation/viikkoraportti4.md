@@ -15,7 +15,7 @@ Opin enemmän listan ja hashmapin taulukkorakenteesta. Olin näitä tutkinut aie
 
 ### Mikä jäi epäselväksi ja on tuottanut vaikeuksia?
 
-Blowfish tuotti edelleen päänvaivaa ja sain nyt toteutettua kuitenkin salauksen ja purkamisen. Lopullinen salaus tapahtui hexamuotoon. Nyt ehkä eniten vaikeuksia tuottaa, miten ja millaisia suorituskyvyn testauksia aion toteuttaa. 
+Blowfish tuotti edelleen päänvaivaa ja sain nyt toteutettua kuitenkin salauksen ja purkamisen. Lopullinen salaus tapahtui hexamuotoon. Nyt ehkä eniten vaikeuksia tuottaa, miten ja millaisia suorituskyvyn testauksia aion toteuttaa. Tällä hetkellä vaikeuksia tuottaa se, että oma blowfish toteutus tuntuu olevan suurilla tiedostoilla todella paljon hitaampi kuin esimerkiksi javan oma, mutten kyllä keksi miten sitä nopeuttaisi.  
 
 ### Mitä teen seuraavaksi? 
 

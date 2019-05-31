@@ -75,12 +75,14 @@ public class CryptUi extends Application {
         Button encryptfile = new Button("Encrypt");
         Button decryptfile = new Button("Decrypt");
         Label crypttimelabel = new Label("Time");
+        Label filesize = new Label("File size: ");
 
         fileB.add(text, 1, 1);
         fileB.add(filebfkey, 1, 2);
         fileB.add(filebf, 1, 3);
         fileB.add(encryptfile, 1, 4);
         fileB.add(crypttimelabel, 1, 5);
+        fileB.add(filesize, 1, 6);
         fileB.setHgap(5);
         fileB.setVgap(25);
         fileB.setPadding(new Insets(10, 10, 10, 10));
@@ -335,8 +337,8 @@ public class CryptUi extends Application {
 
             String original = bfplainText.getText();
             String keyText = bfkeywordText.getText();
-            Blowfish bf = new Blowfish(keyText);
-            String encryptText = bf.encryption(original);
+            Blowfish bf = new Blowfish(original, keyText);
+            String encryptText = bf.encryption();
 
             bfcipherText.setText(encryptText);
 
@@ -346,7 +348,7 @@ public class CryptUi extends Application {
 
             String vinCipher = bfcipherText.getText();
             String keyText = bfkeywordText.getText();
-            Blowfish bf = new Blowfish(keyText);
+            Blowfish bf = new Blowfish(vinCipher,keyText);
             String decryptText = bf.decryption(vinCipher);
 
             bfplainText.setText(decryptText);
@@ -359,12 +361,16 @@ public class CryptUi extends Application {
             try {
                 String original = readFile(filename);
                 String keyText = filebfkey.getText();
-                Blowfish bf = new Blowfish(keyText);
+                Blowfish bf = new Blowfish(original,keyText);
                 long starttime = System.currentTimeMillis();
-                String encryptText = bf.encryption(original);
-                long timepassed = System.currentTimeMillis() - starttime;
-
-                crypttimelabel.setText("Encryption time: " + timepassed + "ms");
+                String encryptText = bf.encryption();
+                double timepassed = System.currentTimeMillis() - starttime;
+                double timepassedSec = timepassed / 1000;
+                File file = new File(filename);
+                double size = file.length() / 1024;
+                double kbPerSecond = size / timepassedSec;
+                crypttimelabel.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                filesize.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
             } catch (Exception e) {
                 //  no file
             }

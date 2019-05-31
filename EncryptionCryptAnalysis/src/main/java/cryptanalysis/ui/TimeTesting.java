@@ -69,22 +69,22 @@ public class TimeTesting {
     // Testing blowfish cipher and encryption time
     public void testBf() {
 
-        Blowfish bl = new Blowfish("Blowfish");
+        Blowfish bl = new Blowfish(rivi,"Blowfish");
         long alku = System.currentTimeMillis();
-        String salattu = bl.encryption("helloworld");
+        String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
         System.out.println("Salattu: " + salattu);
         int pituus1 = salattu.length();
         System.out.println("pituus: " + pituus1);
-        System.out.println("aika: " + aika);
+        System.out.println("aika oma: " + aika);
 
         System.out.println("takaisin: " + bl.decryption("7d867072c98910af4abc69c2eb9dffab")); //helloworld
     }
 
     public void testb() throws Exception {
         long alku = System.currentTimeMillis();
-        String en = b.te("helloworld");
+        String en = b.te(rivi);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
         System.out.println("java salattu: "+en);

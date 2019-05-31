@@ -16,12 +16,12 @@ import org.junit.Test;
  */
 public class BlowfishTest {
 
-    Blowfish bf = new Blowfish("blowfish");
+    Blowfish bf = new Blowfish("testmessage","blowfish");
 
     @Test
     public void lengthOfEncryptionIsRight() {
 
-        String encrypt = bf.encryption("testmessage");
+        String encrypt = bf.encryption();
         int l = encrypt.length();
 
         assertEquals(32, l);

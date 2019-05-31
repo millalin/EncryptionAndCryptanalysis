@@ -25,7 +25,7 @@ public class Blowfish {
      *
      * @param key key used in encryption
      */
-    public Blowfish(String key) {
+    public Blowfish(String text, String key) {
 
         int keyLength = key.length();
         byte[] k = key.getBytes();
@@ -47,6 +47,7 @@ public class Blowfish {
             }
         } // yhteensä tuli 521 iteraatiota
 
+        list = splitToParts(text, 8);
     }
 
     /**
@@ -54,13 +55,13 @@ public class Blowfish {
      *
      * @return hex
      */
-    public String encryption(String text) {
-        list = splitToParts(text, 8);
+    public String encryption() {
+        
 
         byte[] encrypted = null;
         String hex = "";
-
-        for (int i = 0; i < list.size(); i++) {
+int x =list.size()-1;
+        for (int i = x; i>0; i--) {
             String part = list.get(i);
             part = String.format("%-8s", part).replace(' ', '-');
 
@@ -86,11 +87,14 @@ public class Blowfish {
         byte[] bytes = this.HexStringToBytes(text);
         String decrypted = "";
 
+        for (byte b:bytes)  {
+            
+        }
         for (int i = 0; i < bytes.length; i += 8) {
             byte[] b = new byte[8];
             int j = 0;
 
-            for (int k = 0; k < b.length; k++) {
+            for (int k = 0; k < 8; k++) {
                 byte c = bytes[i + k];
                 b[j + k] = c;
 
