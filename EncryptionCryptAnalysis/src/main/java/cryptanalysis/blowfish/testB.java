@@ -33,7 +33,7 @@ public class testB {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
         String hex = "";
-        String Key = "testbkey";
+        String Key = "Blowfish";
         byte[] KeyData = Key.getBytes();
         SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");

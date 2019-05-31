@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class BlowfishTest {
 
-    Blowfish bf = new Blowfish("test");
+    Blowfish bf = new Blowfish("blowfish");
 
     @Test
     public void lengthOfEncryptionIsRight() {
@@ -26,10 +26,6 @@ public class BlowfishTest {
 
         assertEquals(32, l);
     }
-
- 
-
- 
 
     @Test
     public void splitsStringsRight() {
@@ -55,8 +51,28 @@ public class BlowfishTest {
         // 1952805748 is test which is first 4 bytes so first is t and byte 116
         byte[] b = new byte[8];
         b = bf.toBytes(1952805748, 0);
-        int x = b[0]; 
+        int x = b[0];
 
         assertEquals(x, 116);
     }
+
+    @Test
+    public void toByteFromHex() {
+        String test = "41";
+
+        byte[] b = bf.HexStringToBytes(test);
+        byte onebyte = b[0];
+        char a = (char) onebyte;
+
+        assertEquals(a, 'A');
+    }
+    
+     @Test
+    public void to() {
+        String salattu = "5a370d5d395a6f70";
+        String avattu = bf.decryption(salattu);
+
+        assertEquals(avattu, "blowfish");
+    }
+
 }

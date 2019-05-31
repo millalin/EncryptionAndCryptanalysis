@@ -5,7 +5,7 @@
  */
 package cryptanalysis.cipherTest;
 
-import cryptanalysis.braking.BreakingVigenereCipher;
+import cryptanalysis.breaking.BreakingVigenereCipher;
 import cryptanalysis.ciphers.VigenereCipher;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -47,7 +47,7 @@ public class VigenereTest {
         String result = vigenere.decryption(testText, key);
         assertEquals("THIS IS SECRET TEST TEXT", result);
     }
-    
+
     @Test
     public void vigenereCipherDecryptsTextRightLowercase() {
         testText = "dlgc mq ciabir diqd xchx";
@@ -106,5 +106,26 @@ public class VigenereTest {
         String encrypted = vigenere.encryption(testText, key);
         int x = breaking.analyzingText(encrypted);
         assertEquals(5, x);
+    }
+
+    @Test
+    public void vigenereCipherGuessessKey() {
+
+        testText = "ONCEUPONATIMEagirlnamedCinderellalivedwithherstepmothera"
+                + "ndtwostepsisters.PoorCinderellahadtoworkhardalldaylongsoth"
+                + "eotherscouldrest.Itwasshewhohadtowakeupeachmorningwhenitwa"
+                + "sstilldarkandcoldtostartthefire.Itwasshewhocookedthemeals."
+                + "Itwasshewhokeptthefiregoing.Thepoorgirlcouldnotstayclean,f"
+                + "romalltheashesandcindersbythefire.\n"
+                + "“Whatamess!”hertwostepsisterslaughed.Andthatiswhytheycalledher“Cinderella.”\n"
+                + "Oneday,bignewscametotown.TheKingandQueenweregoingtohaveaball!ItwastimeforthePr"
+                + "incetofindabride.Alloftheyoungladiesinthelandwereinvitedtoco"
+                + "me.Theywerewildwithjoy!Theywouldweartheirmostbeautifulgownan"
+                + "dfixtheirhairextranice.Maybetheprincewouldlikethem!\n"
+                + "Oneday,bignewscametotown.";
+        String encrypted = vigenere.encryption(testText, key);
+        int x = breaking.analyzingText(encrypted);
+        String guessedKey = breaking.guessingKey(encrypted, x);
+        assertEquals(guessedKey, "key");
     }
 }

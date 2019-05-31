@@ -1,4 +1,4 @@
-package cryptanalysis.braking;
+package cryptanalysis.breaking;
 
 /**
  * Class that makes frequency analysis from english text

@@ -1,4 +1,4 @@
-package cryptanalysis.braking;
+package cryptanalysis.breaking;
 
 /**
  * Class that will break text that is encrypted with Caesar Cipher using bute

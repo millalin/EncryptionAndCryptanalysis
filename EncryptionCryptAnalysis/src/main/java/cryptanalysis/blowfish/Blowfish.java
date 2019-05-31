@@ -6,12 +6,9 @@
 package cryptanalysis.blowfish;
 
 import cryptanalysis.dataStructures.MyArrayList;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Class that created Blowfish encryption
- *
+ * Class that created Blowfish encryption and decryption
  */
 public class Blowfish {
 
@@ -26,7 +23,6 @@ public class Blowfish {
     /**
      * Initializing the P-array and S-boxes with values derived from pi
      *
-     * @param text text to encrypt
      * @param key key used in encryption
      */
     public Blowfish(String key) {
@@ -50,7 +46,7 @@ public class Blowfish {
                 S[i][j + 1] = right;
             }
         } // yhteensä tuli 521 iteraatiota
-        
+
     }
 
     /**
@@ -59,12 +55,11 @@ public class Blowfish {
      * @return hex
      */
     public String encryption(String text) {
-        textString = text;
-        list = splitToParts(textString, 8);
+        list = splitToParts(text, 8);
 
         byte[] encrypted = null;
         String hex = "";
-        
+
         for (int i = 0; i < list.size(); i++) {
             String part = list.get(i);
             part = String.format("%-8s", part).replace(' ', '-');
@@ -73,15 +68,19 @@ public class Blowfish {
             right = changingToLong(part.substring(4, 8));
 
             encrypt(left, right);
-
             encrypted = toBytes(left, right);
             hex += this.changeToHex(encrypted);
-            
+
         }
-        
+
         return hex;
     }
 
+    /**
+     * Handles decryption
+     * @param text text in hex String to be decrypted
+     * @return decrypted string in plaintext
+     */
     public String decryption(String text) {
         //hex to byte
         byte[] bytes = this.HexStringToBytes(text);
@@ -100,12 +99,17 @@ public class Blowfish {
             defineLeftAndRight(b);
 
             decrypt(left, right);
+
             decrypted += new String(toBytes(left, right));
         }
         return decrypted;
 
     }
 
+    /**
+     * Takes one byte and splits them to long so that text can get decrypted
+     * @param b one byte 
+     */
     public void defineLeftAndRight(byte[] b) {
         left = 0;
         right = 0;
@@ -155,7 +159,7 @@ public class Blowfish {
     /**
      * Puts left and right parts to byte[]
      *
-     * @param left 2 bytes
+     * @param left
      * @param right
      * @return byte[]
      */
@@ -199,6 +203,11 @@ public class Blowfish {
 
     }
 
+    /**
+     * Decryption routine of blowfish
+     * @param L
+     * @param R 
+     */
     public void decrypt(long L, long R) {
         for (int i = 16; i > 0; i -= 2) {
             L ^= P[i + 1];
@@ -213,6 +222,7 @@ public class Blowfish {
         R = help;
         left = L;
         right = R;
+        System.out.println("decrypt " + left);
     }
 
     /**
@@ -229,6 +239,11 @@ public class Blowfish {
         return h;
     }
 
+    /**
+     * Changes hex string to byte[] form
+     * @param hex String in hex form
+     * @return bytes
+     */
     public byte[] HexStringToBytes(String hex) {
         if (hex.length() % 2 == 1) {
             throw new IllegalArgumentException(
@@ -242,12 +257,22 @@ public class Blowfish {
         return bytes;
     }
 
+    /**
+     * Changes one hex to byte
+     * @param hexString
+     * @return byte
+     */
     public byte hexToByte(String hexString) {
         int first = changeToint(hexString.charAt(0));
         int sec = changeToint(hexString.charAt(1));
         return (byte) ((first << 4) + sec);
     }
 
+    /**
+     * Changes char (part of the hex string) to int
+     * @param c char 
+     * @return int changed from char
+     */
     private int changeToint(char c) {
         int changed = Character.digit(c, 16);
         if (changed == -1) {
@@ -256,28 +281,31 @@ public class Blowfish {
         }
         return changed;
     }
-
+/**
+ * Changing bytes to hex form
+ * @param bytes 
+ * @return h hex string
+ */
     public String changeToHex(byte[] bytes) {
-        StringBuffer hexb = new StringBuffer();
+        StringBuffer h = new StringBuffer();
         for (int i = 0; i < bytes.length; i++) {
-            hexb.append(byteToHex(bytes[i]));
+            h.append(byteToHex(bytes[i]));
         }
-        return hexb.toString();
+        return h.toString();
     }
 
-    public String byteToHex(byte num) {
-        char[] hexDigits = new char[2];
-        hexDigits[0] = Character.forDigit((num >> 4) & 0xF, 16);
-        hexDigits[1] = Character.forDigit((num & 0xF), 16);
-        return new String(hexDigits);
+    /**
+     * Changing one byte to hex
+     * @param b one byte
+     * @return hex String
+     */
+    public String byteToHex(byte b) {
+        char[] hex = new char[2];
+        hex[0] = Character.forDigit((b >> 4) & 0xF, 16);
+        hex[1] = Character.forDigit((b & 0xF), 16);
+        return new String(hex);
     }
 
-    static char[] chars
-            = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-                'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
-                'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-                't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
-                '9', '+', '/'};
 }
 
 /* 

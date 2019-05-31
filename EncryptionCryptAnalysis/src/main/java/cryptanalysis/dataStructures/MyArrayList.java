@@ -14,16 +14,24 @@ public class MyArrayList<T> {
         this.values = (T[]) new Object[10];
     }
 
-    public void add(T arvo) {
+    /**
+     * Adds object to list
+     *
+     * @param value
+     */
+    public void add(T value) {
 
         if (this.v == this.values.length) {
             grow();
         }
 
-        this.values[this.v] = arvo;
+        this.values[this.v] = value;
         v++;
     }
 
+    /**
+     * If list gets full grows its size
+     */
     private void grow() {
 
         T[] uusi = (T[]) new Object[this.values.length * 3 / 2 + 1];
@@ -35,24 +43,41 @@ public class MyArrayList<T> {
 
     }
 
-    public boolean contains(T arvo) {
+    /**
+     * Checks if list contains value
+     *
+     * @param value
+     * @return true if it contains value else false
+     */
+    public boolean contains(T value) {
 
-        return ind(arvo) >= 0;
+        return ind(value) >= 0;
     }
 
-    public void remove(T arvo) {
+    /**
+     * Removes value from list.
+     *
+     * @param value
+     */
+    public void remove(T value) {
 
-        int arvonIndeksi = ind(arvo);
+        int index = ind(value);
 
-        if (arvonIndeksi < 0) {
+        if (index < 0) {
             return;
         }
 
-        moveLeft(arvonIndeksi);
+        moveLeft(index);
         this.v--;
 
     }
 
+    /**
+     * Finds out index of some value
+     *
+     * @param value
+     * @return index if there is one, else -1
+     */
     public int ind(T value) {
 
         for (int i = 0; i < this.v; i++) {
@@ -65,6 +90,11 @@ public class MyArrayList<T> {
 
     }
 
+    /**
+     * Moves other values when some value is removed
+     *
+     * @param ind
+     */
     private void moveLeft(int ind) {
 
         for (int i = ind; i < this.v - 1; i++) {
@@ -72,6 +102,12 @@ public class MyArrayList<T> {
         }
     }
 
+    /**
+     * Finds out value from the list based on index
+     *
+     * @param index
+     * @return value
+     */
     public T get(int index) {
 
         if (index < 0 || index >= this.v) {

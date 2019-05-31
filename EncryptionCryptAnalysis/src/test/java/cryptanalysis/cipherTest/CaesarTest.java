@@ -5,8 +5,8 @@
  */
 package cryptanalysis.cipherTest;
 
-import cryptanalysis.braking.BreakingCaesarCipher;
-import cryptanalysis.braking.FrequencyAnalysis;
+import cryptanalysis.breaking.BreakingCaesarCipher;
+import cryptanalysis.breaking.FrequencyAnalysis;
 import cryptanalysis.ciphers.CaesarCipher;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

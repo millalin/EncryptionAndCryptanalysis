@@ -7,14 +7,14 @@ package cryptanalysis.ui;
 
 import cryptanalysis.blowfish.Blowfish;
 import cryptanalysis.blowfish.testB;
-import cryptanalysis.braking.BreakingVigenereCipher;
-import cryptanalysis.braking.BreakingVigenereNormalArrayList;
+import cryptanalysis.breaking.BreakingVigenereCipher;
+import cryptanalysis.breaking.BreakingVigenereNormalArrayList;
 import cryptanalysis.ciphers.VigenereCipher;
 import java.io.File;
 import java.util.Scanner;
 
 /**
- *
+ * class for testing time of ciphers
  * @author milla
  */
 public class TimeTesting {
@@ -38,6 +38,10 @@ public class TimeTesting {
         vigenere.encryption(rivi, "blowfkey");
     }
 
+    /**
+     * Testing time in vigenere with own ArrayList implemention
+     * @return 
+     */
     public long VigenereTimeArray() {
 
         long start = System.currentTimeMillis();
@@ -48,6 +52,10 @@ public class TimeTesting {
         return stop - start;
     }
 
+    /**
+     * Testing time in vigenere with Java ArrayList
+     * @return 
+     */
     public long VigenereTimeOwnArray() {
 
         long start = System.currentTimeMillis();
@@ -58,11 +66,12 @@ public class TimeTesting {
         return stop - start;
     }
 
+    // Testing blowfish cipher and encryption time
     public void testBf() {
 
-        Blowfish bl = new Blowfish("blowfish");
+        Blowfish bl = new Blowfish("Blowfish");
         long alku = System.currentTimeMillis();
-        String salattu = bl.encryption("isitsame");
+        String salattu = bl.encryption("helloworld");
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
         System.out.println("Salattu: " + salattu);
@@ -70,8 +79,18 @@ public class TimeTesting {
         System.out.println("pituus: " + pituus1);
         System.out.println("aika: " + aika);
 
-        System.out.println("takaisin: " + bl.decryption("80e2e9231e5a07e8")); //Thisissecretmessage
+        System.out.println("takaisin: " + bl.decryption("7d867072c98910af4abc69c2eb9dffab")); //helloworld
     }
 
+    public void testb() throws Exception {
+        long alku = System.currentTimeMillis();
+        String en = b.te("helloworld");
+        long loppu = System.currentTimeMillis();
+        long aika = loppu - alku;
+        System.out.println("java salattu: "+en);
+        System.out.println("Aika java bf: "+aika);
+        int pituus1 = en.length();
+        System.out.println("pituus: " + pituus1);
+    }
 
 }

@@ -6,12 +6,13 @@
 package cryptanalysis.ui;
 
 import cryptanalysis.blowfish.Blowfish;
-import cryptanalysis.braking.BreakingCaesarCipher;
-import cryptanalysis.braking.BreakingVigenereCipher;
-import cryptanalysis.braking.FrequencyAnalysis;
+import cryptanalysis.breaking.BreakingCaesarCipher;
+import cryptanalysis.breaking.BreakingVigenereCipher;
+import cryptanalysis.breaking.FrequencyAnalysis;
 import cryptanalysis.ciphers.CaesarCipher;
 import cryptanalysis.ciphers.VigenereCipher;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -25,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -56,11 +58,34 @@ public class CryptUi extends Application {
         Button testVinenere = new Button("Test Vigenère");
         Button testBlowfish = new Button("Test Blowfish");
 
+        Button testCeasarfile = new Button("File Ceasar");
+        Button testVinenerefile = new Button("File Vigenère");
+        Button testBlowfishfile = new Button("File Blowfish");
+
         HBox startbuttons = new HBox();
-        startbuttons.getChildren().addAll(testCeasar, testVinenere, testBlowfish);
+        startbuttons.getChildren().addAll(testCeasar, testVinenere, testBlowfish, testCeasarfile, testVinenerefile, testBlowfishfile);
         startbuttons.setSpacing(10);
         start.setCenter(startbuttons);
         start.setPadding(new Insets(30, 30, 30, 30));
+
+        GridPane fileB = new GridPane();
+        Label text = new Label("Write key and file name");
+        TextField filebf = new TextField();
+        TextField filebfkey = new TextField();
+        Button encryptfile = new Button("Encrypt");
+        Button decryptfile = new Button("Decrypt");
+        Label crypttimelabel = new Label("Time");
+
+        fileB.add(text, 1, 1);
+        fileB.add(filebfkey, 1, 2);
+        fileB.add(filebf, 1, 3);
+        fileB.add(encryptfile, 1, 4);
+        fileB.add(crypttimelabel, 1, 5);
+        fileB.setHgap(5);
+        fileB.setVgap(25);
+        fileB.setPadding(new Insets(10, 10, 10, 10));
+
+        Scene bffilescene = new Scene(fileB);
 
         Label cipher = new Label("Ceasar cipher");
         Label encrypt = new Label("Plaintext");
@@ -203,6 +228,10 @@ public class CryptUi extends Application {
             stage.setScene(blowfishScene);
         });
 
+        testBlowfishfile.setOnAction((event) -> {
+            stage.setScene(bffilescene);
+        });
+
         enButton.setOnAction((event) -> {
 
             // TESTAUSTA
@@ -324,6 +353,24 @@ public class CryptUi extends Application {
 
         });
 
+        encryptfile.setOnAction((event) -> {
+
+            String filename = filebf.getText();
+            try {
+                String original = readFile(filename);
+                String keyText = filebfkey.getText();
+                Blowfish bf = new Blowfish(keyText);
+                long starttime = System.currentTimeMillis();
+                String encryptText = bf.encryption(original);
+                long timepassed = System.currentTimeMillis() - starttime;
+
+                crypttimelabel.setText("Encryption time: " + timepassed + "ms");
+            } catch (Exception e) {
+                //  no file
+            }
+
+        });
+
         Scene startScene = new Scene(start);
         stage.setScene(startScene);
         stage.show();
@@ -336,6 +383,7 @@ public class CryptUi extends Application {
         System.out.println("own: " + tt.VigenereTimeOwnArray());
 
         tt.testBf();
+        tt.testb();
 
         launch(args);
     }
@@ -383,6 +431,25 @@ public class CryptUi extends Application {
 
         chart.getData().add(alphabets);
         return chart;
+    }
+
+    public String readFile(String filename) throws Exception {
+        String rivi = "";
+
+        try {
+            Scanner tiedosto = new Scanner(new File(filename));
+
+            while (tiedosto.hasNextLine()) {
+                rivi += tiedosto.nextLine();
+                // System.out.println(rivi);
+            }
+
+            tiedosto.close();
+        } catch (Exception e) {
+            System.out.println("There is no such file");
+        }
+
+        return rivi;
     }
 
 }
