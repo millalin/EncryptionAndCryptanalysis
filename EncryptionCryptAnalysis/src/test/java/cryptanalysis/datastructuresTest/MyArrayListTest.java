@@ -5,7 +5,7 @@
  */
 package cryptanalysis.datastructuresTest;
 
-import cryptanalysis.dataStructures.MyArrayList;
+import cryptanalysis.datastructures.MyArrayList;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class MyArrayListTest {
     @Test
     public void findsRight() {
         int first = lista.get(0);
-        int ownFirst = omalista.get(0);
+        int ownFirst = omalista.value(0);
 
         assertEquals(first, ownFirst);
     }
@@ -49,7 +49,7 @@ public class MyArrayListTest {
         @Test
     public void removesRight() {
         omalista.remove(1);
-        int nowFirst = omalista.get(0);
+        int nowFirst = omalista.value(0);
 
         assertEquals(nowFirst, 2);
     }

@@ -7,12 +7,14 @@ package cryptanalysis.ciphers;
 
 /**
  * Class that creates encryption and decryption using Caesar Cipher
+ *
  * @author milla
  */
 public class CaesarCipher {
-    
+
     /**
      * Encrypts given text with Caesar Cipher
+     *
      * @param text text that will be encrypted
      * @param n key length
      * @return encrypted text
@@ -23,11 +25,10 @@ public class CaesarCipher {
         for (int i = 0; i < text.length(); i++) {
 
             if (Character.isLowerCase(text.charAt(i))) {
-              
-                    char c = (char) (((int) text.charAt(i)
-                            + n - 97) % 26 + 97);
-                    encrypted = encrypted + c;
-                
+
+                char c = (char) (((int) text.charAt(i)
+                        + n - 97) % 26 + 97);
+                encrypted = encrypted + c;
 
             } else {
                 if ((int) text.charAt(i) == 32) {
@@ -46,6 +47,7 @@ public class CaesarCipher {
 
     /**
      * Decrypts given text with Caesar Cipher
+     *
      * @param text text that will be decrypted
      * @param n key length
      * @return decrypted text
@@ -53,15 +55,13 @@ public class CaesarCipher {
     public String decryption(String text, int n) {
         String decrypted = "";
         n = 26 - n;
-        System.out.println("ännä "+n);
 
         for (int i = 0; i < text.length(); i++) {
             if (Character.isLowerCase(text.charAt(i))) {
-               
-                    char ch = (char) (((int) text.charAt(i)
-                            + n - 97) % 26 + 97);
-                    decrypted = decrypted + ch;
-                
+
+                char ch = (char) (((int) text.charAt(i)
+                        + n - 97) % 26 + 97);
+                decrypted = decrypted + ch;
 
             } else {
                 if ((int) text.charAt(i) == 32) {

@@ -385,8 +385,8 @@ public class CryptUi extends Application {
     public static void main(String[] args) throws Exception {
 
         TimeTesting tt = new TimeTesting();
-        System.out.println("java: " + tt.VigenereTimeArray());
-        System.out.println("own: " + tt.VigenereTimeOwnArray());
+        System.out.println("java: " + tt.vigenereTimeArray());
+        System.out.println("own: " + tt.vigenereTimeOwnArray());
 
         tt.testBf();
         tt.testb();

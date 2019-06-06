@@ -6,7 +6,7 @@
 package cryptanalysis.cipherTest;
 
 import cryptanalysis.blowfish.Blowfish;
-import cryptanalysis.dataStructures.MyArrayList;
+import cryptanalysis.datastructures.MyArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -32,7 +32,7 @@ public class BlowfishTest {
         MyArrayList<String> testlist = new MyArrayList();
         String test = "teststringsplit1";
         testlist = bf.splitToParts(test, 8);
-        String first = testlist.get(0);
+        String first = testlist.value(0);
 
         assertEquals(first, "teststri");
     }
@@ -53,7 +53,7 @@ public class BlowfishTest {
     public void toByteFromHex() {
         String test = "41";
 
-        byte[] b = bf.HexStringToBytes(test);
+        byte[] b = bf.hexStringToBytes(test);
         byte onebyte = b[0];
         char a = (char) onebyte;
 

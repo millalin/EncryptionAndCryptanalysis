@@ -108,8 +108,8 @@ public class VigenereCipher {
             }
 
             if (Character.isLowerCase(text.charAt(i))) {
-                    c = (char) (((int) text.charAt(i)
-                            + n - 97) % 26 + 97);
+                c = (char) (((int) text.charAt(i)
+                        + n - 97) % 26 + 97);
 
                 decrypted = decrypted + c;
 

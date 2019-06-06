@@ -5,9 +5,7 @@
  */
 package cryptanalysis.blowfish;
 
-import cryptanalysis.dataStructures.MyArrayList;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
+import cryptanalysis.datastructures.MyArrayList;
 
 /**
  * Class that created Blowfish encryption and decryption
@@ -16,11 +14,12 @@ public class Blowfish {
 
     Boxes boxes = new Boxes();
 
-    public long[] P = new Boxes().pbox;
-    public long[][] S = new Boxes().SBox;
+    public long[] boxP = new Boxes().pbox;
+    public long[][] boxS = new Boxes().sBox;
     public long left = 0, right = 0;
     MyArrayList<String> list = new MyArrayList();
     String textString;
+    byte[] allbytes;
 
     /**
      * Initializing the P-array and S-boxes with values derived from pi
@@ -32,20 +31,20 @@ public class Blowfish {
         int keyLength = key.length();
         byte[] k = key.getBytes();
         for (int i = 0; i < 18; ++i) {
-            P[i] ^= k[i % keyLength];
+            boxP[i] ^= k[i % keyLength];
         }
         left = 0x00000000;
         right = 0x00000000;
         for (int i = 0; i < 18; i += 2) {
             encrypt(left, right);
-            P[i] = left;
-            P[i + 1] = right;
+            boxP[i] = left;
+            boxP[i + 1] = right;
         }
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 256; j += 2) {
                 encrypt(left, right);
-                S[i][j] = left;
-                S[i][j + 1] = right;
+                boxS[i][j] = left;
+                boxS[i][j + 1] = right;
             }
         } // yhteensä tuli 521 iteraatiota
 
@@ -60,6 +59,9 @@ public class Blowfish {
         }
         x = pituus + x;
         textString = String.format("%" + x + "s", textString).replace(' ', '-');
+        allbytes = new byte[textString.length()];
+
+        allbytes = textString.getBytes();
     }
 
     /**
@@ -71,10 +73,6 @@ public class Blowfish {
 
         byte[] encrypted = null;
         String hex = "";
-
-        byte[] allbytes = new byte[textString.length()];
-        allbytes = textString.getBytes();
-
         for (int i = 0; i < allbytes.length; i += 8) {
             byte[] block = new byte[8];
             byte c = 0;
@@ -87,7 +85,6 @@ public class Blowfish {
                 block[j + k] = c;
 
             }
-
             left = ((block[3] & 0xffL)) | ((block[2] & 0xFFL) << 8) | ((block[1] & 0xFFL) << 16) | ((block[0] & 0xFFL) << 24);
             right = ((block[7] & 0xffL)) | ((block[6] & 0xFFL) << 8) | ((block[5] & 0xFFL) << 16) | ((block[4] & 0xFFL) << 24);
 
@@ -96,26 +93,6 @@ public class Blowfish {
             hex += this.changeToHex(encrypted);
         }
 
-        /* for (int i = 0; i < list.size(); i++) {
-            
-            String part = list.get(i);
-            part = String.format("%-8s", part).replace(' ', '-');
-            byte [] block = new byte[8];
-          //  block = part.getBytes();
-        
-          
-          
-            ByteBuffer bb = Charset.defaultCharset().encode(part);
-              block = bb.array();
-              
-               left = ((block[3] & 0xffL))| ((block[2] & 0xFFL) << 8) | ((block[1] & 0xFFL) << 16) | ((block[0] & 0xFFL) << 24); //
-               right = ((block[7] & 0xffL))| ((block[6] & 0xFFL) << 8) | ((block[5] & 0xFFL) << 16) | ((block[4] & 0xFFL) << 24); //
-
-            encrypt(left, right);
-            encrypted = toBytes(left, right);
-            hex += this.changeToHex(encrypted);
-
-        } */
         return hex;
     }
 
@@ -127,7 +104,7 @@ public class Blowfish {
      */
     public String decryption(String text) {
         //hex to byte
-        byte[] bytes = this.HexStringToBytes(text);
+        byte[] bytes = this.hexStringToBytes(text);
         String decrypted = "";
 
         for (int i = 0; i < bytes.length; i += 8) {
@@ -208,48 +185,48 @@ public class Blowfish {
     /**
      * Encryption routine of Blowfish cipher.
      *
-     * @param L
-     * @param R
+     * @param longL
+     * @param longR
      */
-    public void encrypt(long L, long R) {
+    public void encrypt(long longL, long longR) {
         for (int i = 0; i < 16; i += 2) {
-            L ^= P[i]; // L = L XOR P[i]
-            R ^= f(L);
-            R ^= P[i + 1];
-            L ^= f(R);
+            longL ^= boxP[i]; // L = L XOR P[i]
+            longR ^= f(longL);
+            longR ^= boxP[i + 1];
+            longL ^= f(longR);
         }
-        L ^= P[16];
-        R ^= P[17];
+        longL ^= boxP[16];
+        longR ^= boxP[17];
 
         //swap(L, R);
-        long help = L;
-        L = R;
-        R = help;
-        left = L;
-        right = R;
+        long help = longL;
+        longL = longR;
+        longR = help;
+        left = longL;
+        right = longR;
 
     }
 
     /**
      * Decryption routine of blowfish
      *
-     * @param L
-     * @param R
+     * @param longL
+     * @param longR
      */
-    public void decrypt(long L, long R) {
+    public void decrypt(long longL, long longR) {
         for (int i = 16; i > 0; i -= 2) {
-            L ^= P[i + 1];
-            R ^= f(L);
-            R ^= P[i];
-            L ^= f(R);
+            longL ^= boxP[i + 1];
+            longR ^= f(longL);
+            longR ^= boxP[i];
+            longL ^= f(longR);
         }
-        L ^= P[1];
-        R ^= P[0];
-        long help = L;
-        L = R;
-        R = help;
-        left = L;
-        right = R;
+        longL ^= boxP[1];
+        longR ^= boxP[0];
+        long help = longL;
+        longL = longR;
+        longR = help;
+        left = longL;
+        right = longR;
     }
 
     /**
@@ -261,8 +238,8 @@ public class Blowfish {
      */
     public long f(long x) {
 
-        long h = S[0][(int) (x >> 24)] & S[1][(int) (x >> 16 & 0xff)];
-        h = (h ^ (S[2][(int) (x >> 8 & 0xff)]) & S[3][(int) (x & 0xff)]);
+        long h = boxS[0][(int) (x >> 24)] & boxS[1][(int) (x >> 16 & 0xff)];
+        h = (h ^ (boxS[2][(int) (x >> 8 & 0xff)]) & boxS[3][(int) (x & 0xff)]);
         return h;
     }
 
@@ -272,7 +249,7 @@ public class Blowfish {
      * @param hex String in hex form
      * @return bytes
      */
-    public byte[] HexStringToBytes(String hex) {
+    public byte[] hexStringToBytes(String hex) {
         if (hex.length() % 2 == 1) {
             throw new IllegalArgumentException(
                     "Not allowed");

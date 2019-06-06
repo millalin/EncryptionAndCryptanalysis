@@ -24,7 +24,6 @@ public class FrequencyAnalysis {
 
         for (int i = 0; i < text.length(); i++) {
 
-            // char c = (char)((int) text.charAt(i));
             int ch = ((int) text.charAt(i));
 
             if (Character.isLowerCase(text.charAt(i))) {
@@ -53,18 +52,15 @@ public class FrequencyAnalysis {
         int mostUsed = 0;
 
         for (int i = 0; i < letters.length; i++) {
-            int letter = letters[i];
-            if (letter > biggest) {
-                biggest = letter;
+            if (letters[i] > biggest) {
+                biggest = letters[i];
                 mostUsed = i;
             }
 
         }
-        System.out.println("most used: "+mostUsed);
-        if (mostUsed == 101)     {
+        if (mostUsed == 101) {
             key = 26;
-        } else
-        if (mostUsed < 101) {
+        } else if (mostUsed < 101) {
             key = 26 + mostUsed - 101;
         } else {
             key = mostUsed - 101; //value of e =101

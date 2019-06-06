@@ -6,7 +6,7 @@
 package cryptanalysis.ui;
 
 import cryptanalysis.blowfish.Blowfish;
-import cryptanalysis.blowfish.testB;
+import cryptanalysis.blowfish.TestJavaOwnBlowfish;
 import cryptanalysis.breaking.BreakingVigenereCipher;
 import cryptanalysis.breaking.BreakingVigenereNormalArrayList;
 import cryptanalysis.ciphers.VigenereCipher;
@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 /**
  * class for testing time of ciphers
+ *
  * @author milla
  */
 public class TimeTesting {
@@ -22,11 +23,11 @@ public class TimeTesting {
     BreakingVigenereCipher breaking = new BreakingVigenereCipher();
     BreakingVigenereNormalArrayList arrayBreaking = new BreakingVigenereNormalArrayList();
     VigenereCipher vigenere = new VigenereCipher();
-    testB b = new testB();
+    TestJavaOwnBlowfish b = new TestJavaOwnBlowfish();
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("test4.txt"));
+        Scanner tiedosto = new Scanner(new File("test2.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
@@ -40,9 +41,10 @@ public class TimeTesting {
 
     /**
      * Testing time in vigenere with own ArrayList implemention
-     * @return 
+     *
+     * @return
      */
-    public long VigenereTimeArray() {
+    public long vigenereTimeArray() {
 
         long start = System.currentTimeMillis();
         int x = arrayBreaking.analyzingText(rivi);
@@ -54,9 +56,10 @@ public class TimeTesting {
 
     /**
      * Testing time in vigenere with Java ArrayList
-     * @return 
+     *
+     * @return
      */
-    public long VigenereTimeOwnArray() {
+    public long vigenereTimeOwnArray() {
 
         long start = System.currentTimeMillis();
         int x = breaking.analyzingText(rivi);
@@ -69,12 +72,12 @@ public class TimeTesting {
     // Testing blowfish cipher and encryption time
     public void testBf() {
 
-        Blowfish bl = new Blowfish(rivi,"Blowfish");
+        Blowfish bl = new Blowfish(rivi, "Blowfish");
         long alku = System.currentTimeMillis();
         String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-       // System.out.println("Salattu: " + salattu);
+        // System.out.println("Salattu: " + salattu);
         int pituus1 = salattu.length();
         System.out.println("pituus: " + pituus1);
         System.out.println("aika oma: " + aika);
@@ -83,8 +86,8 @@ public class TimeTesting {
         String avattu = bl.decryption(salattu);
         long loppu2 = System.currentTimeMillis();
         long aika2 = loppu2 - alku2;
-        System.out.println("Aika decryption oma: "+aika2);
-        
+        System.out.println("Aika decryption oma: " + aika2);
+
         System.out.println("takaisin: " + bl.decryption("7d867072c98910af4abc69c2eb9dffab")); //helloworld
     }
 
@@ -93,8 +96,8 @@ public class TimeTesting {
         String en = b.te(rivi);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-     //   System.out.println("java salattu: "+en);
-        System.out.println("Aika java bf: "+aika);
+        //   System.out.println("java salattu: "+en);
+        System.out.println("Aika java bf: " + aika);
         int pituus1 = en.length();
         System.out.println("pituus: " + pituus1);
     }

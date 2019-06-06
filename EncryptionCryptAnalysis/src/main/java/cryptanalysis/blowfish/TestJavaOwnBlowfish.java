@@ -15,9 +15,9 @@ import sun.misc.BASE64Encoder;
  *
  * @author milla
  */
-public class testB {
+public class TestJavaOwnBlowfish {
 
-    public testB() throws Exception {
+    public TestJavaOwnBlowfish() throws Exception {
 
     }
 
@@ -33,11 +33,11 @@ public class testB {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
         String hex = "";
-        String Key = "Blowfish";
-        byte[] KeyData = Key.getBytes();
-        SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
+        String key = "Blowfish";
+        byte[] keyData = key.getBytes();
+        SecretKeySpec ks = new SecretKeySpec(keyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");
-        cipher.init(Cipher.ENCRYPT_MODE, KS);
+        cipher.init(Cipher.ENCRYPT_MODE, ks);
 
         //Cipher cipher = Cipher.getInstance("blowfish");
         //    cipher.init(cipher.ENCRYPT_MODE, secretKey);
@@ -46,15 +46,17 @@ public class testB {
         //   String e = new String(encrypt);
 
         hex = this.changeToHex(encrypt);
-       // cipher.init(Cipher.DECRYPT_MODE, KS);
+        System.out.println("AIKA: " + System.currentTimeMillis());
+        cipher.init(Cipher.DECRYPT_MODE, ks);
 
         // decrypt message
-       // byte[] decrypted = cipher.doFinal(encrypt);
+        byte[] decrypted = cipher.doFinal(encrypt);
+        System.out.println("AIKA: " + System.currentTimeMillis());
 
-     //   String e = new String(encrypt.toString());
-      //  e = new BASE64Encoder().encode(encrypt);
+        //   String e = new String(encrypt.toString());
+        //  e = new BASE64Encoder().encode(encrypt);
         //String d = new String(decrypted);
-        return hex;// + " de:  " + d;
+        return hex; // + " de:  " + d;
     }
 
     public String changeToHex(byte[] bytes) {

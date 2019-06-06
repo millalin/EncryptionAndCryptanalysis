@@ -83,16 +83,6 @@ public class BreakingVigenereNormalArrayList {
 
                     for (int k = 0; k < factors.size(); k++) {
                         int factor = factors.get(k);
-                         if (differences.containsKey(factor)) {
-                            Integer v = differences.get(factor);
-                            v++;
-                            differences.put(factor, v); //tekijä ja monta kpl on tekijää
-                        } else {
-                            differences.put(factor, 1);
-                        }
-                    }
-                    /*
-                    for (Integer factor : factors) {
                         if (differences.containsKey(factor)) {
                             Integer v = differences.get(factor);
                             v++;
@@ -100,11 +90,11 @@ public class BreakingVigenereNormalArrayList {
                         } else {
                             differences.put(factor, 1);
                         }
-                    }*/
+                    }
+
                 }
             }
         }
-        System.out.println("erot  " + differences.toString());
         return countedKeyLength(differences);
     }
 
@@ -123,7 +113,7 @@ public class BreakingVigenereNormalArrayList {
 
         for (int key : keys) {
             if (key == 1 || key == 2) {
-                //ohi
+                key = 1; //passed
             } else {
                 int luku = differences.get(key);
                 if (luku > biggest) {
@@ -175,13 +165,12 @@ public class BreakingVigenereNormalArrayList {
         }
 
         for (int i = 0; i < keyLength; i++) {
-            int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);   
-            
-            guessedKey += (char)(shift + 'a');
+            int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
+
+            guessedKey += (char) (shift + 'a');
         }
 
         return guessedKey;
     }
-   
-    
+
 }
