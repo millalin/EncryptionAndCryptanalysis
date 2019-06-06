@@ -35,10 +35,11 @@ public class BreakingVigenereCipher {
     /**
      * Makes set of 3 from letters in text and counts length differences.
      *
-     * @param text encrypted text
+     * @param input encrypted text
      * @return best guess of the key length used in encryption
      */
     public int analyzingText(String text) {
+     //   String text = removeSpaces(input);
         MyHashMap<String, MyArrayList<Integer>> blocks = new MyHashMap();
         MyArrayList list = new MyArrayList();
         for (int i = 0; i < text.length() - 2; i++) {
@@ -48,17 +49,13 @@ public class BreakingVigenereCipher {
             String set = "" + a + b + c;
 
             if (blocks.containsKey(set)) {
-                // int count = blocks.get(set);
-
                 blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
             } else {
-                blocks.put(set, new MyArrayList() );
+                blocks.put(set, new MyArrayList());
                 blocks.get(set).add(i);
                 list.add(set);
             }
-
         }
-
         return countDiff(list, blocks);
     }
 
@@ -112,7 +109,7 @@ public class BreakingVigenereCipher {
 
         for (int i = 0; i < keys.size(); i++) {
             int key = keys.value(i);
-             if (key == 1 || key == 2) {
+            if (key == 1 || key == 2) {
                 key = 1; //passed
             } else {
                 int luku = differences.get(key);
@@ -123,18 +120,6 @@ public class BreakingVigenereCipher {
             }
         }
 
-        /* for (int key : keys) {
-            if (key == 1 || key == 2) {
-                key = 1; //passed
-            } else {
-                int luku = differences.get(key);
-                if (luku > biggest) {
-                    biggest = luku;
-                    keyL = key;
-                }
-            }
-
-        }*/
         return keyL;
 
     }
@@ -162,8 +147,7 @@ public class BreakingVigenereCipher {
     }
 
     public String guessingKey(String text, int keyLength) {
-        System.out.println("avain pituus: " + keyLength);
-
+      //  String text = removeSpaces(input);
         String textBasedOnKeyIndex[] = new String[keyLength];
         String guessedKey = "";
 
@@ -171,17 +155,52 @@ public class BreakingVigenereCipher {
             textBasedOnKeyIndex[i] = "";
 
         }
-        for (int i = 0; i < text.length(); i++) {
-            textBasedOnKeyIndex[i % keyLength] += text.charAt(i);
+        for (int i = 0; i < text.length(); i+=keyLength) {
+            
+            for (int j = 0; j < keyLength; j++) {
+                //String string = textBasedOnKeyIndex[j];
+                if (i + j > text.length() -1)  {
+                    continue;
+                } else  {
+                     textBasedOnKeyIndex[j] += text.charAt(i + j);
+                    
+                }
+               
+                
+            }
+           // textBasedOnKeyIndex[i % keyLength] += text.charAt(i);
+            
         }
 
         for (int i = 0; i < keyLength; i++) {
             int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
-
-            guessedKey += (char) (shift + 'a');
+            System.out.println("text " + textBasedOnKeyIndex[i]);
+            System.out.println("shift " + shift);
+            if ('a'+shift <123)     {
+                guessedKey += (char) ('a' + shift);
+            } else  {
+                guessedKey += (char) ('a' -26 + shift);
+            }
+            
         }
 
         return guessedKey;
+    }
+
+    public String removeSpaces(String input) {
+        String text = "";
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i); 
+            if (c > 64 && c < 91) {
+                text += c;
+            }
+            if (c > 96 && c < 123) {
+                text += c;
+            }
+
+        }
+        return text;
     }
 
 }

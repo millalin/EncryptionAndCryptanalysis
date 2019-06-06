@@ -87,7 +87,7 @@ public class VigenereTest {
         assertEquals(3, x);
     }
 
-    @Test
+     @Test
     public void vigenereCipherCountsKeyLenghtKeyOf5() {
 
         testText = "THEREARETWOWAYSOFCONSTRUCTINGASOFTWAREDESIGNONEWAY\n"
@@ -106,7 +106,7 @@ public class VigenereTest {
         String encrypted = vigenere.encryption(testText, key);
         int x = breaking.analyzingText(encrypted);
         assertEquals(5, x);
-    }
+}
 
     @Test
     public void vigenereCipherGuessessKey() {

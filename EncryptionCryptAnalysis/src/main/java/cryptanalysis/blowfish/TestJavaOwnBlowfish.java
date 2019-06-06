@@ -46,12 +46,10 @@ public class TestJavaOwnBlowfish {
         //   String e = new String(encrypt);
 
         hex = this.changeToHex(encrypt);
-        System.out.println("AIKA: " + System.currentTimeMillis());
         cipher.init(Cipher.DECRYPT_MODE, ks);
 
         // decrypt message
         byte[] decrypted = cipher.doFinal(encrypt);
-        System.out.println("AIKA: " + System.currentTimeMillis());
 
         //   String e = new String(encrypt.toString());
         //  e = new BASE64Encoder().encode(encrypt);

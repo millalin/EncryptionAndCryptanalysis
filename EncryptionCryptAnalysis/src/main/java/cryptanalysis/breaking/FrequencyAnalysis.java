@@ -26,16 +26,15 @@ public class FrequencyAnalysis {
 
             int ch = ((int) text.charAt(i));
 
-            if (Character.isLowerCase(text.charAt(i))) {
-                if (ch > 96 && ch < 123) {
-                    letters[ch] += 1;
-                }
+            if (ch > 96 && ch < 123) {
+                letters[ch] += 1;
+
             } else {
                 if (ch > 64 && ch < 91) {
                     letters[ch + 32] += 1;
                 }
-            }
 
+            }
         }
         return countKey();
     }
@@ -68,6 +67,9 @@ public class FrequencyAnalysis {
 
         return key;
     }
+    
+ 
+    
 
     public int[] freq() {
 

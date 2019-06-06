@@ -71,7 +71,7 @@ public class VigenereCipher {
                 encrypted = encrypted + c;
 
             } else {
-                if ((int) text.charAt(i) == 32) {
+                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
                     encrypted = encrypted + c;
                 } else {
@@ -114,7 +114,7 @@ public class VigenereCipher {
                 decrypted = decrypted + c;
 
             } else {
-                if ((int) text.charAt(i) == 32) {
+                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     c = (char) ((int) text.charAt(i));
                 } else {
 

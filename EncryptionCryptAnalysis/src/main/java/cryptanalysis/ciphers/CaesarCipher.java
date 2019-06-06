@@ -31,7 +31,7 @@ public class CaesarCipher {
                 encrypted = encrypted + c;
 
             } else {
-                if ((int) text.charAt(i) == 32) {
+                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
                     encrypted = encrypted + c;
                 } else {
@@ -64,7 +64,7 @@ public class CaesarCipher {
                 decrypted = decrypted + ch;
 
             } else {
-                if ((int) text.charAt(i) == 32) {
+                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
                     decrypted = decrypted + c;
                 } else {
