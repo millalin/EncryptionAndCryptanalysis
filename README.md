@@ -25,3 +25,4 @@ Ohjelma, jossa voi salata tekstiä ja purkaa sen avaimen avulla. Ohjelmassa voi 
 
 [Viikkoraportti 4](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/viikkoraportti4.md)
 
+[Viikkoraportti 5](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/viikkoraportti5.md)
