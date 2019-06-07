@@ -174,8 +174,6 @@ public class BreakingVigenereCipher {
 
         for (int i = 0; i < keyLength; i++) {
             int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
-            System.out.println("text " + textBasedOnKeyIndex[i]);
-            System.out.println("shift " + shift);
             if ('a'+shift <123)     {
                 guessedKey += (char) ('a' + shift);
             } else  {

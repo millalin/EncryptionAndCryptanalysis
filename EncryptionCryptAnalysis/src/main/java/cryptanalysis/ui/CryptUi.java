@@ -68,13 +68,43 @@ public class CryptUi extends Application {
         start.setCenter(startbuttons);
         start.setPadding(new Insets(30, 30, 30, 30));
 
+        GridPane fileC = new GridPane();
+        ChoiceBox cbox = new ChoiceBox();
+        cbox.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
+        cbox.setValue(1);
+        Label filecText = new Label("Choose key and write file name");
+        TextField filec = new TextField();
+        Button encryptfileC = new Button("Encrypt");
+        Button decryptfileC = new Button("Decrypt");
+        Button breakfileC = new Button("Break");
+        Label crypttimelabelFilec = new Label("Time:");
+        Label filesizeFileC = new Label("File size: ");
+        Label guessedKey = new Label("Key: ");
+        Button analysis = new Button("Frequensies");
+
+        fileC.add(filecText, 1, 1);
+        fileC.add(cbox, 1, 2);
+        fileC.add(filec, 1, 3);
+        fileC.add(encryptfileC, 1, 4);
+        fileC.add(breakfileC, 1, 5);
+        fileC.add(crypttimelabelFilec, 1, 6);
+        fileC.add(filesizeFileC, 1, 7);
+        fileC.add(guessedKey, 1, 8);
+        fileC.add(analysis, 1, 9);
+
+        fileC.setHgap(5);
+        fileC.setVgap(25);
+        fileC.setPadding(new Insets(10, 10, 10, 10));
+
+        Scene fileCScene = new Scene(fileC);
+
         GridPane fileB = new GridPane();
         Label text = new Label("Write key and file name");
         TextField filebf = new TextField();
         TextField filebfkey = new TextField();
         Button encryptfile = new Button("Encrypt");
         Button decryptfile = new Button("Decrypt");
-        Label crypttimelabel = new Label("Time");
+        Label crypttimelabel = new Label("Time:");
         Label filesize = new Label("File size: ");
 
         fileB.add(text, 1, 1);
@@ -234,6 +264,10 @@ public class CryptUi extends Application {
             stage.setScene(bffilescene);
         });
 
+        testCeasarfile.setOnAction((event) -> {
+            stage.setScene(fileCScene);
+        });
+
         enButton.setOnAction((event) -> {
 
             // TESTAUSTA
@@ -279,8 +313,8 @@ public class CryptUi extends Application {
 
         chartButton.setOnAction((event) -> {
             BorderPane chartPane = new BorderPane();
-
-            BarChart<String, Number> chart = this.frequencysChart(decryption);
+            String decrypted = decryption.getText();
+            BarChart<String, Number> chart = this.frequencysChart(decrypted);
             chartPane.setCenter(chart);
             chartPane.setTop(returnButton);
             Scene chartScene = new Scene(chartPane, 640, 480);
@@ -348,7 +382,7 @@ public class CryptUi extends Application {
 
             String vinCipher = bfcipherText.getText();
             String keyText = bfkeywordText.getText();
-            Blowfish bf = new Blowfish(vinCipher,keyText);
+            Blowfish bf = new Blowfish(vinCipher, keyText);
             String decryptText = bf.decryption(vinCipher);
 
             bfplainText.setText(decryptText);
@@ -361,7 +395,7 @@ public class CryptUi extends Application {
             try {
                 String original = readFile(filename);
                 String keyText = filebfkey.getText();
-                Blowfish bf = new Blowfish(original,keyText);
+                Blowfish bf = new Blowfish(original, keyText);
                 long starttime = System.currentTimeMillis();
                 String encryptText = bf.encryption();
                 double timepassed = System.currentTimeMillis() - starttime;
@@ -371,6 +405,78 @@ public class CryptUi extends Application {
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabel.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
                 filesize.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
+            } catch (Exception e) {
+                //  no file
+            }
+
+        });
+
+        encryptfileC.setOnAction((event) -> {
+
+            String filename = filec.getText();
+            try {
+                String original = readFile(filename);
+                int keyNumber = (int) cbox.getValue();
+                long starttime = System.currentTimeMillis();
+
+                caesar.encryption(original, keyNumber);
+                long stoptime = System.currentTimeMillis();
+                long timepassed = stoptime - starttime;
+                double timepassedSec = (double) timepassed / 1000;
+                File file = new File(filename);
+                double size = file.length() / 1024;
+                double kbPerSecond = size / timepassedSec;
+                crypttimelabelFilec.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
+                guessedKey.setText("Key used: " + keyNumber);
+
+            } catch (Exception e) {
+                //  no file
+            }
+
+        });
+
+        breakfileC.setOnAction((event) -> {
+
+            String filename = filec.getText();
+            try {
+                String original = readFile(filename);
+                
+                long starttime = System.currentTimeMillis();
+
+                //int keyNumber = (int) cbox.getValue();
+                f.countFrequencies(original);
+                int keyGuessed = f.countKey();
+                caesar.decryption(original, keyGuessed);
+                long stoptime = System.currentTimeMillis();
+                long timepassed = stoptime - starttime;
+                double timepassedSec = (double) timepassed / 1000;
+                File file = new File(filename);
+                double size = file.length() / 1024;
+                double kbPerSecond = size / timepassedSec;
+                crypttimelabelFilec.setText("Break time: " + timepassed + "ms, " + timepassedSec + " s.");
+                filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
+                guessedKey.setText("Key: " + keyGuessed);
+
+            } catch (Exception e) {
+                //  no file
+            }
+
+        });
+
+        analysis.setOnAction((event) -> {
+            String filename = filec.getText();
+            try {
+                String original = readFile(filename);
+
+                f.countFrequencies(original);
+                BorderPane chartPane = new BorderPane();
+
+                BarChart<String, Number> chart = this.frequencysChart(original);
+                chartPane.setCenter(chart);
+                chartPane.setTop(returnButton);
+                Scene chartScene = new Scene(chartPane, 640, 480);
+                stage.setScene(chartScene);
             } catch (Exception e) {
                 //  no file
             }
@@ -390,13 +496,18 @@ public class CryptUi extends Application {
 
         tt.testBf();
         tt.testb();
+        char []chars = new char[3];
+        String buu ="buu";
+        chars[0]=buu.charAt(0);
+        chars[1]=buu.charAt(1);
+chars[1]=buu.charAt(1);
+        System.out.println("mitä " + chars.toString());
 
         launch(args);
     }
 
-    public BarChart frequencysChart(TextArea decryption) {
-        String decrypted = decryption.getText();
-        f.countFrequencies(decrypted);
+    public BarChart frequencysChart(String decryption) {
+        f.countFrequencies(decryption);
         int[] letters = f.freq();
 
         CategoryAxis x = new CategoryAxis();

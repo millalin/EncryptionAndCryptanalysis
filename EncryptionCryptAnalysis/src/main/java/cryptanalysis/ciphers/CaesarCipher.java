@@ -20,29 +20,30 @@ public class CaesarCipher {
      * @return encrypted text
      */
     public String encryption(String text, int n) {
-        String encrypted = "";
+        char[] chars = new char[text.length()];
 
         for (int i = 0; i < text.length(); i++) {
 
-            if (Character.isLowerCase(text.charAt(i))) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
 
                 char c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
-                encrypted = encrypted + c;
+                chars[i] = c;
 
             } else {
                 if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
-                    encrypted = encrypted + c;
+                    chars[i] = c;
                 } else {
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
-                    encrypted = encrypted + ch;
+                    chars[i] = ch;
                 }
 
             }
         }
-        return encrypted;
+
+        return String.valueOf(chars);
     }
 
     /**
@@ -53,29 +54,30 @@ public class CaesarCipher {
      * @return decrypted text
      */
     public String decryption(String text, int n) {
-        String decrypted = "";
+        char[] chars = new char[text.length()];
         n = 26 - n;
 
         for (int i = 0; i < text.length(); i++) {
-            if (Character.isLowerCase(text.charAt(i))) {
+
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
 
                 char ch = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
-                decrypted = decrypted + ch;
+                chars[i] = ch;
 
             } else {
                 if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
-                    decrypted = decrypted + c;
+                    chars[i] = c;
                 } else {
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
-                    decrypted = decrypted + ch;
+                    chars[i] = ch;
                 }
 
             }
         }
 
-        return decrypted;
+        return String.valueOf(chars);
     }
 }

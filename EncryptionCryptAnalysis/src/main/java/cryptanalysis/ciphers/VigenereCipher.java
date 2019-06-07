@@ -55,35 +55,38 @@ public class VigenereCipher {
         String encrypted = "";
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
+      //  char[] keychar = new  char[keyGenerated.length()];
+        char[] chars = new char[text.length()];
 
         for (int i = 0; i < text.length(); i++) {
-
-            if (Character.isLowerCase(keyGenerated.charAt(i))) {
+            
+            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 122) {
                 n = (int) keyGenerated.charAt(i) - 97;
             } else {
                 n = (int) keyGenerated.charAt(i) - 65;
             }
 
-            if (Character.isLowerCase(text.charAt(i))) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
 
                 char c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
-                encrypted = encrypted + c;
+                chars[i] = c;
 
             } else {
                 if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
                     char c = (char) ((int) text.charAt(i));
-                    encrypted = encrypted + c;
+                    chars[i] = c;
                 } else {
 
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
-                    encrypted = encrypted + ch;
+                    chars[i] = ch;
                 }
 
             }
         }
-        return encrypted;
+
+         return String.valueOf(chars);
     }
 
     /**
@@ -94,24 +97,24 @@ public class VigenereCipher {
      * @return decrypted text
      */
     public String decryption(String text, String key) {
-        String decrypted = "";
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
+        char[] chars = new char[text.length()];
         char c = ' ';
 
         for (int i = 0; i < text.length(); i++) {
 
-            if (Character.isLowerCase(keyGenerated.charAt(i))) {
+            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 122) {
                 n = 26 - ((int) keyGenerated.charAt(i) - 97);
             } else {
                 n = 26 - ((int) keyGenerated.charAt(i) - 65);
             }
 
-            if (Character.isLowerCase(text.charAt(i))) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
                 c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
 
-                decrypted = decrypted + c;
+                 chars[i] = c;
 
             } else {
                 if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
@@ -121,11 +124,11 @@ public class VigenereCipher {
                     c = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
                 }
-                decrypted = decrypted + c;
+                 chars[i] = c;
 
             }
         }
-        return decrypted;
+        return String.valueOf(chars);
     }
 
 }

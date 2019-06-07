@@ -19,4 +19,5 @@ päivä |  aika |  mitä tein
 30.5 | 3 | nopeustestauksia ja toteutusdokumentin ja testausdokumentin aloitusta
 31.5 | 6 | käyttöliittymän muokkausta, testien tekoa, aikamittauksia
 6.6 | 9 | omaa hashmap toteutusta, aikakokeiluja, vigenere ja caesar muutokset
-yht | 77 | 
+7.6 | 8 | salauksien muokkaukset koodiin (nyt paljon nopeammat), dokumentaation tekoa, aikojen mittausta
+yht | 85 | 

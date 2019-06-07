@@ -27,7 +27,7 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("test2.txt"));
+        Scanner tiedosto = new Scanner(new File("file1.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
