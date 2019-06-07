@@ -38,10 +38,10 @@ Toteutettua Caesar salausta testattiin erikokoisilla tekstitiedostoilla, joissa 
 
 Caesar Cipher testattiin tekstitiedostoilla, joiden koko oli 0.2 MB, 1 MB, 5 MB sekä 10 MB. Toistoja tehtiin useita, ja mitä pienempi tiedosto oli, sitä useammin salaus ja murto tapahtui samassa ajassa. Pienempiä tiedostoja testattiin myös, mutta koska aika oli niin nopea, ei niiden tulosten lisääminen kaavioon ole mielekästä. Kaaviosta nähdään, että salaus tapahtuu lineaarisessa ajassa. 
 
-![alt text](chart_encryptcaesar.pdf)
+![alt text](caesar_braking.png)
 
 Ohjelmassa testattiin myös Caesar Cipher murron nopeutta tietämättä salausavaimen numeroa. Murto tapahtui lineaarisessa ajassa, kuten odotettua, sillä ohjelma käy tekstin kerran läpi ja laskee kuinka useasti kukin kirjain esiintyy. Tämän jälkeen aakkostaulukko, käydään kerran läpi, joka tapahtuu vakioajassa.  Murto oli hieman hitaampaa kuin salaus, mutta myös niin nopea, ettei pienillä tiedostoilla ollut mielekästä sitä testata enempää. 10 MB tekstitiedoston onnistui murtaa keskimäärin 75 millisekunnissa eli 0.075 sekunnissa.   
 
-![alt text](chart_encryptcaesar.pdf)
+![alt text](caesar_encryption.png)
 
    
