@@ -53,6 +53,7 @@ public class Blowfish {
         } else {
             jakojaannos = 8- (pituus % 8);
         }
+        System.out.println("jakojäännös "+ jakojaannos);
         allbytes = new byte[textString.length()  + jakojaannos];
         
          for (int i = 0; i < allbytes.length - jakojaannos; i++) {
@@ -76,13 +77,12 @@ public class Blowfish {
         for (int i = 0; i < allbytes.length; i += 8) {
             byte[] block = new byte[8];
             byte c = 0;
-            int j = 0;
 
             for (int k = 0; k < 8; k++) {
 
                 c = allbytes[i + k];
 
-                block[j + k] = c;
+                block[k] = c;
 
             }
             //bytes to 32 bits
@@ -91,7 +91,6 @@ public class Blowfish {
 
             encrypt(left, right);
             encrypted = toBytes(left, right);
-            System.out.println("väli "+encrypted);
             hex += this.changeToHex(encrypted);
         }
 
