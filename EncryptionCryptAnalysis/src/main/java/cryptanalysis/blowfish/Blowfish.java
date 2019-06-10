@@ -44,20 +44,24 @@ public class Blowfish {
             }
         } // yhteensä tuli 521 iteraatiota
 
-        list = splitToParts(text, 8);
         textString = text;
-        int pituus = text.length();
-        int x = 0;
+        int pituus = textString.length();
+        int jakojaannos = 0;
+        int h = 0;
         if (pituus % 8 == 0) {
-            x = 0;
+            jakojaannos = 0;
         } else {
-            x = 8 - (pituus % 8);
+            jakojaannos = 8- (pituus % 8);
         }
-        x = pituus + x;
-        textString = String.format("%" + x + "s", textString).replace(' ', ' ');
-        allbytes = new byte[textString.length()];
-
-        allbytes = textString.getBytes();
+        allbytes = new byte[textString.length()  + jakojaannos];
+        
+         for (int i = 0; i < allbytes.length - jakojaannos; i++) {
+             allbytes[i]=(byte)textString.charAt(i);
+        }
+        for (int i = 0; i < jakojaannos; i++) {
+            allbytes[i + textString.length() ] = 32;
+        }
+      
     }
 
     /**
@@ -81,11 +85,13 @@ public class Blowfish {
                 block[j + k] = c;
 
             }
+            //bytes to 32 bits
             left = ((block[3] & 0xffL)) | ((block[2] & 0xFFL) << 8) | ((block[1] & 0xFFL) << 16) | ((block[0] & 0xFFL) << 24);
             right = ((block[7] & 0xffL)) | ((block[6] & 0xFFL) << 8) | ((block[5] & 0xFFL) << 16) | ((block[4] & 0xFFL) << 24);
 
             encrypt(left, right);
             encrypted = toBytes(left, right);
+            System.out.println("väli "+encrypted);
             hex += this.changeToHex(encrypted);
         }
 
@@ -295,6 +301,7 @@ public class Blowfish {
         StringBuffer h = new StringBuffer();
         for (int i = 0; i < bytes.length; i++) {
             h.append(byteToHex(bytes[i]));
+            
         }
         return h.toString();
     }

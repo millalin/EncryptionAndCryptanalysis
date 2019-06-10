@@ -20,4 +20,5 @@ päivä |  aika |  mitä tein
 31.5 | 6 | käyttöliittymän muokkausta, testien tekoa, aikamittauksia
 6.6 | 9 | omaa hashmap toteutusta, aikakokeiluja, vigenere ja caesar muutokset
 7.6 | 8 | salauksien muokkaukset koodiin (nyt paljon nopeammat), dokumentaation tekoa, aikojen mittausta
-yht | 85 | 
+10.6 | 9 | decryptaukset toimimaan oikein kun mukana on myös erikoismerkkejä, blowfish bittimuunnoksia ja tavutaulukon muuttaminen oikean kokoiseksi
+yht | 94 | 

@@ -45,6 +45,7 @@ public class TestJavaOwnBlowfish {
         byte[] encrypt = cipher.doFinal(input.getBytes());
         //   String e = new String(encrypt);
 
+        System.out.println("java väli "+encrypt);
         hex = this.changeToHex(encrypt);
         cipher.init(Cipher.DECRYPT_MODE, ks);
 
@@ -53,7 +54,9 @@ public class TestJavaOwnBlowfish {
 
         //   String e = new String(encrypt.toString());
         //  e = new BASE64Encoder().encode(encrypt);
-        //String d = new String(decrypted);
+        String d = new String(decrypted);
+        System.out.println("de java " + d);
+
         return hex; // + " de:  " + d;
     }
 

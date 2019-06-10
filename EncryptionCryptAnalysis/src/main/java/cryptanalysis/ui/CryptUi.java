@@ -13,6 +13,7 @@ import cryptanalysis.ciphers.CaesarCipher;
 import cryptanalysis.ciphers.VigenereCipher;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -75,8 +76,14 @@ public class CryptUi extends Application {
         Label filecText = new Label("Choose key and write file name");
         TextField filec = new TextField();
         Button encryptfileC = new Button("Encrypt");
+        Label filecName = new Label("Write new file name for encrypted text");
+        TextField filecNameText = new TextField();
+        Label ready = new Label("");
         Button decryptfileC = new Button("Decrypt");
         Button breakfileC = new Button("Break");
+        HBox buttonsBox = new HBox();
+        buttonsBox.setSpacing(30);
+        buttonsBox.getChildren().addAll(encryptfileC, decryptfileC);
         Label crypttimelabelFilec = new Label("Time:");
         Label filesizeFileC = new Label("File size: ");
         Label guessedKey = new Label("Key: ");
@@ -85,16 +92,20 @@ public class CryptUi extends Application {
         fileC.add(filecText, 1, 1);
         fileC.add(cbox, 1, 2);
         fileC.add(filec, 1, 3);
-        fileC.add(encryptfileC, 1, 4);
-        fileC.add(breakfileC, 1, 5);
-        fileC.add(crypttimelabelFilec, 1, 6);
-        fileC.add(filesizeFileC, 1, 7);
-        fileC.add(guessedKey, 1, 8);
-        fileC.add(analysis, 1, 9);
+        fileC.add(buttonsBox, 1, 6);
+        fileC.add(filecName, 1, 4);
+        fileC.add(filecNameText, 1, 5);
+        fileC.add(ready, 1, 7);
+        fileC.add(breakfileC, 1, 8);
+        fileC.add(crypttimelabelFilec, 1, 9);
+        fileC.add(filesizeFileC, 1, 10);
+        fileC.add(guessedKey, 1, 11);
+        fileC.add(analysis, 1, 12);
 
         fileC.setHgap(5);
         fileC.setVgap(25);
         fileC.setPadding(new Insets(10, 10, 10, 10));
+        fileC.setMinSize(500, 400);
 
         Scene fileCScene = new Scene(fileC);
 
@@ -400,7 +411,7 @@ public class CryptUi extends Application {
                 String encryptText = bf.encryption();
                 double timepassed = System.currentTimeMillis() - starttime;
                 double timepassedSec = timepassed / 1000;
-                File file = new File(filename);
+                File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabel.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
@@ -419,17 +430,48 @@ public class CryptUi extends Application {
                 int keyNumber = (int) cbox.getValue();
                 long starttime = System.currentTimeMillis();
 
-                caesar.encryption(original, keyNumber);
+                String encrypted = caesar.encryption(original, keyNumber);
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File(filename);
+                File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilec.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
                 filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 guessedKey.setText("Key used: " + keyNumber);
+                String newfilename = filecNameText.getText();
+                ready.setText("Encrypted text goes to file " + newfilename + ".txt");
+                        
+                writeFile(encrypted, newfilename);
+            } catch (Exception e) {
+                //  no file
+            }
 
+        });
+        
+           decryptfileC.setOnAction((event) -> {
+
+            String filename = filec.getText();
+            try {
+                String original = readFile(filename);
+                int keyNumber = (int) cbox.getValue();
+                long starttime = System.currentTimeMillis();
+
+                String decrypted = caesar.decryption(original, keyNumber);
+                long stoptime = System.currentTimeMillis();
+                long timepassed = stoptime - starttime;
+                double timepassedSec = (double) timepassed / 1000;
+                File file = new File("./files/" + filename);
+                double size = file.length() / 1024;
+                double kbPerSecond = size / timepassedSec;
+                crypttimelabelFilec.setText("Decryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
+                guessedKey.setText("Key used: " + keyNumber);
+                String newfilename = filecNameText.getText();
+                ready.setText("Decrypted text goes to file " + newfilename + ".txt");
+                        
+                writeFile(decrypted, newfilename);
             } catch (Exception e) {
                 //  no file
             }
@@ -441,7 +483,7 @@ public class CryptUi extends Application {
             String filename = filec.getText();
             try {
                 String original = readFile(filename);
-                
+
                 long starttime = System.currentTimeMillis();
 
                 //int keyNumber = (int) cbox.getValue();
@@ -451,7 +493,7 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File(filename);
+                File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilec.setText("Break time: " + timepassed + "ms, " + timepassedSec + " s.");
@@ -496,12 +538,7 @@ public class CryptUi extends Application {
 
         tt.testBf();
         tt.testb();
-        char []chars = new char[3];
-        String buu ="buu";
-        chars[0]=buu.charAt(0);
-        chars[1]=buu.charAt(1);
-chars[1]=buu.charAt(1);
-        System.out.println("mitä " + chars.toString());
+        
 
         launch(args);
     }
@@ -552,6 +589,7 @@ chars[1]=buu.charAt(1);
 
     public String readFile(String filename) throws Exception {
         String rivi = "";
+        filename = "./files/" + filename;
 
         try {
             Scanner tiedosto = new Scanner(new File(filename));
@@ -569,4 +607,19 @@ chars[1]=buu.charAt(1);
         return rivi;
     }
 
+    public void writeFile(String text, String filename) throws FileNotFoundException {
+        Scanner lukija = new Scanner(text);
+
+        PrintWriter tulos = new PrintWriter("./files/" + filename + ".txt");
+
+        
+
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            tulos.println(rivi);
+        }
+
+        tulos.close();
+
+    }
 }
