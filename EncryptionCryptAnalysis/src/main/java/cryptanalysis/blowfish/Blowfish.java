@@ -54,7 +54,7 @@ public class Blowfish {
             x = 8 - (pituus % 8);
         }
         x = pituus + x;
-        textString = String.format("%" + x + "s", textString).replace(' ', '-');
+        textString = String.format("%" + x + "s", textString).replace(' ', ' ');
         allbytes = new byte[textString.length()];
 
         allbytes = textString.getBytes();
@@ -144,14 +144,14 @@ public class Blowfish {
      * case size 4.
      *
      * @param text text to be splitted
-     * @param s size of parts
+     * @param size size of parts
      * @return
      */
-    public MyArrayList<String> splitToParts(String text, int s) {
+    public MyArrayList<String> splitToParts(String text, int size) {
 
         MyArrayList<String> splitted = new MyArrayList();
-        for (int i = 0; i < text.length(); i += s) {
-            splitted.add(text.substring(i, Math.min(text.length(), i + s)));
+        for (int i = 0; i < text.length(); i += size) {
+            splitted.add(text.substring(i, Math.min(text.length(), i + size)));
         }
         return splitted;
     }
@@ -206,23 +206,23 @@ public class Blowfish {
     /**
      * Decryption routine of blowfish
      *
-     * @param longL
-     * @param longR
+     * @param longLeft
+     * @param longRight
      */
-    public void decrypt(long longL, long longR) {
+    public void decrypt(long longLeft, long longRight) {
         for (int i = 16; i > 0; i -= 2) {
-            longL ^= boxP[i + 1];
-            longR ^= f(longL);
-            longR ^= boxP[i];
-            longL ^= f(longR);
+            longLeft ^= boxP[i + 1];
+            longRight ^= f(longLeft);
+            longRight ^= boxP[i];
+            longLeft ^= f(longRight);
         }
-        longL ^= boxP[1];
-        longR ^= boxP[0];
-        long help = longL;
-        longL = longR;
-        longR = help;
-        left = longL;
-        right = longR;
+        longLeft ^= boxP[1];
+        longRight ^= boxP[0];
+        long help = longLeft;
+        longLeft = longRight;
+        longRight = help;
+        left = longLeft;
+        right = longRight;
     }
 
     /**

@@ -55,38 +55,36 @@ public class VigenereCipher {
         String encrypted = "";
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
-      //  char[] keychar = new  char[keyGenerated.length()];
+        //  char[] keychar = new  char[keyGenerated.length()];
         char[] chars = new char[text.length()];
 
         for (int i = 0; i < text.length(); i++) {
-            
-            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 122) {
+
+            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 123) {
                 n = (int) keyGenerated.charAt(i) - 97;
             } else {
                 n = (int) keyGenerated.charAt(i) - 65;
             }
 
-            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 123) {
 
                 char c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
                 chars[i] = c;
 
+            } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
+
+                char ch = (char) (((int) text.charAt(i)
+                        + n - 65) % 26 + 65);
+                chars[i] = ch;
+
             } else {
-                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
-                    char c = (char) ((int) text.charAt(i));
-                    chars[i] = c;
-                } else {
-
-                    char ch = (char) (((int) text.charAt(i)
-                            + n - 65) % 26 + 65);
-                    chars[i] = ch;
-                }
-
+                char c = (char) ((int) text.charAt(i));
+                chars[i] = c;
             }
         }
 
-         return String.valueOf(chars);
+        return String.valueOf(chars);
     }
 
     /**
@@ -104,28 +102,28 @@ public class VigenereCipher {
 
         for (int i = 0; i < text.length(); i++) {
 
-            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 122) {
+            if ((keyGenerated.charAt(i)) > 96 && (keyGenerated.charAt(i)) < 123) {
                 n = 26 - ((int) keyGenerated.charAt(i) - 97);
             } else {
                 n = 26 - ((int) keyGenerated.charAt(i) - 65);
             }
 
-            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 123) {
                 c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
 
-                 chars[i] = c;
+                chars[i] = c;
+
+            } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
+
+                c = (char) (((int) text.charAt(i)
+                        + n - 65) % 26 + 65);
+
+                chars[i] = c;
 
             } else {
-                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
-                    c = (char) ((int) text.charAt(i));
-                } else {
-
-                    c = (char) (((int) text.charAt(i)
-                            + n - 65) % 26 + 65);
-                }
-                 chars[i] = c;
-
+                c = (char) ((int) text.charAt(i));
+                chars[i] = c;
             }
         }
         return String.valueOf(chars);

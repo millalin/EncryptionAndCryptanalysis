@@ -24,22 +24,23 @@ public class CaesarCipher {
 
         for (int i = 0; i < text.length(); i++) {
 
-            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 123) {
 
                 char c = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
                 chars[i] = c;
 
-            } else {
-                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
-                    char c = (char) ((int) text.charAt(i));
-                    chars[i] = c;
-                } else {
+            } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
+                
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
                     chars[i] = ch;
-                }
+                
 
+            } else  {
+                char c = (char) ((int) text.charAt(i));
+                          
+                    chars[i] = c;
             }
         }
 
@@ -59,22 +60,23 @@ public class CaesarCipher {
 
         for (int i = 0; i < text.length(); i++) {
 
-            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 122) {
+            if ((text.charAt(i)) > 96 && (text.charAt(i)) < 123) {
 
                 char ch = (char) (((int) text.charAt(i)
                         + n - 97) % 26 + 97);
                 chars[i] = ch;
 
-            } else {
-                if ((int) text.charAt(i) > 31 && (int) text.charAt(i) < 65) {
-                    char c = (char) ((int) text.charAt(i));
-                    chars[i] = c;
-                } else {
+            } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
+                
+              
                     char ch = (char) (((int) text.charAt(i)
                             + n - 65) % 26 + 65);
                     chars[i] = ch;
-                }
+                
 
+            } else  {
+                char c = (char) ((int) text.charAt(i));
+                    chars[i] = c;
             }
         }
 
