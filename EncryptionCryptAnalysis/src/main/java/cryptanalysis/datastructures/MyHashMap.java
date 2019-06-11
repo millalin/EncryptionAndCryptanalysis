@@ -27,8 +27,8 @@ public class MyHashMap<K, V> {
         MyArrayList<KeyValue<K, V>> indexValues = this.keyValues[hashValue];
 
         for (int i = 0; i < indexValues.size(); i++) {
-            if (indexValues.value(i).getKey().equals(key)) {
-                return indexValues.value(i).getValue();
+            if (indexValues.get(i).getKey().equals(key)) {
+                return indexValues.get(i).getValue();
             }
         }
 
@@ -49,7 +49,7 @@ public class MyHashMap<K, V> {
             keys.add(key);
 
         } else {
-            indexValues.value(ind).setValue(value);
+            indexValues.get(ind).setValue(value);
             keys.add(key);
         }
 
@@ -73,7 +73,7 @@ public class MyHashMap<K, V> {
     private int getKeyIndex(MyArrayList<KeyValue<K, V>> list, K key) {
 
         for (int i = 0; i < list.size(); i++) {
-            if (list.value(i).getKey().equals(key)) {
+            if (list.get(i).getKey().equals(key)) {
                 return i;
             }
         }
@@ -99,7 +99,7 @@ public class MyHashMap<K, V> {
             //ei mtn
         } else {
             for (int i = 0; i < this.keyValues[ind].size(); i++) {
-                KeyValue<K, V> value = this.keyValues[ind].value(i);
+                KeyValue<K, V> value = this.keyValues[ind].get(i);
                 int hashValue = Math.abs(value.getKey().hashCode() % newList.length);
                 if (newList[hashValue] == null) {
                     newList[hashValue] = new MyArrayList<>();
@@ -124,7 +124,7 @@ public class MyHashMap<K, V> {
             return null;
         }
 
-        KeyValue<K, V> kv = indexValues.value(ind);
+        KeyValue<K, V> kv = indexValues.get(ind);
 
         indexValues.remove(kv);
 
@@ -145,7 +145,7 @@ public class MyHashMap<K, V> {
         MyArrayList<KeyValue<K, V>> indexValues = this.keyValues[hashValue];
 
         for (int i = 0; i < indexValues.size(); i++) {
-            if (indexValues.value(i).getKey().equals(key)) {
+            if (indexValues.get(i).getKey().equals(key)) {
                 return true;
             }
         }

@@ -35,8 +35,11 @@ public class TimeTesting {
         }
 
         tiedosto.close();
-
-        vigenere.encryption(rivi, "blowfkey");
+rivi= "hello world can you see any other differences i would like to see howthisworksandhowwecanhelloworld";
+        String sala =vigenere.encryption(rivi, "key");
+        
+        
+        
     }
 
     /**

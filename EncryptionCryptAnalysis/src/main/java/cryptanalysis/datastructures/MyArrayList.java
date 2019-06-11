@@ -85,7 +85,7 @@ public class MyArrayList<T> {
 
  
 
-    public T value(int ind) {
+    public T get(int ind) {
 
         if (ind < 0 || ind >= this.valuesCount) {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds");

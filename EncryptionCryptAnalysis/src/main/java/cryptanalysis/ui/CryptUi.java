@@ -701,7 +701,7 @@ public class CryptUi extends Application {
             } else {
                 String guessedKeyString = breaking.guessingKey(encryptedText, x);
                 long stopTime = System.currentTimeMillis();
-                KeyV.setText("Suggested key lenght " + x+ "and suggested key " + guessedKeyString);
+                KeyV.setText("Suggested key lenght " + x+ " and suggested key " + guessedKeyString);
 
                 long timePassed = stopTime - startTime;
                 crypttimelabelFilev.setText("Time finding out key: " + timePassed);

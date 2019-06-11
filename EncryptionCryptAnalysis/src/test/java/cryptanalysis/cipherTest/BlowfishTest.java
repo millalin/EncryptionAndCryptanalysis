@@ -32,7 +32,7 @@ public class BlowfishTest {
         MyArrayList<String> testlist = new MyArrayList();
         String test = "teststringsplit1";
         testlist = bf.splitToParts(test, 8);
-        String first = testlist.value(0);
+        String first = testlist.get(0);
 
         assertEquals(first, "teststri");
     }

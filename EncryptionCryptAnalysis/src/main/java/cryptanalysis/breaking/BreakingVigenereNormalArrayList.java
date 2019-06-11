@@ -46,9 +46,10 @@ public class BreakingVigenereNormalArrayList {
             char b = (char) text.charAt(i + 1);
             char c = (char) text.charAt(i + 2);
             String set = "" + a + b + c;
-
+System.out.println("set "+set);
             if (blocks.containsKey(set)) {
                 // int count = blocks.get(set);
+                
 
                 blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
             } else {
@@ -116,6 +117,7 @@ public class BreakingVigenereNormalArrayList {
                 key = 1; //passed
             } else {
                 int luku = differences.get(key);
+                System.out.println("difff "+key+ " fac "+luku);
                 if (luku > biggest) {
                     biggest = luku;
                     keyL = key;
@@ -123,7 +125,7 @@ public class BreakingVigenereNormalArrayList {
             }
 
         }
-
+        System.out.println("java avain: "+keyL);
         return keyL;
 
     }

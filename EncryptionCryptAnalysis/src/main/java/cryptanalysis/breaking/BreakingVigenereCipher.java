@@ -39,7 +39,7 @@ public class BreakingVigenereCipher {
      * @return best guess of the key length used in encryption
      */
     public int analyzingText(String text) {
-     //   String text = removeSpaces(input);
+      //  String text = removeSpaces(input);
         MyHashMap<String, MyArrayList<Integer>> blocks = new MyHashMap();
         MyArrayList list = new MyArrayList();
         for (int i = 0; i < text.length() - 2; i++) {
@@ -47,7 +47,6 @@ public class BreakingVigenereCipher {
             char b = (char) text.charAt(i + 1);
             char c = (char) text.charAt(i + 2);
             String set = "" + a + b + c;
-
             if (blocks.containsKey(set)) {
                 blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
             } else {
@@ -56,6 +55,7 @@ public class BreakingVigenereCipher {
                 list.add(set);
             }
         }
+        ;
         return countDiff(list, blocks);
     }
 
@@ -71,15 +71,16 @@ public class BreakingVigenereCipher {
         MyHashMap<Integer, Integer> differences = new MyHashMap();
 
         for (int i = 0; i < list.size(); i++) {
-            String set = list.value(i);
+            String set = list.get(i);
             MyArrayList<Integer> indexes = blocks.get(set);
             if (indexes.size() > 1) {
                 for (int j = 0; j < indexes.size() - 1; j++) { //yhden 3 kirj yhdistelmän välit
-                    int difference = indexes.value(j + 1) - indexes.value(j); //yksi ero 
+                    int difference = indexes.get(j + 1) - indexes.get(j); //yksi ero 
                     MyArrayList<Integer> factors = listFactors(difference);
 
                     for (int k = 0; k < factors.size(); k++) {
-                        int factor = factors.value(k);
+                        int factor = factors.get(k);
+                        
                         if (differences.containsKey(factor)) {
                             Integer v = differences.get(factor);
                             v++;
@@ -108,18 +109,19 @@ public class BreakingVigenereCipher {
         int biggest = 0;
 
         for (int i = 0; i < keys.size(); i++) {
-            int key = keys.value(i);
+            int key = keys.get(i);
             if (key == 1 || key == 2) {
                 key = 1; //passed
             } else {
                 int luku = differences.get(key);
+                System.out.println("oma ero  "+key+ " fac "+luku);
                 if (luku > biggest) {
                     biggest = luku;
                     keyL = key;
                 }
             }
         }
-
+        System.out.println("oma avain "+keyL);
         return keyL;
 
     }
@@ -140,7 +142,7 @@ public class BreakingVigenereCipher {
         }
         int size = factors.size();
         for (int i = size - 1; i >= 0; i--) {
-            factors.add(x / factors.value(i));
+            factors.add(x / factors.get(i));
         }
 
         return factors;

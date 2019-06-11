@@ -20,22 +20,23 @@ public class BreakingCaesarCipher {
         int key = 1;
 
         for (int round = 1; round <= 26; round++) {
+
             for (int i = 0; i < text.length(); i++) {
-                if (Character.isLowerCase(text.charAt(i))) {
+                if ((text.charAt(i)) > 96 && (text.charAt(i)) < 123) {
 
                     char ch = (char) (((int) text.charAt(i)
                             + (26 - round) - 97) % 26 + 97);
                     breaked = breaked + ch;
 
+                } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
+
+                    char ch = (char) (((int) text.charAt(i)
+                            + (26 - round) - 65) % 26 + 65);
+                    breaked = breaked + ch;
+
                 } else {
-                    if ((int) text.charAt(i) == 32) {
-                        char ch = (char) ((int) text.charAt(i));
-                        breaked = breaked + ch;
-                    } else {
-                        char ch = (char) (((int) text.charAt(i)
-                                + (26 - round) - 65) % 26 + 65);
-                        breaked = breaked + ch;
-                    }
+                    char ch = (char) ((int) text.charAt(i));
+                    breaked = breaked + ch;
                 }
             }
             b = b + "Key " + key + ": " + breaked + "\n";
