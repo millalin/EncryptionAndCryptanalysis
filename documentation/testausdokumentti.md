@@ -45,3 +45,17 @@ Ohjelmassa testattiin myös Caesar Cipher murron nopeutta tietämättä salausav
 ![alt text](caesar_encryption.png)
 
    
+#### Vigenère Cipher
+
+Vigenère Cipher salaus testattiin tekstitiedostoilla, kooltaan 1, 3, 5, 7.2 ja 10 MB.
+
+Kaaviossa on kunkin tiedostokoon keskirvo mittauksista. Salaus toteutettiin salausavaimilla "blowfish" sekä "key" eli avainpituuksilla 8 ja 3. Avaimen pituudella ei todettu olevan vaikutusta salausaikoihin testatuilla tiedostokoilla. Salaus toimii lineaarisessa ajassa ja aika mitattiin itse salauksesta. Aikaan ei mitattu esimerkiksi salatun tekstin tiedostoon kirjoittamista.  
+
+![alt text](./pics/vigenereEncryption.png) 
+
+![alt text](./pics/vigenereEncryption2.png)
+
+
+Vigenèrellä salatun tekstin murtamiseen kulunutta aikaa mitattiin tidostoilla, joiden koot olivat 200 kB, 400 kB, 600 kB, 800 kB ja 1 MB. Tässä mittauksessa ei ollut merkitystä, löytääkö murtoyritys oikean avaimenpituuden ja oikean avaimen, kunhan löytyi ehdotus avaimen pituudeksi sekä avaimeksi. Avaimen pituus oli 3 näissä tiedostoissa. Kun syötteen koko noin kaksinkertaistuu, salaukseen kulunut aika suurin piirtein nelinkertaistuu. Salauksen purussa käydään koko syöte samalla muodostaen 3 merkin yhdistelmiä. Nämä yhdistelmät käydään vielä läpi ja niistä etsitään samojen yhdistelmien erot ja lopulta lasketaan, mitä tekijää on eniten. Tämä on todennäköisin avaimen pituus. Avaimen arvauksessa syöte käydään vielä uudelleen kertaalleen läpi.  
+
+![alt text](./pics/vigenerebreakingkey.png) 

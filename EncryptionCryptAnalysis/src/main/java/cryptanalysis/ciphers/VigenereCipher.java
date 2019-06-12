@@ -21,7 +21,7 @@ public class VigenereCipher {
      */
     public String makeKey(String text, String key) {
 
-        String newKey = "";
+        char[]newKey=new char[text.length()];
         int j = 0;
         char c = ' ';
 
@@ -32,16 +32,17 @@ public class VigenereCipher {
             }
             if ((int) text.charAt(i) == 32) {
                 c = text.charAt(i);
+                newKey[i]=c;
             } else {
                 c = key.charAt(j);
+                newKey[i]=c;
                 j++;
             }
 
-            newKey += c;
 
         }
 
-        return newKey;
+        return String.valueOf(newKey);
     }
 
     /**
@@ -52,7 +53,6 @@ public class VigenereCipher {
      * @return encrypted text
      */
     public String encryption(String text, String key) {
-        String encrypted = "";
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
         //  char[] keychar = new  char[keyGenerated.length()];

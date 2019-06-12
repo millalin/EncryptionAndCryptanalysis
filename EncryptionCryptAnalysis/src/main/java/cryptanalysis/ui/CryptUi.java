@@ -62,6 +62,14 @@ public class CryptUi extends Application {
         Button testCeasarfile = new Button("File Ceasar");
         Button testVinenerefile = new Button("File Vigenère");
         Button testBlowfishfile = new Button("File Blowfish");
+        
+        Button returnbut1 = new Button("Return");
+        Button returnbut2 = new Button("Return");
+        Button returnbut3 = new Button("Return");
+        Button returnbut4 = new Button("Return");
+        Button returnbut5 = new Button("Return");
+        Button returnbut6 = new Button("Return");
+        Button returnButton = new Button("Exit");
 
         HBox startbuttons = new HBox();
         startbuttons.getChildren().addAll(testCeasar, testVinenere, testBlowfish, testCeasarfile, testVinenerefile, testBlowfishfile);
@@ -90,6 +98,7 @@ public class CryptUi extends Application {
         Label guessedKey = new Label("Key: ");
         Button analysis = new Button("Frequensies");
 
+        fileC.add(returnbut1, 0, 0);
         fileC.add(filecText, 1, 1);
         fileC.add(cbox, 1, 2);
         fileC.add(filec, 1, 3);
@@ -131,9 +140,10 @@ public class CryptUi extends Application {
         buttonsBox2.getChildren().addAll(encryptfileV, decryptfileV);
         Label crypttimelabelFilev = new Label("Time:");
         Label filesizeFilev = new Label("File size: ");
-        Label KeyV = new Label("Key: ");
+        Label keyV = new Label("Key: ");
         Button analysisV = new Button("Frequensies");
 
+        fileV.add(returnbut2, 0, 0);
         fileV.add(filevText, 1, 1);
         fileV.add(fileVKey, 1, 2);
         fileV.add(filev, 1, 3);
@@ -144,7 +154,7 @@ public class CryptUi extends Application {
         fileV.add(breakfileV, 1, 8);
         fileV.add(crypttimelabelFilev, 1, 9);
         fileV.add(filesizeFilev, 1, 10);
-        fileV.add(KeyV, 1, 11);
+        fileV.add(keyV, 1, 11);
         fileV.add(analysisV, 1, 12);
 
         fileV.setHgap(5);
@@ -153,21 +163,6 @@ public class CryptUi extends Application {
         fileV.setMinSize(500, 400);
 
         Scene fileVScene = new Scene(fileV);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
 
         GridPane fileB = new GridPane();
@@ -185,6 +180,7 @@ public class CryptUi extends Application {
         TextField fileBNameText = new TextField();
         Label ready2 = new Label("");
 
+        fileB.add(returnbut3, 0, 0);
         fileB.add(text, 1, 1);
         fileB.add(filebfkey, 1, 2);
         fileB.add(filebf, 1, 3);
@@ -229,7 +225,7 @@ public class CryptUi extends Application {
         Label line = new Label("Find key that will decrypt text:                      Show chart:");
 
         Button chartButton = new Button("Frequency chart");
-        Button returnButton = new Button("Exit");
+        
 
         GridPane ceasarPane = new GridPane();
         ceasarPane.setAlignment(Pos.CENTER);
@@ -242,6 +238,7 @@ public class CryptUi extends Application {
         ceasarPane.add(encryption, 1, 4);
         ceasarPane.add(decrypt, 4, 1);
         ceasarPane.add(decryption, 4, 4);
+        ceasarPane.add(returnbut4, 1, 9);
 
         VBox buttons = new VBox();
         buttons.getChildren().addAll(enButton, deButton);
@@ -285,6 +282,7 @@ public class CryptUi extends Application {
         Label suggestedKey = new Label("Suggested key: ");
         Label vigenereTime = new Label("Time: ");
 
+        vigenerePane.add(returnbut5, 1, 9);
         vigenerePane.add(keyLabel, 1, 1);
         vigenerePane.add(keywordText, 1, 2);
         vigenerePane.add(plainText, 1, 4);
@@ -325,10 +323,29 @@ public class CryptUi extends Application {
         blowfishPane.add(bfplainText, 1, 4);
         blowfishPane.add(bfcipherText, 3, 4);
         blowfishPane.add(buttons4, 2, 4);
+        blowfishPane.add(returnbut6, 1, 6);
 
         Scene vigenereScene = new Scene(vigenerePane);
         Scene blowfishScene = new Scene(blowfishPane);
 
+          returnButton.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+          
+            returnbut1.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });  returnbut2.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });  returnbut3.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });  returnbut4.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });  returnbut5.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });  returnbut6.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+        
         testCeasar.setOnAction((event) -> {
             stage.setScene(ceasarScene);
         });
@@ -646,7 +663,7 @@ public class CryptUi extends Application {
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilev.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
                 filesizeFilev.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
-                KeyV.setText("Key used: " + keyWord); 
+                keyV.setText("Key used: " + keyWord); 
                 String newfilename = filevNameText.getText();
                 ready3.setText("Encrypted text goes to file " + newfilename + ".txt");
                         
@@ -690,6 +707,7 @@ public class CryptUi extends Application {
             String filename = filev.getText();
             try {
                 String encryptedText = readFile(filename);
+                System.out.println("salateksti"+encryptedText);
 
                 long starttime = System.currentTimeMillis();
 
@@ -697,11 +715,11 @@ public class CryptUi extends Application {
             long startTime = System.currentTimeMillis();
             int x = breaking.analyzingText(encryptedText);
             if (x == 0) {
-                keyLengthLabel.setText("Too short text. There can't be found any factors");
+                keyV.setText("Too short text. There can't be found any factors");
             } else {
                 String guessedKeyString = breaking.guessingKey(encryptedText, x);
                 long stopTime = System.currentTimeMillis();
-                KeyV.setText("Suggested key lenght " + x+ " and suggested key " + guessedKeyString);
+                keyV.setText("Suggested key lenght " + x+ " and suggested key " + guessedKeyString);
 
                 long timePassed = stopTime - startTime;
                 crypttimelabelFilev.setText("Time finding out key: " + timePassed);

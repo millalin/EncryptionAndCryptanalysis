@@ -2,6 +2,7 @@
 package cryptanalysis.blowfish;
 
 import cryptanalysis.datastructures.MyArrayList;
+import java.util.Arrays;
 
 /**
  * Class that creates Blowfish encryption and decryption
@@ -71,7 +72,8 @@ public class Blowfish {
      * @return hex
      */
     public String encryption() {
-
+int x = 0;
+char[]hexchar = new char[allbytes.length*2];
         byte[] encrypted = null;
         String hex = "";
         for (int i = 0; i < allbytes.length; i += 8) {
@@ -90,11 +92,25 @@ public class Blowfish {
             right = ((block[7] & 0xffL)) | ((block[6] & 0xFFL) << 8) | ((block[5] & 0xFFL) << 16) | ((block[4] & 0xFFL) << 24);
 
             encrypt(left, right);
-            encrypted = toBytes(left, right);
-            hex += this.changeToHex(encrypted);
+            encrypted = toBytes(left, right); //on byte[8]
+         //   hex += this.changeToHex(encrypted);
+         
+            for (int j = 0; j < 8; j++) { //8 kierr eli joka bitti
+                byte b1 = encrypted[j];
+                char[]blaa=new char[2];
+                blaa=byteToHex(b1);
+                hexchar[x] = blaa[0];
+                hexchar[x+1] = blaa[1];
+                
+                x+=2;
+            }
+         
+            
+          //  hexchar[x]=this.changeToHex(encrypted);
+            
         }
 
-        return hex;
+        return String.valueOf(hexchar);
     }
 
     /**
@@ -104,9 +120,12 @@ public class Blowfish {
      * @return decrypted string in plaintext
      */
     public String decryption(String text) {
-        //hex to byte
+        
+int count = 0;
+//hex to byte
         byte[] bytes = this.hexStringToBytes(text);
         String decrypted = "";
+        char[]avattu = new char[bytes.length];
 
         for (int i = 0; i < bytes.length; i += 8) {
             byte[] b = new byte[8];
@@ -121,10 +140,18 @@ public class Blowfish {
             defineLeftAndRight(b);
 
             decrypt(left, right);
+            
+            byte[]dec = new byte[8];
+            dec = toBytes(left, right);
+            
+            for (int k = 0; k < 8; k++) {
+                char cha = (char)dec[k];
+                avattu[count] = cha;
+                count++;
+            }
 
-            decrypted += new String(toBytes(left, right));
         }
-        return decrypted;
+        return String.valueOf(avattu);
 
     }
 
@@ -311,11 +338,11 @@ public class Blowfish {
      * @param b one byte
      * @return hex String
      */
-    public String byteToHex(byte b) {
+    public char[] byteToHex(byte b) {
         char[] hex = new char[2];
         hex[0] = Character.forDigit((b >> 4) & 0xF, 16);
         hex[1] = Character.forDigit((b & 0xF), 16);
-        return new String(hex);
+        return hex;
     }
 
 }

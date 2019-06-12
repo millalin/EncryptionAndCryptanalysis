@@ -55,7 +55,7 @@ public class BreakingVigenereCipher {
                 list.add(set);
             }
         }
-        ;
+        
         return countDiff(list, blocks);
     }
 
@@ -114,7 +114,6 @@ public class BreakingVigenereCipher {
                 key = 1; //passed
             } else {
                 int luku = differences.get(key);
-                System.out.println("oma ero  "+key+ " fac "+luku);
                 if (luku > biggest) {
                     biggest = luku;
                     keyL = key;
@@ -152,6 +151,7 @@ public class BreakingVigenereCipher {
       //  String text = removeSpaces(input);
         String textBasedOnKeyIndex[] = new String[keyLength];
         String guessedKey = "";
+        char[] keyGuess = new char[keyLength];
 
         for (int i = 0; i < keyLength; i++) {
             textBasedOnKeyIndex[i] = "";
@@ -170,21 +170,22 @@ public class BreakingVigenereCipher {
                
                 
             }
-           // textBasedOnKeyIndex[i % keyLength] += text.charAt(i);
             
         }
 
         for (int i = 0; i < keyLength; i++) {
             int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
             if ('a'+shift <123)     {
-                guessedKey += (char) ('a' + shift);
+               // guessedKey += (char) ('a' + shift);
+                keyGuess[i] = (char) ('a' + shift);
             } else  {
-                guessedKey += (char) ('a' -26 + shift);
+              //  guessedKey += (char) ('a' -26 + shift);
+                keyGuess[i] = (char) ('a' -26 + shift);
             }
             
         }
 
-        return guessedKey;
+        return String.valueOf(keyGuess); //guessedKey;
     }
 
     public String removeSpaces(String input) {

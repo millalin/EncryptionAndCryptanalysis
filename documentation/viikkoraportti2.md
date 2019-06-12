@@ -8,7 +8,7 @@ Salauksia on toteutettu lisää sekä tehty frekvenssianalyysiä. Vigenere encry
 
 Ohjelmassa on aloitettu tekemään testejä ja testikattavuus on hyvä:
 
-![alt text](testJacoco.png)
+![alt text](./pics/testJacoco.png)
 
 ### Mitä opin tällä viikolla?
 

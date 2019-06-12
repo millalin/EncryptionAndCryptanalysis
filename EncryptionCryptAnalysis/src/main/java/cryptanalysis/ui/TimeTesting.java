@@ -78,6 +78,7 @@ rivi= "hello world can you see any other differences i would like to see howthis
         Blowfish bl = new Blowfish(rivi, "Blowfish");
         long alku = System.currentTimeMillis();
         String salattu = bl.encryption();
+        System.out.println("SALAAA "+salattu);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
       //   System.out.println("Salattu oma: " + salattu);
