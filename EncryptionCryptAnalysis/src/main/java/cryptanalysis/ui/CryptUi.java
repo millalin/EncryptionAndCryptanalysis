@@ -55,13 +55,13 @@ public class CryptUi extends Application {
 
         BorderPane start = new BorderPane();
 
-        Button testCeasar = new Button("Test Ceasar");
-        Button testVinenere = new Button("Test Vigenère");
-        Button testBlowfish = new Button("Test Blowfish");
+        Button testCeasar = new Button("Test Ceasar \n     Cipher");
+        Button testVinenere = new Button("Test Vigenère\n     Cipher");
+        Button testBlowfish = new Button("Test Blowfish\n     Cipher");
 
-        Button testCeasarfile = new Button("File Ceasar");
-        Button testVinenerefile = new Button("File Vigenère");
-        Button testBlowfishfile = new Button("File Blowfish");
+        Button testCeasarfile = new Button("Encrypt / decrypt \nfiles with Ceasar");
+        Button testVinenerefile = new Button("Encrypt / decrypt \nfiles with Vigenère");
+        Button testBlowfishfile = new Button("Encrypt / decrypt \nfiles with Blowfish");
         
         Button returnbut1 = new Button("Return");
         Button returnbut2 = new Button("Return");
@@ -126,7 +126,7 @@ public class CryptUi extends Application {
         
          GridPane fileV = new GridPane();
         
-        Label filevText = new Label("Choose key and write file name you want to encrypt/decrypt");
+        Label filevText = new Label("Write key and write file name you want to encrypt/decrypt");
         TextField fileVKey = new TextField();
         TextField filev = new TextField();
         Button encryptfileV = new Button("Encrypt");
@@ -372,13 +372,6 @@ public class CryptUi extends Application {
 
         enButton.setOnAction((event) -> {
 
-            // TESTAUSTA
-            String key1 = vigenere.makeKey("The quick brown", "cryptii");
-            System.out.println(key1);
-            String encr = vigenere.encryption("The quick brown", "cryptii");
-            System.out.println(encr);
-            // YLLÄ TEST
-
             String original = encryption.getText();
             int n = (int) c.getValue();
             String s = caesar.encryption(original, n);
@@ -409,7 +402,7 @@ public class CryptUi extends Application {
         freqButton.setOnAction((event) -> {
             String decrypted = decryption.getText();
             int keyValue = f.countFrequencies(decrypted);
-            key.setText("Key: " + keyValue);
+            key.setText("Suggested key: " + keyValue);
 
         });
 
@@ -505,7 +498,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabel.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabel.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesize.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 String newfilename = fileBNameText.getText();
                 ready2.setText("Encrypted text goes to file " + newfilename + ".txt");
@@ -530,7 +523,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabel.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabel.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesize.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 String newfilename = fileBNameText.getText();
                 ready2.setText("Decrypted text goes to file " + newfilename + ".txt");
@@ -556,7 +549,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabelFilec.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabelFilec.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 guessedKey.setText("Key used: " + keyNumber);
                 String newfilename = filecNameText.getText();
@@ -584,7 +577,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabelFilec.setText("Decryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabelFilec.setText("Decryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 guessedKey.setText("Key used: " + keyNumber);
                 String newfilename = filecNameText.getText();
@@ -615,7 +608,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabelFilec.setText("Break time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabelFilec.setText("Break time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFileC.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 guessedKey.setText("Key: " + keyGuessed);
 
@@ -661,7 +654,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabelFilev.setText("Encryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabelFilev.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFilev.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 keyV.setText("Key used: " + keyWord); 
                 String newfilename = filevNameText.getText();
@@ -689,7 +682,7 @@ public class CryptUi extends Application {
                 File file = new File("./files/" + filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
-                crypttimelabelFilev.setText("Decryption time: " + timepassed + "ms, " + timepassedSec + " s.");
+                crypttimelabelFilev.setText("Decryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFilev.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
                 guessedKey.setText("Key used: " + keyWord);
                 String newfilename = filevNameText.getText();
@@ -707,7 +700,6 @@ public class CryptUi extends Application {
             String filename = filev.getText();
             try {
                 String encryptedText = readFile(filename);
-                System.out.println("salateksti"+encryptedText);
 
                 long starttime = System.currentTimeMillis();
 

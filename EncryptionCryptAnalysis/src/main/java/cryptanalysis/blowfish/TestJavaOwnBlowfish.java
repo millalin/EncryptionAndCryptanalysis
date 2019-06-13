@@ -33,7 +33,7 @@ public class TestJavaOwnBlowfish {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
         String hex = "";
-        String key = "Blowfish";
+        String key = "sosecretkeyhorse";
         byte[] keyData = key.getBytes();
         SecretKeySpec ks = new SecretKeySpec(keyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");

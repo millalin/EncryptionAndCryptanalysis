@@ -62,7 +62,7 @@ public class BlowfishTest {
     
      @Test
     public void to() {
-        String salattu = "5a370d5d395a6f70";
+        String salattu = "b6ff8274954a2c24";
         String avattu = bf.decryption(salattu);
 
         assertEquals(avattu, "blowfish");

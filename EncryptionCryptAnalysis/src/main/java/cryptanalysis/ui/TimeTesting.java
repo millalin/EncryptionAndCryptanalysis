@@ -27,7 +27,7 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("./files/bfplaintext.txt"));
+        Scanner tiedosto = new Scanner(new File("./files/bftext.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
@@ -75,13 +75,12 @@ rivi= "hello world can you see any other differences i would like to see howthis
     // Testing blowfish cipher and encryption time
     public void testBf() {
 
-        Blowfish bl = new Blowfish(rivi, "Blowfish");
+        Blowfish bl = new Blowfish(rivi, "sosecretkeyhorse");
         long alku = System.currentTimeMillis();
         String salattu = bl.encryption();
-        System.out.println("SALAAA "+salattu);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-      //   System.out.println("Salattu oma: " + salattu);
+       //  System.out.println("Salattu oma: " + salattu);
         int pituus1 = salattu.length();
         System.out.println("pituus oma : " + pituus1);
         System.out.println("aika oma: " + aika);
@@ -100,7 +99,7 @@ rivi= "hello world can you see any other differences i would like to see howthis
         String en = b.te(rivi);
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-        //   System.out.println("java salattu: "+en);
+         //  System.out.println("java salattu: "+en);
         System.out.println("Aika java bf: " + aika);
         int pituus1 = en.length();
         System.out.println("pituus: " + pituus1);

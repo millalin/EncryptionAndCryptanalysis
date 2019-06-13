@@ -39,7 +39,7 @@ public class BreakingVigenereCipher {
      * @return best guess of the key length used in encryption
      */
     public int analyzingText(String text) {
-      //  String text = removeSpaces(input);
+        //String text = removeSpaces(input);
         MyHashMap<String, MyArrayList<Integer>> blocks = new MyHashMap();
         MyArrayList list = new MyArrayList();
         for (int i = 0; i < text.length() - 2; i++) {
@@ -190,18 +190,24 @@ public class BreakingVigenereCipher {
 
     public String removeSpaces(String input) {
         String text = "";
+        char [] newtext = new char[input.length()];
+        int x = 0;
 
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i); 
             if (c > 64 && c < 91) {
-                text += c;
+                //text += c;
+                newtext[x]=c;
+                x++;
             }
             if (c > 96 && c < 123) {
-                text += c;
+                //text += c;
+                newtext[x]=c;
+                x++;
             }
 
         }
-        return text;
+        return String.valueOf(newtext);
     }
 
 }
