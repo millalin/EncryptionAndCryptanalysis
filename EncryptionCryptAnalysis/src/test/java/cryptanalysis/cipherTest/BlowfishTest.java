@@ -7,7 +7,9 @@ package cryptanalysis.cipherTest;
 
 import cryptanalysis.blowfish.Blowfish;
 import cryptanalysis.datastructures.MyArrayList;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -16,7 +18,12 @@ import org.junit.Test;
  */
 public class BlowfishTest {
 
-    Blowfish bf = new Blowfish("testmessage","blowfish");
+    Blowfish bf = new Blowfish("hellotestmessage", "blowfish");
+
+    @Before
+    public void setUp() {
+
+    }
 
     @Test
     public void lengthOfEncryptionIsRight() {
@@ -27,9 +34,33 @@ public class BlowfishTest {
         assertEquals(32, l);
     }
 
+    @Test
+    public void deryptsRightAfterEnccryption() {
 
+        String encrypt = bf.encryption();
+        String decryption = bf.decryption(encrypt);
 
-   
+        assertEquals("hellotestmessage", decryption);
+    }
+
+    @Test
+    public void encryptionDifferentWithDifferentKey() {
+
+        String encrypt = bf.encryption();
+        Blowfish bf = new Blowfish("hellotestmessage", "blowfis");
+        String encrypt2 = bf.encryption();
+
+        boolean same = true;
+
+        if (encrypt.equals(encrypt2)) {
+            same = true;
+        } else  {
+            same = false;
+        }
+
+        assertEquals(same, false);
+
+    }
 
     @Test
     public void changesTo8BytesTexttestAndFirstByteMatches() {
@@ -51,8 +82,8 @@ public class BlowfishTest {
 
         assertEquals(a, 'A');
     }
-    
-     @Test
+
+    @Test
     public void to() {
         String salattu = "b6ff8274954a2c24";
         String avattu = bf.decryption(salattu);
