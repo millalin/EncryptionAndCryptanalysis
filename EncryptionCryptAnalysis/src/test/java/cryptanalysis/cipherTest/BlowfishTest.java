@@ -27,15 +27,7 @@ public class BlowfishTest {
         assertEquals(32, l);
     }
 
-    @Test
-    public void splitsStringsRight() {
-        MyArrayList<String> testlist = new MyArrayList();
-        String test = "teststringsplit1";
-        testlist = bf.splitToParts(test, 8);
-        String first = testlist.get(0);
 
-        assertEquals(first, "teststri");
-    }
 
    
 

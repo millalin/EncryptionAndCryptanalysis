@@ -47,8 +47,6 @@ public class BreakingVigenereNormalArrayList {
             char c = (char) text.charAt(i + 2);
             String set = "" + a + b + c;
             if (blocks.containsKey(set)) {
-                // int count = blocks.get(set);
-                
 
                 blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
             } else {

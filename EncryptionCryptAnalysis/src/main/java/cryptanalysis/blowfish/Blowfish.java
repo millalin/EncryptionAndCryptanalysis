@@ -45,7 +45,6 @@ public class Blowfish {
             encrypt(left, right);
             boxP[i] = left;
             boxP[i + 1] = right;
-            System.out.println("P[" + i + "] = " + boxP[i]);
         }
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 256; j += 2) {
@@ -53,7 +52,7 @@ public class Blowfish {
                 boxS[i][j] = left;
                 boxS[i][j + 1] = right;
             }
-        } 
+        }
 
         textString = text;
         int pituus = textString.length();
@@ -64,7 +63,6 @@ public class Blowfish {
         } else {
             jakojaannos = 8 - (pituus % 8);
         }
-        System.out.println("jakojäännös " + jakojaannos);
         allbytes = new byte[textString.length() + jakojaannos];
 
         for (int i = 0; i < allbytes.length - jakojaannos; i++) {
@@ -104,7 +102,7 @@ public class Blowfish {
             encrypt(left, right);
             encrypted = toBytes(left, right);
 
-            for (int j = 0; j < 8; j++) { 
+            for (int j = 0; j < 8; j++) {
                 byte b1 = encrypted[j];
                 char[] blaa = new char[2];
                 blaa = byteToHex(b1);
@@ -174,23 +172,6 @@ public class Blowfish {
             right = (right << 8) + (b[i + 4] & 0xff);
 
         }
-    }
-
-    /**
-     * Splits text to certain size of parts and saves it to ArrayList. In this
-     * case size 4.
-     *
-     * @param text text to be splitted
-     * @param size size of parts
-     * @return
-     */
-    public MyArrayList<String> splitToParts(String text, int size) {
-
-        MyArrayList<String> splitted = new MyArrayList();
-        for (int i = 0; i < text.length(); i += size) {
-            splitted.add(text.substring(i, Math.min(text.length(), i + size)));
-        }
-        return splitted;
     }
 
     /**
@@ -290,7 +271,12 @@ public class Blowfish {
 
         byte[] bytes = new byte[hex.length() / 2];
         for (int i = 0; i < hex.length(); i += 2) {
-            bytes[i / 2] = hexToByte(hex.substring(i, i + 2));
+
+            char part1 = hex.charAt(i);
+            char part2 = hex.charAt(i + 1);
+            String parts =Character.toString(part1) + Character.toString(part2);
+
+            bytes[i / 2] = hexToByte(parts);
         }
         return bytes;
     }
@@ -322,20 +308,7 @@ public class Blowfish {
         return changed;
     }
 
-    /**
-     * Changing bytes to hex form
-     *
-     * @param bytes
-     * @return h hex string
-     */
-    public String changeToHex(byte[] bytes) {
-        StringBuffer h = new StringBuffer();
-        for (int i = 0; i < bytes.length; i++) {
-            h.append(byteToHex(bytes[i]));
 
-        }
-        return h.toString();
-    }
 
     /**
      * Changing one byte to hex
@@ -351,5 +324,3 @@ public class Blowfish {
     }
 
 }
-
-

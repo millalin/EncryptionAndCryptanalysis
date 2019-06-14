@@ -14,6 +14,7 @@ import cryptanalysis.ciphers.VigenereCipher;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -737,6 +738,19 @@ public class CryptUi extends Application {
 
         tt.testBf();
         tt.testb();
+        
+        String avain = "hWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$"; //448
+        
+        //s5v8y/B?E/H+MbQe
+        
+        //hWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$
+        
+String binary = new BigInteger(avain.getBytes()).toString(2);
+int pituus = binary.length();
+System.out.println("As binary: "+binary + " pituus" + pituus);
+
+String abc = "abcd";
+        System.out.println(abc.substring(0, 2));
         
 
         launch(args);

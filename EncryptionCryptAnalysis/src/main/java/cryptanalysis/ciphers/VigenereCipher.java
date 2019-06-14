@@ -8,7 +8,6 @@ package cryptanalysis.ciphers;
 /**
  * Class that will create encryption and decryption from given text with
  * Vigenère cipher
- *
  */
 public class VigenereCipher {
 
@@ -38,8 +37,6 @@ public class VigenereCipher {
                 newKey[i]=c;
                 j++;
             }
-
-
         }
 
         return String.valueOf(newKey);

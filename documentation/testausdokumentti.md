@@ -38,11 +38,11 @@ Toteutettua Caesar salausta testattiin erikokoisilla tekstitiedostoilla, joissa 
 
 Caesar Cipher testattiin tekstitiedostoilla, joiden koko oli 0.2 MB, 1 MB, 5 MB sekä 10 MB. Toistoja tehtiin useita, ja mitä pienempi tiedosto oli, sitä useammin salaus ja murto tapahtui samassa ajassa. Pienempiä tiedostoja testattiin myös, mutta koska aika oli niin nopea, ei niiden tulosten lisääminen kaavioon ole mielekästä. Kaaviosta nähdään, että salaus tapahtuu lineaarisessa ajassa. 
 
-![alt text](caesar_braking.png)
+![alt text](./pics/caesar_braking.png)
 
 Ohjelmassa testattiin myös Caesar Cipher murron nopeutta tietämättä salausavaimen numeroa. Murto tapahtui lineaarisessa ajassa, kuten odotettua, sillä ohjelma käy tekstin kerran läpi ja laskee kuinka useasti kukin kirjain esiintyy. Tämän jälkeen aakkostaulukko, käydään kerran läpi, joka tapahtuu vakioajassa.  Murto oli hieman hitaampaa kuin salaus, mutta myös niin nopea, ettei pienillä tiedostoilla ollut mielekästä sitä testata enempää. 10 MB tekstitiedoston onnistui murtaa keskimäärin 75 millisekunnissa eli 0.075 sekunnissa.   
 
-![alt text](caesar_encryption.png)
+![alt text](./pics/caesar_encryption.png)
 
    
 #### Vigenère Cipher
@@ -59,3 +59,16 @@ Kaaviossa on kunkin tiedostokoon keskirvo mittauksista. Salaus toteutettiin sala
 Vigenèrellä salatun tekstin murtamiseen kulunutta aikaa mitattiin tidostoilla, joiden koot olivat 200 kB, 400 kB, 600 kB, 800 kB ja 1 MB. Tässä mittauksessa ei ollut merkitystä, löytääkö murtoyritys oikean avaimenpituuden ja oikean avaimen, kunhan löytyi ehdotus avaimen pituudeksi sekä avaimeksi. Avaimen pituus oli 3 näissä tiedostoissa. Kun syötteen koko noin kaksinkertaistuu, salaukseen kulunut aika suurin piirtein nelinkertaistuu. Salauksen purussa käydään koko syöte samalla muodostaen 3 merkin yhdistelmiä. Nämä yhdistelmät käydään vielä läpi ja niistä etsitään samojen yhdistelmien erot ja lopulta lasketaan, mitä tekijää on eniten. Tämä on todennäköisin avaimen pituus. Avaimen arvauksessa syöte käydään vielä uudelleen kertaalleen läpi.  
 
 ![alt text](./pics/vigenerebreakingkey.png) 
+
+
+#### Blowfish 
+
+Blowfish salattiin ja avattiin tekstitiedostoilla, joiden koot olivat 1 MB, 3 MB, 5 MB, 7,2 MBn sekä 10 MB. Salaukset toteutettiin 64-, 128- ja 448-bittisillä avaimilla. 
+
+Salaus 64 bittisellä avaimella:
+
+![alt text](./pics/blowfishEnc64bit.png)
+
+Salauksen purku 64 bittisellä avaimella:
+
+![alt text](./pics/blowfishDec64bit.png) 

@@ -27,11 +27,7 @@ public class BreakingVigenereCipher {
             0.00095, 0.05987, 0.06327, 0.09056, 0.02758, 0.00978,
             0.02360, 0.00150, 0.01974, 0.00074};
     }
-
-    public void removeSpacing(String text) {
-
-    }
-
+   
     /**
      * Makes set of 3 from letters in text and counts length differences.
      *
@@ -148,7 +144,7 @@ public class BreakingVigenereCipher {
     }
 
     public String guessingKey(String text, int keyLength) {
-      //  String text = removeSpaces(input);
+      
         String textBasedOnKeyIndex[] = new String[keyLength];
         String guessedKey = "";
         char[] keyGuess = new char[keyLength];
@@ -160,54 +156,26 @@ public class BreakingVigenereCipher {
         for (int i = 0; i < text.length(); i+=keyLength) {
             
             for (int j = 0; j < keyLength; j++) {
-                //String string = textBasedOnKeyIndex[j];
                 if (i + j > text.length() -1)  {
                     continue;
                 } else  {
                      textBasedOnKeyIndex[j] += text.charAt(i + j);
-                    
                 }
-               
-                
             }
-            
         }
 
         for (int i = 0; i < keyLength; i++) {
             int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
             if ('a'+shift <123)     {
-               // guessedKey += (char) ('a' + shift);
                 keyGuess[i] = (char) ('a' + shift);
             } else  {
-              //  guessedKey += (char) ('a' -26 + shift);
                 keyGuess[i] = (char) ('a' -26 + shift);
             }
-            
         }
 
-        return String.valueOf(keyGuess); //guessedKey;
+        return String.valueOf(keyGuess); 
     }
 
-    public String removeSpaces(String input) {
-        String text = "";
-        char [] newtext = new char[input.length()];
-        int x = 0;
 
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i); 
-            if (c > 64 && c < 91) {
-                //text += c;
-                newtext[x]=c;
-                x++;
-            }
-            if (c > 96 && c < 123) {
-                //text += c;
-                newtext[x]=c;
-                x++;
-            }
-
-        }
-        return String.valueOf(newtext);
-    }
 
 }
