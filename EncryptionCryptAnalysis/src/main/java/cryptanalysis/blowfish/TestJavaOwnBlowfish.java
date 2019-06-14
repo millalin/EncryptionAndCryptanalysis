@@ -42,19 +42,24 @@ public class TestJavaOwnBlowfish {
         //Cipher cipher = Cipher.getInstance("blowfish");
         //    cipher.init(cipher.ENCRYPT_MODE, secretKey);
         String input = text;
+        long alku = System.currentTimeMillis();
         byte[] encrypt = cipher.doFinal(input.getBytes());
         //   String e = new String(encrypt);
 
     //    System.out.println("java väli "+encrypt);
         hex = this.changeToHex(encrypt);
-        cipher.init(Cipher.DECRYPT_MODE, ks);
+        long loppu = System.currentTimeMillis();
+        
+        long aika = loppu - alku;
+        System.out.println("java vain salausaika "+aika);
+    //    cipher.init(Cipher.DECRYPT_MODE, ks);
 
         // decrypt message
-        byte[] decrypted = cipher.doFinal(encrypt);
+     //   byte[] decrypted = cipher.doFinal(encrypt);
 
         //   String e = new String(encrypt.toString());
         //  e = new BASE64Encoder().encode(encrypt);
-        String d = new String(decrypted);
+   //     String d = new String(decrypted);
      //   System.out.println("de java " + d);
 
         return hex; // + " de:  " + d;

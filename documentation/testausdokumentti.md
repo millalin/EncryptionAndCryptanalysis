@@ -61,9 +61,40 @@ Vigenèrellä salatun tekstin murtamiseen kulunutta aikaa mitattiin tidostoilla,
 ![alt text](./pics/vigenerebreakingkey.png) 
 
 
+Vigenèressä salausta yritetään murtaa etsimällä tekstistä toistuvuuksia ja laskemalla niiden tekijät löytäen todennäköisin avaimenpituus ja sen jälkeen frekvenssianalyysin avulla jokaisella avaimen kirjaimelle omassa tekstikohdassaan etsitään todennäköisin kirjain. Murtoa testattiin erilaisilla tekstitiedostoilla ja parhaiten murrossa toimii välilyönnitön ja välimerkitön teksti, jolloin kirjainten toistuvuuksia saadaan mahdollisimman paljon. Murtaminen on myös sitä todennäköisempää, mitä pidempi ja monipuolisempi teksti on ja silloin, kun se on normaalia englanninkielen tekstiä, joka noudattaa kielessä esiintyvien kirjainten todennäköisyyksiä mahdollisimman hyvin. 
+
+Alla on taulukoitu tekstitiedostojen vigenere.txt ja vigenere2.txt tuloksia. Tekstitiedostot on ensin salattu Vigenere Cipher salauksella, jonka jälkeen salatusta tekstistä on yritetty saada tietoon salauksessa käytetty avain.  Murto onnistui avaimen pituuksilla 3 ja 4. Avaimen pituudella 5 toisesta tekstistä löytyi oikea vastine, toisesta tekstistä löytyi oikea avaimenpituus, lasketusta avainsanasta oli väärin yksi kirjain. Avainten pituudella 6 ja 8 molemmista teksteistä tuli avaimen pituuden ehdotukseksi puolet sen oikeasta pituudesta. Teksteistä siis löytyi enemmän toistoa pidemmillä avaimilla salattuna silti lyhyemmistä pätkistä. Avainpituus 7 sen sijaan onnistui antamaan oikean pituustuloksen ja molemmissa teksteissä avainsana jäi vain 1 kirjaimen päähän. 10 merkin mittaisessa salausavaimessa toisesta tekstistä löydettiin oikea pituus ja toisesta puolet siitä. 
+
+Salausavaimet tekstitiedostossa vigenere.txt:
+
+Käytetty avainpituus | Käytetty avain | Löydetty avainpituus |  Löydetty avain | 
+---------------------|----------------|----------------------|-----------------|
+ 3                   | key            | 3                    | key             | 
+ 4                   | fish           | 4                    | fish            | 
+ 5                   | world          | 5                    | wogld           |
+ 6                   | orange         | 3                    | nga             | 
+ 7                   | blowfis        | 7                    | blowfes         | 
+ 8                   | blowfish       | 4                    | blow            | 
+ 10                  | littleyour     | 10                   | leitleyyur      | 
+
+
+Salausavaimet tekstitiedostossa vigenere2.txt:
+
+Käytetty avainpituus | Käytetty avain | Löydetty avainpituus |  Löydetty avain |               
+---------------------|----------------|----------------------|-----------------|                
+ 3                   | key            | 3                    | key             |      
+ 4                   | fish           | 4                    | fish            |      
+ 5                   | world          | 5                    | world           |    
+ 6                   | orange         | 3                    | bga             | 
+ 7                   | blowfis        | 7                    | flowfis         |
+ 8                   | blowfish       | 4                    | fisw            |
+ 10                  | littleyour     | 5                    | oixua           |
+
+
+
 #### Blowfish 
 
-Blowfish salattiin ja avattiin tekstitiedostoilla, joiden koot olivat 1 MB, 3 MB, 5 MB, 7,2 MBn sekä 10 MB. Salaukset toteutettiin 64-, 128- ja 448-bittisillä avaimilla. 
+Blowfish salattiin ja avattiin tekstitiedostoilla, joiden koot olivat 1 MB, 3 MB, 5 MB, 7,2 MBn sekä 10 MB. Salaukset toteutettiin 64-, 128- ja 448-bittisillä avaimilla. Jokaisen tiedostokoon salausksen/purun ajasta laskettiin keskiarvot, jotka on nähdävillä allaolevissa kaavioissa. Saman tiedostokoon salaus- ja purkuaika eri bittikoon avaimilla oli hyvin lähellä toisiaan, vaihtelua keskiarvoissa oli vain muutamia millisekunteja. Salausaikoihin ei ole laskettu tiedostosta lukemista, eikä tiedostoon kirjoittamista. Aika on mitattu vain itse salauksesta. 
 
 Salaus 64 bittisellä avaimella:
 
@@ -72,3 +103,30 @@ Salaus 64 bittisellä avaimella:
 Salauksen purku 64 bittisellä avaimella:
 
 ![alt text](./pics/blowfishDec64bit.png) 
+
+Salaus 128 bittisellä ja 448 bittisellä avaimella:
+
+![alt text](./pics/blowfishEnc128bit.png)
+
+![alt text](./pics/blowfishEnc448bit.png)
+
+Salauksen purku 128 bittisellä avaimella:
+
+![alt text](./pics/blowfishDec128bit.png)
+
+
+#### Oman Blowfish toteutuksen ja Javan valmiin Blowfish salauksen vertailu
+
+Oma toteutus vaikuttaa salaavan Javan valmista versiota nopeammin. Javan valmiissa versiossa salauksen alustukseen kuluu aikaa aina noin 150-200 millisekuntia silloin kun siihen haluaa asettaa oman salausavaimen ja omalla toteutuksella alustukseen kuluu noin 30-70 millisekuntia. Myös Javan toteutuksen salaus vaikuttaisi olevan hitaampi testatuilla tekstitiedostoilla. Allaolevassa taulukossa on vertailu mitatuista ajoista (keskiarvo mittauksista).
+ 
+
+Tiedostokoko | Java kokonaisaika | Java vain salaus |  Oma kokonaisaika | Oma vain salaus
+-------------|-------------------|------------------|-------------------|----------------
+ 1 MB        | 278 ms	         | 82 ms            | 88 ms             | 22 ms
+ 3 MB        | 284 ms            | 130 ms           | 92 ms             | 65 ms
+ 5 MB        | 358 ms            | 190 ms           | 126 ms            | 89 ms
+ 7.2 MB      | 452 ms            | 276 ms           | 181 ms            | 128 ms
+ 10 MB       | 511 ms            | 367 ms           | 239 ms            | 170 ms
+
+
+

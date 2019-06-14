@@ -27,7 +27,7 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("./files/bftext.txt"));
+        Scanner tiedosto = new Scanner(new File("./files/test4.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
@@ -35,8 +35,8 @@ public class TimeTesting {
         }
 
         tiedosto.close();
-rivi= "hello world can you see any other differences i would like to see howthisworksandhowwecanhelloworld";
-        String sala =vigenere.encryption(rivi, "key");
+//rivi= "hello world can you see any other differences i would like to see howthisworksandhowwecanhelloworld";
+        //String sala =vigenere.encryption(rivi, "key");
         
         
         
@@ -47,7 +47,7 @@ rivi= "hello world can you see any other differences i would like to see howthis
      *
      * @return
      */
-    public long vigenereTimeArray() {
+  /*  public long vigenereTimeArray() {
 
         long start = System.currentTimeMillis();
         int x = arrayBreaking.analyzingText(rivi);
@@ -62,7 +62,7 @@ rivi= "hello world can you see any other differences i would like to see howthis
      *
      * @return
      */
-    public long vigenereTimeOwnArray() {
+  /*  public long vigenereTimeOwnArray() {
 
         long start = System.currentTimeMillis();
         int x = breaking.analyzingText(rivi);
@@ -70,17 +70,18 @@ rivi= "hello world can you see any other differences i would like to see howthis
         long stop = System.currentTimeMillis();
 
         return stop - start;
-    }
+    } */
 
     // Testing blowfish cipher and encryption time
-    public void testBf() {
+   public void testBf() {
 
-        Blowfish bl = new Blowfish(rivi, "sosecretkeyhorse");
-        long alku = System.currentTimeMillis();
+       long alku = System.currentTimeMillis();
+        Blowfish bl = new Blowfish(rivi, "blowfishko");
+        
         String salattu = bl.encryption();
         long loppu = System.currentTimeMillis();
         long aika = loppu - alku;
-       //  System.out.println("Salattu oma: " + salattu);
+      //   System.out.println("Salattu oma: " + salattu);
         int pituus1 = salattu.length();
         System.out.println("pituus oma : " + pituus1);
         System.out.println("aika oma: " + aika);
@@ -92,7 +93,7 @@ rivi= "hello world can you see any other differences i would like to see howthis
         System.out.println("Aika decryption oma: " + aika2);
 
 //        System.out.println("takaisin: " + bl.decryption(salattu)); //helloworld
-    }
+    } 
 
     public void testb() throws Exception {
         long alku = System.currentTimeMillis();

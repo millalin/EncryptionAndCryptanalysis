@@ -45,6 +45,7 @@ public class Blowfish {
             encrypt(left, right);
             boxP[i] = left;
             boxP[i + 1] = right;
+            System.out.println("boxp "+boxP[i]);
         }
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 256; j += 2) {
@@ -104,10 +105,10 @@ public class Blowfish {
 
             for (int j = 0; j < 8; j++) {
                 byte b1 = encrypted[j];
-                char[] blaa = new char[2];
-                blaa = byteToHex(b1);
-                hexchar[x] = blaa[0];
-                hexchar[x + 1] = blaa[1];
+                char[] twochars = new char[2];
+                twochars = byteToHex(b1);
+                hexchar[x] = twochars[0];
+                hexchar[x + 1] = twochars[1];
 
                 x += 2;
             }
