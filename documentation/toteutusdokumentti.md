@@ -61,19 +61,22 @@ Blowfishin pseudokoodi:
 
 ![alt text](pseudokoodi.png)
 
+### Salausten toteutus
+
+Caesar salaus salaa tekstin, jossa on englannin kielen aakkoset. Se ei muuta muita merkkejä salauksessa, joten ne pysyvät salatessa ja purkaessa ennallaan. Tämä johtuu siitä, että Caesarin alkuperäisessä salauksessa salausavaimia on 26 ja salausta suoritetaan vain perustekstille. Myös vigenere cipher salaa vain kirjaimet ja jättää erikoismerkit ennalleen. Se käyttää avaimen kirjaimista muodostamiaan siirtoja samoin kuin Caesar. Vigeneren murrossa toimii parhaiten teksti, jossa ei ole välilyöntejä, sillä murrossa tunnistetaan 3 kirjaimen yhdistelmiä, jolloin niitä saadaan näin enemmän. Toisaalta tällöin vaikuttaa eri sanojen yhdistelmät tekstissä. Blowfish salaus salaa tekstin monipuolisemmin 64 bitin lohkoissa. Se ottaa huomioon ASCII merkistön merkit ja salaa ja purkaa jokaisen merkin. Blowfish toteutus salaa tekstin heksadesimaalimuotoon. Tutkittaessa salauksia, Blowfish toteutus salaa tarvittavat kierrokset ja tekee alustukset S-boxeille ja P-boxille. Salauksen pituus eroaa isoissa, erikoisissa tekstitiedostoissa Javan toteutuksen salauksen pituudesta. Lyhyillä teksteillä salauksien pituudet ovat samat. Myös salattu teksti eroaa Javan toteutuksesta. Blowfish toteutus purkaa salatun tekstin oikein, silloin kun sillä on oikea salausavain. Salauksessa ja avauksessa teksti käydään läpi kerran.  
 
 ### Saavutetut aikavaativuudet
 
 Kaikki 3 salausta toimivat lineaarisessa ajassa O(n) sekä salatessa, että purkaessa salausta. Salauksissa syöte käydään kerran läpi salaten teksti. Caesar Cipher käy läpi salattavan syötteen ja salaa sen samalla salausavaimella (numerolla). Vigenere Cipher muodostaa annetusta avaimesta ensin tekstin mittaisen avaimen ja käy sen jälkeen salattavan tekstin läpi muodostaen joka avaimen kirjaimen kohdalle sen vaatiman määrän siirtoa merkille. Blowfish salaus salaa syötteen 64 bitin lohkoissa tehden joka salausta 16 kierrosta. Salauksen avaus on Blowfishissa sama toiminto vastakkaiseen suuntaan. 
 
+Erot avainten pituudessa eivät vaikuttaneet merkittävästi salausaikaan. Vigenere salauksen murrossa joudutaan käymään teksti läpi useaan kertaan, kun tekstistä ensin etsitään yhteisiä tekijöitä ja niitä käydään läpi uudelleen. Murtoa saattaa myös hidastaa oma HashMap toteutus. Salausten ja niiden purkamisen, sekä murtojen ja murtoyritysten toteutuneita aikoja voi nähdä testausdokumentin suorituskykytestaus osiossa.
 
-Murrot
-erot avaimissa
-java? 
 
 ### Lähteet
 
-[Kasiski](https://crypto.interactive-maths.com/kasiski-analysis-breaking-the-co$
-[Kas](https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Kasiski.html)
-
+https://en.wikipedia.org/wiki/Blowfish_(cipher)
+https://en.wikipedia.org/wiki/Caesar_cipher
+https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Kasiski.html
+https://crypto.interactive-maths.com/
 

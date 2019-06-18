@@ -24,4 +24,5 @@ päivä |  aika |  mitä tein
 12.6 | 8 | Blowfish salauksen muuttaminen paljon nopeammaksi, kaavioiden tekoa ja suorituskyvyn laskemista
 13.6 | 3 | Mittauksten tekoa, koodin siistimistä, dokumentaation tekoa
 14.6 | 4 | Suorituskykytestausta, testausdokumentin, käyttöohjedokumentin sekä toteutusdokumentin kirjoitusta 
-yht | 115| 
+18.6 | 4 | Koodin siistimistä, dokumentaation kirjoitusta, javadoc, testien muokkaus
+yht | 119| 

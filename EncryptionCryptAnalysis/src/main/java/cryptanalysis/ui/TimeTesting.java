@@ -23,13 +23,13 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-        Scanner tiedosto = new Scanner(new File("./files/test4.txt"));
+    /*    Scanner tiedosto = new Scanner(new File("./files/file2.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
         }
 
-        tiedosto.close();
+        tiedosto.close(); */
 
     }
 
