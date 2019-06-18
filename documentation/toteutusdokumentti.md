@@ -8,7 +8,7 @@ JavaDoc generoidaan komennolla
 
 Javadocia voi tarkastella avaamalla selaimella tiedosto sijainnista target/site/apidocs/index.html
 
-[Generoitu JavaDoc](file:///home/milla/tiralabra/EncryptionAndCryptanalysis/EncryptionCryptAnalysis/target/site/apidocs/index.html)
+[Generoitu JavaDoc]()
 
 ### Ohjelman yleisrakenne
 
@@ -29,7 +29,8 @@ Sisältää luokan Caesar Cipher ja Vigenere Cipher, jotka toteuttavat kyseiset 
 
 #### cryptanalysis.breaking
 
-Sisältää luokat BreakingCaesarCipher.java, BreakingVigenereCipher.java,
+Sisältää luokat BreakingCaesarCipher.java, BreakingVigenereCipher.java ja FrequencyAnalysis.java. Näissä yritetään murtaa salauksia tietämättä salausavainta.
+
 #### cryptanalusis.dataStructures
 
 Sisältää kaikkien omien tietorakenteiden toteutukset. Sisältää luokat MyArrayList, MyHashMap ... ..
