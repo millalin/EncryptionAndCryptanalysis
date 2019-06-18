@@ -1,20 +1,17 @@
 package cryptanalysis.breaking;
 
 /**
- * Class that makes frequency analysis from english text
+ * Class that makes frequency analysis from english text.
  *
  */
 public class FrequencyAnalysis {
 
     int letters[];
 
-    public FrequencyAnalysis() {
-
-    }
-
+   
     /**
      * Counts how many time each alphabet occurs in text. Counts upperCase
-     * letters to lowerCase
+     * letters to lowerCase.
      *
      * @param text text to be analyzed
      * @return countKey() key that decrypts text

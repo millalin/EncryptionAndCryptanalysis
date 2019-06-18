@@ -1,7 +1,6 @@
 package cryptanalysis.datastructures;
 
 /**
- *
  * @author milla
  */
 public class KeyValue<K, V> {

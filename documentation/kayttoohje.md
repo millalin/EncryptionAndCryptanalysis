@@ -1,6 +1,6 @@
 ## Käyttöohje
 
-Lataa tiedosto xxxxx.jar
+Lataa tiedosto Encryption.jar
 
 ### Ohjelman käynnistäminen
 
@@ -10,7 +10,7 @@ Ohjelma käynnistetään komennolla
 
 ### Alkunäkymä
 
-Alkunäkymässä voi valita, minkä salauksen haluaa toteuttaa ja haluaako kirjoittaa tekstiä vai salata valmiin tekstitiedoston. 
+Alkunäkymässä voi valita, minkä salauksen haluaa toteuttaa ja haluaako kirjoittaa tekstiä vai salata valmiin tekstitiedoston. Salaukset toimivat englannin kielellä. Joka salaukseen tulee valita salausavain, ainoastaan Caesar salauksessa valikossa oletusavaimena on 1. 
 
 ![alt text](./pics/kayttoohje_start.png)
 
@@ -33,6 +33,15 @@ Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. T
 
 ![alt text](./pics/kayttoohje_caesar.png)
 
-Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamisessa käytettävä salausavain. Salattu testi voidaan tämän jälkeen salata tai yrittää purkaa. Salatusta tekstistä voidaan etsiä todennäköisintä salausavaimen pituutta ja ehdotettua salausavainta. 
+Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamisessa käytettävä salausavain. Avaimessa tulee käyttää kirjaimia a-z tai A-Z. Salattu testi voidaan tämän jälkeen salata tai yrittää purkaa. Salatusta tekstistä voidaan etsiä todennäköisintä salausavaimen pituutta ja ehdotettua salausavainta. 
 
 ![alt text](./pics/kayttoohje_vigenere.png)
+
+Blowfish salaus toimii Ascii merkistöllä, se ei avaa salauksesta kaikkia muita erikoismerkkejä oikein. Salausavaimessa voi käyttää salatessa myös esimerkiksi merkkejä !/%&?. Yläkenttään kirjoitetaan käytettävä salausavain (32-448 bittiä) ja tekstikenttään salattava teksti. Teksti voidaan salata Encrypt napista. Valmiiksi salattu teksti voidaan purkaa kirjoittamalla oikea salausavain ja lisäämällä teksti oikeanpuoleiseen tekstikenttään. Decrypt napista avattu teksti ilmestyy vasenmpaan kenttään.
+
+![alt text](./pics/kayttoohje_blowfish.png)
+
+ 
+Ohjelmassa voidaan myös salata tekstitiedostoja. Tiedostonäkymiin pitää myös syöttää salausavain. Tämän jälkeen tulee kirjoittaa avattavan tiedoston koko nimi. Alimpaan tekstikenttään tulee syöttää uuden tiedoston nimi (ilman tiedostopäätettä) ja painaa Encrypt nappia. Tekstin purkamisessa tulee syöttää samat tiedot, jolloin salatusta tekstitiedostosta luodaan avattu tiedosto painamalla Decrypt nappia.  
+
+![alt text](./pics/kayttoohje_file.png)

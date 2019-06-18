@@ -1,7 +1,7 @@
 package cryptanalysis.breaking;
 
 /**
- * Class that will break text that is encrypted with Caesar Cipher using bute
+ * Class that will find out key used in encryption that is encrypted with Caesar Cipher using brute
  * force.
  *
  */
@@ -16,7 +16,7 @@ public class BreakingCaesarCipher {
      */
     public String breakingAllOptions(String text) {
         String breaked = "";
-        String b = "";
+        char [] bre = new char[text.length()];
         int key = 1;
 
         for (int round = 1; round <= 26; round++) {
@@ -26,25 +26,24 @@ public class BreakingCaesarCipher {
 
                     char ch = (char) (((int) text.charAt(i)
                             + (26 - round) - 97) % 26 + 97);
-                    breaked = breaked + ch;
+                    bre[i] = ch;
 
                 } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
 
                     char ch = (char) (((int) text.charAt(i)
                             + (26 - round) - 65) % 26 + 65);
-                    breaked = breaked + ch;
+                      bre[i] = ch;
 
                 } else {
                     char ch = (char) ((int) text.charAt(i));
-                    breaked = breaked + ch;
+                      bre[i] = ch;
                 }
             }
-            b = b + "Key " + key + ": " + breaked + "\n";
-            breaked = "";
+            breaked = breaked + "Key " + key + ": " + String.valueOf(bre) + "\n";
             key++;
 
         }
-        return b;
+        return breaked;
     }
 
 }

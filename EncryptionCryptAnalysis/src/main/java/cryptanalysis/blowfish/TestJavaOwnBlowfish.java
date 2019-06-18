@@ -27,13 +27,13 @@ public class TestJavaOwnBlowfish {
      *
      * @param text text to encrypted
      * @return encrypted text
-     * @throws Exception
+     * @throws Exception throws exception
      */
     public String te(String text) throws Exception {
         // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
         //     SecretKey secretKey = generator.generateKey();
         String hex = "";
-        String key = "sosecretkeyhorse";
+        String key = "sosecretkeyhello";
         byte[] keyData = key.getBytes();
         SecretKeySpec ks = new SecretKeySpec(keyData, "Blowfish");
         Cipher cipher = Cipher.getInstance("Blowfish");
@@ -51,7 +51,7 @@ public class TestJavaOwnBlowfish {
         long loppu = System.currentTimeMillis();
         
         long aika = loppu - alku;
-        System.out.println("java vain salausaika "+aika);
+        System.out.println("java time only encryption "+aika);
     //    cipher.init(Cipher.DECRYPT_MODE, ks);
 
         // decrypt message

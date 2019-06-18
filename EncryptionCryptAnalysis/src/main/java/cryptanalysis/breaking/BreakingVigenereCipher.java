@@ -18,7 +18,7 @@ public class BreakingVigenereCipher {
     FrequencyAnalysis analysis = new FrequencyAnalysis();
 
     /**
-     * Probabilities of english alphabet
+     * Probabilities of English alphabet
      */
     public BreakingVigenereCipher() {
         double[] prob = {0.08167, 0.01492, 0.02782, 0.04253,
@@ -29,9 +29,9 @@ public class BreakingVigenereCipher {
     }
    
     /**
-     * Makes set of 3 from letters in text and counts length differences.
+     * Makes set of 3 from letters in text and counts length differences. Puts set (3 letter combinations) indexes to the list.
      *
-     * @param input encrypted text
+     * @param text encrypted text
      * @return best guess of the key length used in encryption
      */
     public int analyzingText(String text) {
@@ -44,7 +44,7 @@ public class BreakingVigenereCipher {
             char c = (char) text.charAt(i + 2);
             String set = "" + a + b + c;
             if (blocks.containsKey(set)) {
-                blocks.get(set).add(i); //listalle indeksit missä eri 3 kirj yhdistelmät esiintyvät
+                blocks.get(set).add(i); 
             } else {
                 blocks.put(set, new MyArrayList());
                 blocks.get(set).add(i);
@@ -57,7 +57,7 @@ public class BreakingVigenereCipher {
 
     /**
      * Counts length differences of 3 letter sets. Uses sets of 3 letters that
-     * appears more than once.
+     * appears more than once. Counts differences of each 3 letter combination. Puts factors and how many time they appear to HashMap.
      *
      * @param list list of 3 letter sets
      * @param blocks map of 3 letter sets and their length differences
@@ -70,8 +70,8 @@ public class BreakingVigenereCipher {
             String set = list.get(i);
             MyArrayList<Integer> indexes = blocks.get(set);
             if (indexes.size() > 1) {
-                for (int j = 0; j < indexes.size() - 1; j++) { //yhden 3 kirj yhdistelmän välit
-                    int difference = indexes.get(j + 1) - indexes.get(j); //yksi ero 
+                for (int j = 0; j < indexes.size() - 1; j++) { 
+                    int difference = indexes.get(j + 1) - indexes.get(j); 
                     MyArrayList<Integer> factors = listFactors(difference);
 
                     for (int k = 0; k < factors.size(); k++) {
@@ -80,7 +80,7 @@ public class BreakingVigenereCipher {
                         if (differences.containsKey(factor)) {
                             Integer v = differences.get(factor);
                             v++;
-                            differences.put(factor, v); //tekijä ja monta kpl on tekijää
+                            differences.put(factor, v); 
                         } else {
                             differences.put(factor, 1);
                         }
@@ -92,7 +92,7 @@ public class BreakingVigenereCipher {
     }
 
     /**
-     * Counts key length that is most probable based on
+     * Counts key length that is most probable based on factors.
      *
      * @param differences HashMap where is factors and how many of each factors
      * there is
@@ -116,13 +116,12 @@ public class BreakingVigenereCipher {
                 }
             }
         }
-        System.out.println("oma avain "+keyL);
         return keyL;
 
     }
 
     /**
-     * Counts factors
+     * Counts factors.
      *
      * @param x difference from same set of letters
      * @return factors
@@ -143,10 +142,15 @@ public class BreakingVigenereCipher {
         return factors;
     }
 
+    /**
+     * Goes through text and counts frequencies for each set of letters. Then shifts each letter of most probable letter on that part. 
+     * @param text encrypted text
+     * @param keyLength length of the keyword
+     * @return guessed key
+     */
     public String guessingKey(String text, int keyLength) {
       
         String textBasedOnKeyIndex[] = new String[keyLength];
-        String guessedKey = "";
         char[] keyGuess = new char[keyLength];
 
         for (int i = 0; i < keyLength; i++) {

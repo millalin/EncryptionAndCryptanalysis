@@ -14,7 +14,6 @@ import cryptanalysis.ciphers.VigenereCipher;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -63,7 +62,7 @@ public class CryptUi extends Application {
         Button testCeasarfile = new Button("Encrypt / decrypt \nfiles with Ceasar");
         Button testVinenerefile = new Button("Encrypt / decrypt \nfiles with Vigenère");
         Button testBlowfishfile = new Button("Encrypt / decrypt \nfiles with Blowfish");
-        
+
         Button returnbut1 = new Button("Return");
         Button returnbut2 = new Button("Return");
         Button returnbut3 = new Button("Return");
@@ -119,14 +118,9 @@ public class CryptUi extends Application {
         fileC.setMinSize(500, 400);
 
         Scene fileCScene = new Scene(fileC);
-        
-        
-        
-        
-        
-        
-         GridPane fileV = new GridPane();
-        
+
+        GridPane fileV = new GridPane();
+
         Label filevText = new Label("Write key and write file name you want to encrypt/decrypt");
         TextField fileVKey = new TextField();
         TextField filev = new TextField();
@@ -142,7 +136,6 @@ public class CryptUi extends Application {
         Label crypttimelabelFilev = new Label("Time:");
         Label filesizeFilev = new Label("File size: ");
         Label keyV = new Label("Key: ");
-        Button analysisV = new Button("Frequensies");
 
         fileV.add(returnbut2, 0, 0);
         fileV.add(filevText, 1, 1);
@@ -156,7 +149,6 @@ public class CryptUi extends Application {
         fileV.add(crypttimelabelFilev, 1, 9);
         fileV.add(filesizeFilev, 1, 10);
         fileV.add(keyV, 1, 11);
-        fileV.add(analysisV, 1, 12);
 
         fileV.setHgap(5);
         fileV.setVgap(25);
@@ -164,7 +156,6 @@ public class CryptUi extends Application {
         fileV.setMinSize(500, 400);
 
         Scene fileVScene = new Scene(fileV);
-        
 
         GridPane fileB = new GridPane();
         Label text = new Label("Write key and file name");
@@ -226,7 +217,6 @@ public class CryptUi extends Application {
         Label line = new Label("Find key that will decrypt text:                      Show chart:");
 
         Button chartButton = new Button("Frequency chart");
-        
 
         GridPane ceasarPane = new GridPane();
         ceasarPane.setAlignment(Pos.CENTER);
@@ -329,24 +319,29 @@ public class CryptUi extends Application {
         Scene vigenereScene = new Scene(vigenerePane);
         Scene blowfishScene = new Scene(blowfishPane);
 
-          returnButton.setOnAction((event) -> {
+        returnButton.setOnAction((event) -> {
             stage.setScene(startScene);
         });
-          
-            returnbut1.setOnAction((event) -> {
-            stage.setScene(startScene);
-        });  returnbut2.setOnAction((event) -> {
-            stage.setScene(startScene);
-        });  returnbut3.setOnAction((event) -> {
-            stage.setScene(startScene);
-        });  returnbut4.setOnAction((event) -> {
-            stage.setScene(startScene);
-        });  returnbut5.setOnAction((event) -> {
-            stage.setScene(startScene);
-        });  returnbut6.setOnAction((event) -> {
+
+        returnbut1.setOnAction((event) -> {
             stage.setScene(startScene);
         });
-        
+        returnbut2.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+        returnbut3.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+        returnbut4.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+        returnbut5.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+        returnbut6.setOnAction((event) -> {
+            stage.setScene(startScene);
+        });
+
         testCeasar.setOnAction((event) -> {
             stage.setScene(ceasarScene);
         });
@@ -366,7 +361,7 @@ public class CryptUi extends Application {
         testCeasarfile.setOnAction((event) -> {
             stage.setScene(fileCScene);
         });
-        
+
         testVinenerefile.setOnAction((event) -> {
             stage.setScene(fileVScene);
         });
@@ -510,7 +505,7 @@ public class CryptUi extends Application {
 
         });
 
-           decryptfile.setOnAction((event) -> {
+        decryptfile.setOnAction((event) -> {
 
             String filename = filebf.getText();
             try {
@@ -534,7 +529,7 @@ public class CryptUi extends Application {
             }
 
         });
-           
+
         encryptfileC.setOnAction((event) -> {
 
             String filename = filec.getText();
@@ -555,15 +550,15 @@ public class CryptUi extends Application {
                 guessedKey.setText("Key used: " + keyNumber);
                 String newfilename = filecNameText.getText();
                 ready.setText("Encrypted text goes to file " + newfilename + ".txt");
-                        
+
                 writeFile(encrypted, newfilename);
             } catch (Exception e) {
                 //  no file
             }
 
         });
-        
-           decryptfileC.setOnAction((event) -> {
+
+        decryptfileC.setOnAction((event) -> {
 
             String filename = filec.getText();
             try {
@@ -583,7 +578,7 @@ public class CryptUi extends Application {
                 guessedKey.setText("Key used: " + keyNumber);
                 String newfilename = filecNameText.getText();
                 ready.setText("Decrypted text goes to file " + newfilename + ".txt");
-                        
+
                 writeFile(decrypted, newfilename);
             } catch (Exception e) {
                 //  no file
@@ -637,15 +632,14 @@ public class CryptUi extends Application {
             }
 
         });
-        
-        
-         encryptfileV.setOnAction((event) -> {
+
+        encryptfileV.setOnAction((event) -> {
 
             String filename = filev.getText();
             try {
                 String original = readFile(filename);
-               // int keyNumber = (int) cbox.getValue();
-               String keyWord = fileVKey.getText();
+                // int keyNumber = (int) cbox.getValue();
+                String keyWord = fileVKey.getText();
                 long starttime = System.currentTimeMillis();
 
                 String encrypted = vigenere.encryption(original, keyWord);
@@ -657,21 +651,21 @@ public class CryptUi extends Application {
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilev.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFilev.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
-                keyV.setText("Key used: " + keyWord); 
+                keyV.setText("Key used: " + keyWord);
                 String newfilename = filevNameText.getText();
                 ready3.setText("Encrypted text goes to file " + newfilename + ".txt");
-                        
+
                 writeFile(encrypted, newfilename);
             } catch (Exception e) {
                 //  no file
             }
 
         });
-        
-            decryptfileV.setOnAction((event) -> {
+
+        decryptfileV.setOnAction((event) -> {
 
             String filename = filev.getText();
-             String keyWord = fileVKey.getText();
+            String keyWord = fileVKey.getText();
             try {
                 String original = readFile(filename);
                 long starttime = System.currentTimeMillis();
@@ -688,7 +682,7 @@ public class CryptUi extends Application {
                 guessedKey.setText("Key used: " + keyWord);
                 String newfilename = filevNameText.getText();
                 ready3.setText("Decrypted text goes to file " + newfilename + ".txt");
-                        
+
                 writeFile(decrypted, newfilename);
             } catch (Exception e) {
                 //  no file
@@ -696,7 +690,7 @@ public class CryptUi extends Application {
 
         });
 
-             breakfileV.setOnAction((event) -> {
+        breakfileV.setOnAction((event) -> {
 
             String filename = filev.getText();
             try {
@@ -704,28 +698,24 @@ public class CryptUi extends Application {
 
                 long starttime = System.currentTimeMillis();
 
-                
-            long startTime = System.currentTimeMillis();
-            int x = breaking.analyzingText(encryptedText);
-            if (x == 0) {
-                keyV.setText("Too short text. There can't be found any factors");
-            } else {
-                String guessedKeyString = breaking.guessingKey(encryptedText, x);
-                long stopTime = System.currentTimeMillis();
-                keyV.setText("Suggested key lenght " + x+ " and suggested key " + guessedKeyString);
+                long startTime = System.currentTimeMillis();
+                int x = breaking.analyzingText(encryptedText);
+                if (x == 0) {
+                    keyV.setText("Too short text. There can't be found any factors");
+                } else {
+                    String guessedKeyString = breaking.guessingKey(encryptedText, x);
+                    long stopTime = System.currentTimeMillis();
+                    keyV.setText("Suggested key lenght " + x + " and suggested key " + guessedKeyString);
 
-                long timePassed = stopTime - startTime;
-                crypttimelabelFilev.setText("Time finding out key: " + timePassed);
-
-            }
-                
-                
+                    long timePassed = stopTime - startTime;
+                    crypttimelabelFilev.setText("Time finding out key: " + timePassed);
+                }
             } catch (Exception e) {
                 //  no file
             }
 
         });
-        
+
         stage.setScene(startScene);
         stage.show();
     }
@@ -733,26 +723,12 @@ public class CryptUi extends Application {
     public static void main(String[] args) throws Exception {
 
         TimeTesting tt = new TimeTesting();
-//        System.out.println("java: " + tt.vigenereTimeArray());
-  //      System.out.println("own: " + tt.vigenereTimeOwnArray());
 
         tt.testBf();
         tt.testb();
-        
-        String avain = "hWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$"; //448
-        
+
         //s5v8y/B?E/H+MbQe
-        
         //hWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$
-        
-String binary = new BigInteger(avain.getBytes()).toString(2);
-int pituus = binary.length();
-System.out.println("As binary: "+binary + " pituus" + pituus);
-
-String abc = "abcd";
-        System.out.println(abc.substring(0, 2));
-        
-
         launch(args);
     }
 
@@ -825,14 +801,11 @@ String abc = "abcd";
 
         PrintWriter tulos = new PrintWriter("./files/" + filename + ".txt");
 
-        
-
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();
             tulos.println(rivi);
         }
 
         tulos.close();
-
     }
 }

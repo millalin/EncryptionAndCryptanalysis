@@ -15,7 +15,6 @@ public class MyArrayList<T> {
         this.values = (T[]) new Object[10];
     }
 
-
     public void add(T value) {
 
         if (this.valuesCount == this.values.length) {
@@ -23,12 +22,13 @@ public class MyArrayList<T> {
         }
 
         this.values[this.valuesCount] = value;
-
         valuesCount++;
     }
 
- 
-
+    /**
+     * Grows size of the list by making new list and copies existing values to
+     * new list.
+     */
     private void growSize() {
 
         T[] newSize = (T[]) new Object[this.values.length * 3 / 2 + 1];
@@ -36,18 +36,19 @@ public class MyArrayList<T> {
         for (int i = 0; i < this.values.length; i++) {
             newSize[i] = this.values[i];
         }
-
         this.values = newSize;
     }
-
- 
 
     public boolean contains(T value) {
 
         return index(value) >= 0;
     }
 
-
+    /**
+     * Removes wanted value from list.
+     *
+     * @param value value that you want to remove
+     */
     public void remove(T value) {
 
         int valueIndex = index(value);
@@ -62,8 +63,6 @@ public class MyArrayList<T> {
 
     }
 
- 
-
     public int index(T value) {
 
         for (int i = 0; i < this.valuesCount; i++) {
@@ -74,16 +73,17 @@ public class MyArrayList<T> {
         return -1;
     }
 
-
+    /**
+     * When removed a value others will be moved to right place in changed list.
+     *
+     * @param fromIndex
+     */
     private void moveLeft(int fromIndex) {
 
         for (int i = fromIndex; i < this.valuesCount - 1; i++) {
             this.values[i] = this.values[i + 1];
         }
-
     }
-
- 
 
     public T get(int ind) {
 
@@ -91,16 +91,10 @@ public class MyArrayList<T> {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds");
         }
         return this.values[ind];
-
     }
 
-    
-
-    public int size()   {
-
+    public int size() {
         return this.valuesCount;
     }
 
 }
-
- 

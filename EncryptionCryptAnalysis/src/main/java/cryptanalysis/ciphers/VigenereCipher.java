@@ -7,12 +7,12 @@ package cryptanalysis.ciphers;
 
 /**
  * Class that will create encryption and decryption from given text with
- * Vigenère cipher
+ * Vigenère cipher.
  */
 public class VigenereCipher {
 
     /**
-     * Creates key of which length is equal to plaintext. Iqnores spaces.
+     * Creates key of which length is equal to plaintext. 
      *
      * @param text plaintext that will be encrypted
      * @param key key of encryption
@@ -52,7 +52,6 @@ public class VigenereCipher {
     public String encryption(String text, String key) {
         int n = 0;
         String keyGenerated = this.makeKey(text, key);
-        //  char[] keychar = new  char[keyGenerated.length()];
         char[] chars = new char[text.length()];
 
         for (int i = 0; i < text.length(); i++) {
@@ -71,9 +70,9 @@ public class VigenereCipher {
 
             } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
 
-                char ch = (char) (((int) text.charAt(i)
+                char c = (char) (((int) text.charAt(i)
                         + n - 65) % 26 + 65);
-                chars[i] = ch;
+                chars[i] = c;
 
             } else {
                 char c = (char) ((int) text.charAt(i));

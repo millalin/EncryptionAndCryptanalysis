@@ -1,7 +1,7 @@
 package cryptanalysis.datastructures;
 
 /**
- * Own implemention of HashMap.
+ * Own implementation of HashMap.Using help of MyArrayList implementation.
  *
  * @author milla
  */
@@ -18,6 +18,11 @@ public class MyHashMap<K, V> {
         keys = new MyArrayList();
     }
 
+    /**
+     * Finds values of specific key. 
+     * @param key key  of which values is searched
+     * @return list of value(s)
+     */
     public V get(K key) {
 
         int hashValue = Math.abs(key.hashCode() % this.keyValues.length);
@@ -31,11 +36,15 @@ public class MyHashMap<K, V> {
                 return indexValues.get(i).getValue();
             }
         }
-
         return null;
-
     }
 
+    /**
+     * Puts key and value to HashMap;
+     *
+     * @param key key to be added
+     * @param value value to be added
+     */
     public void put(K key, V value) {
 
         MyArrayList<KeyValue<K, V>> indexValues = getListOfKey(key);
@@ -82,6 +91,9 @@ public class MyHashMap<K, V> {
 
     }
 
+    /**
+     * Makes new list and copies old ones values when there is need for new space.
+     */
     private void growSize() {
 
         MyArrayList<KeyValue<K, V>>[] newList = new MyArrayList[this.keyValues.length * 2];
@@ -96,7 +108,7 @@ public class MyHashMap<K, V> {
 
     private void copyList(MyArrayList<KeyValue<K, V>>[] newList, int ind) {
         if (this.keyValues[ind] == null) {
-            //ei mtn
+            //nothing
         } else {
             for (int i = 0; i < this.keyValues[ind].size(); i++) {
                 KeyValue<K, V> value = this.keyValues[ind].get(i);

@@ -2,6 +2,14 @@
 
 Ohjelma toteuttaa kolme eri salausargoritmia: Caesar Cipher, Vigenere Cipher ja lohkosalausalgoritmin Blowfish. Caasar Cipher ja Vigenere Cipher ovat yksinkertaisempia salausmenetelmiä ja ohjelma toteuttaa myös niiden murtamisyritykset, silloin kun salausavain ei ole tiedossa. 
 
+JavaDoc generoidaan komennolla
+
+    mvn javadoc:javadoc
+
+Javadocia voi tarkastella avaamalla selaimella tiedosto sijainnista target/site/apidocs/index.html
+
+[Generoitu JavaDoc](file:///home/milla/tiralabra/EncryptionAndCryptanalysis/EncryptionCryptAnalysis/target/site/apidocs/index.html)
+
 ### Ohjelman yleisrakenne
 
 Ohjelma koostuu seuraavista pakkauksista:
@@ -18,20 +26,31 @@ Sisältää luokan Blowfish, joka toteuttaa Blowfish salauksen ja purkamisen. Pa
 
 Sisältää luokan Caesar Cipher ja Vigenere Cipher, jotka toteuttavat kyseiset salaukset ja niiden purkamisen.
 
+
+#### cryptanalysis.breaking
+
+Sisältää luokat BreakingCaesarCipher.java, BreakingVigenereCipher.java,
 #### cryptanalusis.dataStructures
 
 Sisältää kaikkien omien tietorakenteiden toteutukset. Sisältää luokat MyArrayList, MyHashMap ... ..
 
 #### cryptanalysis.cipherTest
 
-testiluokka, joka testaa saĺauksia
+Testiluokka, joka testaa Blowfish salausta, Caesar salausta ja Vigenere salausta.
 
+#### cryptanalysis.datastructuresTest
+
+Sisältää luokan DatastructureTest.java joka testaa omien tietorakenteiden oikein toimivuutta.  
 
 ### Salaus
 
 #### Caesar Cipher
 
+Caesar salakirjoitus on yksinkertainen salausmenetelmä, jossa jokainen salattava kirjain korvataan aakkosissa aina sovitun siirtomäärän jälkeen tulevalla kirjaimella. Aakkoston päättyessä siirto jatkuu aakkosten alusta. Caesar Cipher voidaan murtaa esimerkiksi käyttäen hyväksi frekvenssianalyysiä. 
+
 #### Vigenere Cipher
+
+Vigenere salaus on moniaakkosellinen salaus ja se käyttää useampaa salaus-aakkosta tiedon salaamiseen. Avainsana määrittää, mitä kirjaimia siirretään eteenpäin minkäkin verran. Avainsanan kirjaimet muutetaan siirtonumeroksi, jonka jälkeen tektiä käydään läpi muuttaen sitä eri siirroilla. Murtoa ei voida toteuttaa pelkällä kirjainten frekvenssianalyysillä. Esimerkiksi Kasiskin menetelmällä voidaan selvittää avainsanan pituus ja muodostaa erikseen frekvenssianalyysin avulla arvaus avaimesta. 
 
 #### Blowfish
 
@@ -40,9 +59,6 @@ Blowfish on vuonna 1993 kehitetty erittäin vahva salausargoritmi. Blowfish on l
 Blowfishin pseudokoodi:
 
 ![alt text](pseudokoodi.png)
-
-[Kasiski](https://crypto.interactive-maths.com/kasiski-analysis-breaking-the-code.html)
-[Kas](https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Kasiski.html)
 
 
 ### Saavutetut aikavaativuudet
@@ -53,3 +69,10 @@ Kaikki 3 salausta toimivat lineaarisessa ajassa O(n) sekä salatessa, että purk
 Murrot
 erot avaimissa
 java? 
+
+### Lähteet
+
+[Kasiski](https://crypto.interactive-maths.com/kasiski-analysis-breaking-the-co$
+[Kas](https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Kasiski.html)
+
+

@@ -14,6 +14,9 @@ Jacoco voidaan suorittaa komennolla
 
 Raportti löytyy target/site/jacoco/index.html
 
+Testien rivikattavuus on 97 % ja haaraumakattavuus 89 %. Kattavuusraportista on jätetty käyttöliittymä ulkopuolelle.
+
+![alt text](./pics/jacoco2.png)
 
 ### Suorituskykytestaus
 
