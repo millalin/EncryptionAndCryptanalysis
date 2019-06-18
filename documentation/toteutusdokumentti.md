@@ -8,7 +8,7 @@ JavaDoc generoidaan komennolla
 
 Javadocia voi tarkastella avaamalla selaimella tiedosto sijainnista target/site/apidocs/index.html
 
-[Generoitu JavaDoc]()
+[Generoitu JavaDoc](./apidocs/index.html)
 
 ### Ohjelman yleisrakenne
 
