@@ -10,7 +10,7 @@ Ohjelma käynnistetään komennolla
 
 ### Alkunäkymä
 
-Alkunäkymässä voi valita, minkä salauksen haluaa toteuttaa ja haluaako kirjoittaa tekstiä vai salata valmiin tekstitiedoston. Salaukset toimivat englannin kielellä. Joka salaukseen tulee valita salausavain, ainoastaan Caesar salauksessa valikossa oletusavaimena on 1. 
+Alkunäkymässä voi valita, minkä salauksen haluaa toteuttaa ja haluaako kirjoittaa tekstiä vai salata valmiin tekstitiedoston. Salaukset toimivat englannin kielellä. Joka salaukseen tulee valita salausavain, ainoastaan Caesar salauksessa valikossa oletusavaimena on 1. Salausavainten sanoissa ei tule käyttää välilyöntiä. Vigenere salauksessa tulee käyttää englannin kielen aakkosia, Blowfish salausavaimessa voi käyttää myös erikoismerkkejä.
 
 ![alt text](./pics/kayttoohje_start.png)
 
@@ -32,6 +32,10 @@ Kattavuusraportti on tarkasteltavissa selaimella avaamalla tiedosto sijainnista 
 Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. Tämän jälkeen haluttu teksti voidaan salata tai purkaa. Options napista saa salatusta tekstistä näkyviin kaikki mahdolliset vaihtoehdot eri salausavaimilla. Frekvenssinapista on nähtävissä salatun tekstin aakkosten jakauma. Break napista saa näkyviin ohjelman laskeman arvauksen salatussa tekstissä käytetystä salausavaimesta.
 
 ![alt text](./pics/kayttoohje_caesar.png)
+
+Caesarilla salatun tekstin kirjainjakaumaa voi tarkastella kohdasta Frequency Chart. Tyypillisessä englanninkielisessä tekstissä yleisin kirjain on E ja toiseksi yleisin kirjain on T. Tästä ohjelma voi päätellä, mikä siirto tarvitaan eli mikä avain on kyseessä.
+
+![alt text](./pics/kayttoohje_fre.png)
 
 Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamisessa käytettävä salausavain. Avaimessa tulee käyttää kirjaimia a-z tai A-Z ja välilyöntiä ei tule käyttää. Salattu testi voidaan tämän jälkeen salata tai yrittää purkaa. Salatusta tekstistä voidaan etsiä todennäköisintä salausavaimen pituutta ja ehdotettua salausavainta. 
 
