@@ -221,7 +221,7 @@ public class CryptUi extends Application {
         GridPane ceasarPane = new GridPane();
         ceasarPane.setAlignment(Pos.CENTER);
         ceasarPane.setMinSize(600, 300);
-        ceasarPane.add(cipher, 0, 0); //toka on rivi
+        ceasarPane.add(cipher, 0, 0);
         ceasarPane.add(encrypt, 1, 1);
         ceasarPane.add(choice, 1, 2);
         ceasarPane.add(c, 1, 3);
@@ -292,8 +292,6 @@ public class CryptUi extends Application {
         blowfishPane.setHgap(5);
         blowfishPane.setVgap(25);
         blowfishPane.setPadding(new Insets(10, 10, 10, 10));
-        Label plainlabel = new Label("Plaintext");
-        Label cipherlabel = new Label("ciphertext");
         Label bfkeyLabel = new Label("Insert keyword (32-448 bit)");
         TextArea bfkeywordText = new TextArea();
         bfkeywordText.setPrefSize(20, 5);
@@ -594,7 +592,6 @@ public class CryptUi extends Application {
 
                 long starttime = System.currentTimeMillis();
 
-                //int keyNumber = (int) cbox.getValue();
                 f.countFrequencies(original);
                 int keyGuessed = f.countKey();
                 caesar.decryption(original, keyGuessed);
@@ -638,7 +635,6 @@ public class CryptUi extends Application {
             String filename = filev.getText();
             try {
                 String original = readFile(filename);
-                // int keyNumber = (int) cbox.getValue();
                 String keyWord = fileVKey.getText();
                 long starttime = System.currentTimeMillis();
 
@@ -724,11 +720,10 @@ public class CryptUi extends Application {
 
         TimeTesting tt = new TimeTesting();
 
-        tt.testBf();
-        tt.testb();
-
-        //s5v8y/B?E/H+MbQe
-        //hWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$
+        // tt.testBf();
+        
+        // tt.testb();
+        
         launch(args);
     }
 

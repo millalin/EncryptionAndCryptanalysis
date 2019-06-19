@@ -27,9 +27,10 @@ public class BreakingVigenereCipher {
             0.00095, 0.05987, 0.06327, 0.09056, 0.02758, 0.00978,
             0.02360, 0.00150, 0.01974, 0.00074};
     }
-   
+
     /**
-     * Makes set of 3 from letters in text and counts length differences. Puts set (3 letter combinations) indexes to the list.
+     * Makes set of 3 from letters in text and counts length differences. Puts
+     * set (3 letter combinations) indexes to the list.
      *
      * @param text encrypted text
      * @return best guess of the key length used in encryption
@@ -44,20 +45,21 @@ public class BreakingVigenereCipher {
             char c = (char) text.charAt(i + 2);
             String set = "" + a + b + c;
             if (blocks.containsKey(set)) {
-                blocks.get(set).add(i); 
+                blocks.get(set).add(i);
             } else {
                 blocks.put(set, new MyArrayList());
                 blocks.get(set).add(i);
                 list.add(set);
             }
         }
-        
+
         return countDiff(list, blocks);
     }
 
     /**
      * Counts length differences of 3 letter sets. Uses sets of 3 letters that
-     * appears more than once. Counts differences of each 3 letter combination. Puts factors and how many time they appear to HashMap.
+     * appears more than once. Counts differences of each 3 letter combination.
+     * Puts factors and how many time they appear to HashMap.
      *
      * @param list list of 3 letter sets
      * @param blocks map of 3 letter sets and their length differences
@@ -70,17 +72,17 @@ public class BreakingVigenereCipher {
             String set = list.get(i);
             MyArrayList<Integer> indexes = blocks.get(set);
             if (indexes.size() > 1) {
-                for (int j = 0; j < indexes.size() - 1; j++) { 
-                    int difference = indexes.get(j + 1) - indexes.get(j); 
+                for (int j = 0; j < indexes.size() - 1; j++) {
+                    int difference = indexes.get(j + 1) - indexes.get(j);
                     MyArrayList<Integer> factors = listFactors(difference);
 
                     for (int k = 0; k < factors.size(); k++) {
                         int factor = factors.get(k);
-                        
+
                         if (differences.containsKey(factor)) {
                             Integer v = differences.get(factor);
                             v++;
-                            differences.put(factor, v); 
+                            differences.put(factor, v);
                         } else {
                             differences.put(factor, 1);
                         }
@@ -143,13 +145,15 @@ public class BreakingVigenereCipher {
     }
 
     /**
-     * Goes through text and counts frequencies for each set of letters. Then shifts each letter of most probable letter on that part. 
+     * Goes through text and counts frequencies for each set of letters. Then
+     * shifts each letter of most probable letter on that part.
+     *
      * @param text encrypted text
      * @param keyLength length of the keyword
      * @return guessed key
      */
     public String guessingKey(String text, int keyLength) {
-      
+
         String textBasedOnKeyIndex[] = new String[keyLength];
         char[] keyGuess = new char[keyLength];
 
@@ -157,29 +161,28 @@ public class BreakingVigenereCipher {
             textBasedOnKeyIndex[i] = "";
 
         }
-        for (int i = 0; i < text.length(); i+=keyLength) {
-            
+
+        for (int i = 0; i < text.length(); i += keyLength) {
+
             for (int j = 0; j < keyLength; j++) {
-                if (i + j > text.length() -1)  {
+                if (i + j > text.length() - 1) {
                     continue;
-                } else  {
-                     textBasedOnKeyIndex[j] += text.charAt(i + j);
+                } else {
+                    textBasedOnKeyIndex[j] += text.charAt(i + j);
                 }
             }
         }
 
         for (int i = 0; i < keyLength; i++) {
             int shift = analysis.countFrequencies(textBasedOnKeyIndex[i]);
-            if ('a'+shift <123)     {
+            if ('a' + shift < 123) {
                 keyGuess[i] = (char) ('a' + shift);
-            } else  {
-                keyGuess[i] = (char) ('a' -26 + shift);
+            } else {
+                keyGuess[i] = (char) ('a' - 26 + shift);
             }
         }
 
-        return String.valueOf(keyGuess); 
+        return String.valueOf(keyGuess);
     }
-
-
 
 }

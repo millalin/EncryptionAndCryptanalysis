@@ -30,39 +30,33 @@ public class TestJavaOwnBlowfish {
      * @throws Exception throws exception
      */
     public String te(String text) throws Exception {
-        // KeyGenerator generator = KeyGenerator.getInstance("blowfish");
-        //     SecretKey secretKey = generator.generateKey();
+        KeyGenerator generator = KeyGenerator.getInstance("blowfish");
+        SecretKey secretKey = generator.generateKey();
         String hex = "";
         String key = "sosecretkeyhello";
         byte[] keyData = key.getBytes();
         SecretKeySpec ks = new SecretKeySpec(keyData, "Blowfish");
-        Cipher cipher = Cipher.getInstance("Blowfish");
+        Cipher cipher = Cipher.getInstance("blowfish");
         cipher.init(Cipher.ENCRYPT_MODE, ks);
 
-        //Cipher cipher = Cipher.getInstance("blowfish");
-        //    cipher.init(cipher.ENCRYPT_MODE, secretKey);
         String input = text;
         long alku = System.currentTimeMillis();
         byte[] encrypt = cipher.doFinal(input.getBytes());
-        //   String e = new String(encrypt);
 
-    //    System.out.println("java väli "+encrypt);
+        //    System.out.println("java väli "+encrypt);
         hex = this.changeToHex(encrypt);
         long loppu = System.currentTimeMillis();
-        
+
         long aika = loppu - alku;
-        System.out.println("java time only encryption "+aika);
-    //    cipher.init(Cipher.DECRYPT_MODE, ks);
+        System.out.println("java time only encryption " + aika);
 
         // decrypt message
-     //   byte[] decrypted = cipher.doFinal(encrypt);
+        /* cipher.init(Cipher.DECRYPT_MODE, ks);
+        byte[] decrypted = cipher.doFinal(encrypt);
 
-        //   String e = new String(encrypt.toString());
-        //  e = new BASE64Encoder().encode(encrypt);
-   //     String d = new String(decrypted);
-     //   System.out.println("de java " + d);
-
-        return hex; // + " de:  " + d;
+        String e = new String(encrypt.toString());
+        String d = new String(decrypted); */
+        return hex;
     }
 
     public String changeToHex(byte[] bytes) {

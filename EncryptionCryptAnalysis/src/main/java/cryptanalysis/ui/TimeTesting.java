@@ -12,7 +12,9 @@ import java.io.File;
 import java.util.Scanner;
 
 /**
- * class just for testing time of my own Blowfish and Java Blowfish differences. 
+ * class just for testing time of my own Blowfish and Java Blowfish differences.
+ * You can test these by deleting comments on CryptUi.java class and adding info
+ * in this class and/or deleting comments.
  *
  * @author milla
  */
@@ -23,7 +25,7 @@ public class TimeTesting {
     String rivi = "";
 
     public TimeTesting() throws Exception {
-    /*    Scanner tiedosto = new Scanner(new File("./files/file2.txt"));
+        /*    Scanner tiedosto = new Scanner(new File("./files/file2.txt"));
 
         while (tiedosto.hasNextLine()) {
             rivi += tiedosto.nextLine();
@@ -47,9 +49,8 @@ public class TimeTesting {
         //   System.out.println("pituus oma : " + pituus1);
         System.out.println("time own: " + aika);
 
-//        String avattu = bl.decryption(salattu);
         long aika2 = loppu2 - alku2;
-          System.out.println("Time only encryption own: " + aika2);
+        System.out.println("Time only encryption own: " + aika2);
 
     }
 

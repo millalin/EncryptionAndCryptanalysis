@@ -108,7 +108,7 @@ public class MyHashMap<K, V> {
 
     private void copyList(MyArrayList<KeyValue<K, V>>[] newList, int ind) {
         if (this.keyValues[ind] == null) {
-            //nothing
+            System.out.println("Nothing to copied");
         } else {
             for (int i = 0; i < this.keyValues[ind].size(); i++) {
                 KeyValue<K, V> value = this.keyValues[ind].get(i);

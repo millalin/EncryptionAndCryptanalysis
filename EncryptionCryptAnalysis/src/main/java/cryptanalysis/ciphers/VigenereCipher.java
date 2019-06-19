@@ -12,7 +12,7 @@ package cryptanalysis.ciphers;
 public class VigenereCipher {
 
     /**
-     * Creates key of which length is equal to plaintext. 
+     * Creates key of which length is equal to plaintext.
      *
      * @param text plaintext that will be encrypted
      * @param key key of encryption
@@ -20,7 +20,7 @@ public class VigenereCipher {
      */
     public String makeKey(String text, String key) {
 
-        char[]newKey=new char[text.length()];
+        char[] newKey = new char[text.length()];
         int j = 0;
         char c = ' ';
 
@@ -31,10 +31,10 @@ public class VigenereCipher {
             }
             if ((int) text.charAt(i) == 32) {
                 c = text.charAt(i);
-                newKey[i]=c;
+                newKey[i] = c;
             } else {
                 c = key.charAt(j);
-                newKey[i]=c;
+                newKey[i] = c;
                 j++;
             }
         }

@@ -1,6 +1,5 @@
 package cryptanalysis.blowfish;
 
-
 /**
  * Class that creates Blowfish encryption and decryption
  */
@@ -269,7 +268,7 @@ public class Blowfish {
 
             char part1 = hex.charAt(i);
             char part2 = hex.charAt(i + 1);
-            String parts =Character.toString(part1) + Character.toString(part2);
+            String parts = Character.toString(part1) + Character.toString(part2);
 
             bytes[i / 2] = hexToByte(parts);
         }
@@ -302,8 +301,6 @@ public class Blowfish {
         }
         return changed;
     }
-
-
 
     /**
      * Changing one byte to hex

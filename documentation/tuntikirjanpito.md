@@ -25,4 +25,5 @@ päivä |  aika |  mitä tein
 13.6 | 3 | Mittauksten tekoa, koodin siistimistä, dokumentaation tekoa
 14.6 | 4 | Suorituskykytestausta, testausdokumentin, käyttöohjedokumentin sekä toteutusdokumentin kirjoitusta 
 18.6 | 4 | Koodin siistimistä, dokumentaation kirjoitusta, javadoc, testien muokkaus
+19.6 | 
 yht | 119| 

@@ -1,12 +1,12 @@
 ## Käyttöohje
 
-Lataa tiedosto Encryption.jar
+Lataa tiedosto [Encryption.jar](https://github.com/millalin/EncryptionAndCryptanalysis/releases/tag/v1.0)
 
 ### Ohjelman käynnistäminen
 
 Ohjelma käynnistetään komennolla
 
-    java -jar EncryptionAndCryptanalysis.jar
+    java -jar Encryption.jar
 
 ### Alkunäkymä
 
@@ -33,7 +33,7 @@ Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. T
 
 ![alt text](./pics/kayttoohje_caesar.png)
 
-Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamisessa käytettävä salausavain. Avaimessa tulee käyttää kirjaimia a-z tai A-Z. Salattu testi voidaan tämän jälkeen salata tai yrittää purkaa. Salatusta tekstistä voidaan etsiä todennäköisintä salausavaimen pituutta ja ehdotettua salausavainta. 
+Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamisessa käytettävä salausavain. Avaimessa tulee käyttää kirjaimia a-z tai A-Z ja välilyöntiä ei tule käyttää. Salattu testi voidaan tämän jälkeen salata tai yrittää purkaa. Salatusta tekstistä voidaan etsiä todennäköisintä salausavaimen pituutta ja ehdotettua salausavainta. 
 
 ![alt text](./pics/kayttoohje_vigenere.png)
 

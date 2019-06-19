@@ -31,16 +31,15 @@ public class CaesarCipher {
                 chars[i] = c;
 
             } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
-                
-                    char ch = (char) (((int) text.charAt(i)
-                            + n - 65) % 26 + 65);
-                    chars[i] = ch;
-                
 
-            } else  {
+                char ch = (char) (((int) text.charAt(i)
+                        + n - 65) % 26 + 65);
+                chars[i] = ch;
+
+            } else {
                 char c = (char) ((int) text.charAt(i));
-                          
-                    chars[i] = c;
+
+                chars[i] = c;
             }
         }
 
@@ -67,16 +66,14 @@ public class CaesarCipher {
                 chars[i] = ch;
 
             } else if ((int) text.charAt(i) > 64 && (int) text.charAt(i) < 91) {
-                
-              
-                    char ch = (char) (((int) text.charAt(i)
-                            + n - 65) % 26 + 65);
-                    chars[i] = ch;
-                
 
-            } else  {
+                char ch = (char) (((int) text.charAt(i)
+                        + n - 65) % 26 + 65);
+                chars[i] = ch;
+
+            } else {
                 char c = (char) ((int) text.charAt(i));
-                    chars[i] = c;
+                chars[i] = c;
             }
         }
 
