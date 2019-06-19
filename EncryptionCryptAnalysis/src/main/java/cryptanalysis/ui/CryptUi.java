@@ -82,10 +82,10 @@ public class CryptUi extends Application {
         ChoiceBox cbox = new ChoiceBox();
         cbox.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
         cbox.setValue(1);
-        Label filecText = new Label("Choose key and write file name");
+        Label filecText = new Label("Choose key and write file path and name");
         TextField filec = new TextField();
         Button encryptfileC = new Button("Encrypt");
-        Label filecName = new Label("Write new file name for encrypted text");
+        Label filecName = new Label("Write new file path and name for encrypted text");
         TextField filecNameText = new TextField();
         Label ready = new Label("");
         Button decryptfileC = new Button("Decrypt");
@@ -121,11 +121,11 @@ public class CryptUi extends Application {
 
         GridPane fileV = new GridPane();
 
-        Label filevText = new Label("Write key and write file name you want to encrypt/decrypt");
+        Label filevText = new Label("Write key and write file path and name you want to encrypt/decrypt");
         TextField fileVKey = new TextField();
         TextField filev = new TextField();
         Button encryptfileV = new Button("Encrypt");
-        Label filevName = new Label("Write new file name for encrypted text");
+        Label filevName = new Label("Write new file path and name for encrypted text");
         TextField filevNameText = new TextField();
         Label ready3 = new Label("");
         Button decryptfileV = new Button("Decrypt");
@@ -158,7 +158,7 @@ public class CryptUi extends Application {
         Scene fileVScene = new Scene(fileV);
 
         GridPane fileB = new GridPane();
-        Label text = new Label("Write key and file name");
+        Label text = new Label("Write key and file path and name");
         TextField filebf = new TextField();
         TextField filebfkey = new TextField();
         Button encryptfile = new Button("Encrypt");
@@ -168,7 +168,7 @@ public class CryptUi extends Application {
         buttons5.setSpacing(30);
         Label crypttimelabel = new Label("Time:");
         Label filesize = new Label("File size: ");
-        Label fileBName = new Label("Write new file name for encrypted text");
+        Label fileBName = new Label("Write new file path and name for encrypted text");
         TextField fileBNameText = new TextField();
         Label ready2 = new Label("");
 
@@ -489,7 +489,7 @@ public class CryptUi extends Application {
                 String encryptText = bf.encryption();
                 double timepassed = System.currentTimeMillis() - starttime;
                 double timepassedSec = timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabel.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -514,7 +514,7 @@ public class CryptUi extends Application {
                 String decryptText = bf.decryption(encrypted);
                 double timepassed = System.currentTimeMillis() - starttime;
                 double timepassedSec = timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabel.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -540,7 +540,7 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilec.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -568,7 +568,7 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilec.setText("Decryption time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -598,7 +598,7 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilec.setText("Break time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -642,7 +642,7 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilev.setText("Encryption time: " + timepassed + " ms, " + timepassedSec + " s.");
@@ -670,12 +670,12 @@ public class CryptUi extends Application {
                 long stoptime = System.currentTimeMillis();
                 long timepassed = stoptime - starttime;
                 double timepassedSec = (double) timepassed / 1000;
-                File file = new File("./files/" + filename);
+                File file = new File(filename);
                 double size = file.length() / 1024;
                 double kbPerSecond = size / timepassedSec;
                 crypttimelabelFilev.setText("Decryption time: " + timepassed + " ms, " + timepassedSec + " s.");
                 filesizeFilev.setText("File size: " + size + " kB. Speed: " + kbPerSecond + " kB/s.");
-                guessedKey.setText("Key used: " + keyWord);
+                keyV.setText("Key used: " + keyWord);
                 String newfilename = filevNameText.getText();
                 ready3.setText("Decrypted text goes to file " + newfilename + ".txt");
 
@@ -773,14 +773,13 @@ public class CryptUi extends Application {
 
     public String readFile(String filename) throws Exception {
         String rivi = "";
-        filename = "./files/" + filename;
+        filename = filename;
 
         try {
             Scanner tiedosto = new Scanner(new File(filename));
 
             while (tiedosto.hasNextLine()) {
                 rivi += tiedosto.nextLine();
-                // System.out.println(rivi);
             }
 
             tiedosto.close();
@@ -794,7 +793,7 @@ public class CryptUi extends Application {
     public void writeFile(String text, String filename) throws FileNotFoundException {
         Scanner lukija = new Scanner(text);
 
-        PrintWriter tulos = new PrintWriter("./files/" + filename + ".txt");
+        PrintWriter tulos = new PrintWriter(filename + ".txt");
 
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();

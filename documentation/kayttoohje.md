@@ -42,6 +42,6 @@ Blowfish salaus toimii Ascii merkistöllä, se ei avaa salauksesta kaikkia muita
 ![alt text](./pics/kayttoohje_blowfish.png)
 
  
-Ohjelmassa voidaan myös salata tekstitiedostoja. Tiedostonäkymiin pitää myös syöttää salausavain. Tämän jälkeen tulee kirjoittaa avattavan tiedoston koko nimi. Alimpaan tekstikenttään tulee syöttää uuden tiedoston nimi (ilman tiedostopäätettä) ja painaa Encrypt nappia. Tekstin purkamisessa tulee syöttää samat tiedot, jolloin salatusta tekstitiedostosta luodaan avattu tiedosto painamalla Decrypt nappia.  
+Ohjelmassa voidaan myös salata tekstitiedostoja. Tiedostonäkymiin pitää myös syöttää salausavain. Tämän jälkeen tulee kirjoittaa avattavan tiedoston polku ja koko nimi. Alimpaan tekstikenttään tulee syöttää uuden tiedoston polku sekä nimi (ilman tiedostopäätettä) ja painaa Encrypt nappia. Tekstin purkamisessa tulee syöttää samat tiedot, jolloin salatusta tekstitiedostosta luodaan avattu tiedosto painamalla Decrypt nappia.  
 
 ![alt text](./pics/kayttoohje_file.png)

@@ -31,6 +31,8 @@ Käytetty Java versio oli 1.8.0_211 ja käyttöjärjestelmä Ubuntu 18.04.
 
 Ohjelman alkunäkymässä on 3 eri nappia (file Caesar, file Vigenere ja file Blowfish), joista pääsee omiin näkymiinsä. Näihin voidaan syöttää salattava tai murrettava tekstitiedosto ja ohjelma laskee salaukseen tai murtamiseen kuluvan ajan. Ikkunassa näkyy tiedoston koko ja nopeus. 
 
+Luokassa TimeTesting.java voidaan suorittaa testauksia tehdyn Blowfish toteutuksen ja Javan valmiin Blowfish toteutuksen välillä. Käyttöliittymäluokasta poistamalla kommentit, saadaan laskettua eroja näiden välillä.
+ 
 ### Testauksen tuloksia ja suorituskyky
 
 Salauksien nopeuksia sekä murtoyrityksien nopeuksia tutkitaan Javan System.currenttimeMillis() -metodin avulla. 
@@ -41,11 +43,11 @@ Toteutettua Caesar salausta testattiin erikokoisilla tekstitiedostoilla, joissa 
 
 Caesar Cipher testattiin tekstitiedostoilla, joiden koko oli 0.2 MB, 1 MB, 5 MB sekä 10 MB. Toistoja tehtiin useita, ja mitä pienempi tiedosto oli, sitä useammin salaus ja murto tapahtui samassa ajassa. Pienempiä tiedostoja testattiin myös, mutta koska aika oli niin nopea, ei niiden tulosten lisääminen kaavioon ole mielekästä. Kaaviosta nähdään, että salaus tapahtuu lineaarisessa ajassa. 
 
-![alt text](./pics/caesar_braking.png)
+![alt text](./pics/caesar_encryption.png)
 
 Ohjelmassa testattiin myös Caesar Cipher murron nopeutta tietämättä salausavaimen numeroa. Murto tapahtui lineaarisessa ajassa, kuten odotettua, sillä ohjelma käy tekstin kerran läpi ja laskee kuinka useasti kukin kirjain esiintyy. Tämän jälkeen aakkostaulukko, käydään kerran läpi, joka tapahtuu vakioajassa.  Murto oli hieman hitaampaa kuin salaus, mutta myös niin nopea, ettei pienillä tiedostoilla ollut mielekästä sitä testata enempää. 10 MB tekstitiedoston onnistui murtaa keskimäärin 75 millisekunnissa eli 0.075 sekunnissa.   
 
-![alt text](./pics/caesar_encryption.png)
+![alt text](./pics/caesar_braking.png)
 
    
 #### Vigenère Cipher
@@ -58,6 +60,9 @@ Kaaviossa on kunkin tiedostokoon keskirvo mittauksista. Salaus toteutettiin sala
 
 ![alt text](./pics/vigenereEncryption2.png)
 
+Vigenère Cipher salauksen purku testattiin salatuilla tekstitiedostoilla, joiden koot olivat samat kuin alkuperäiset tekstitiedostot. Salauksen purku tapahtuu myös lineaarisessa ajassa ja kesto oli samaa luokkaa salauksen kanssa.  
+
+![alt text](./pics/vigenere_decryption.png)
 
 Vigenèrellä salatun tekstin murtamiseen kulunutta aikaa mitattiin tidostoilla, joiden koot olivat 200 kB, 400 kB, 600 kB, 800 kB ja 1 MB. Tässä mittauksessa ei ollut merkitystä, löytääkö murtoyritys oikean avaimenpituuden ja oikean avaimen, kunhan löytyi ehdotus avaimen pituudeksi sekä avaimeksi. Avaimen pituus oli 3 näissä tiedostoissa. Kun syötteen koko noin kaksinkertaistuu, salaukseen kulunut aika suurin piirtein nelinkertaistuu. Salauksen purussa käydään koko syöte samalla muodostaen 3 merkin yhdistelmiä. Nämä yhdistelmät käydään vielä läpi ja niistä etsitään samojen yhdistelmien erot ja lopulta lasketaan, mitä tekijää on eniten. Tämä on todennäköisin avaimen pituus. Avaimen arvauksessa syöte käydään vielä uudelleen kertaalleen läpi.  
 

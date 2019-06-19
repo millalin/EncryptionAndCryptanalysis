@@ -69,7 +69,7 @@ Caesar salaus salaa tekstin, jossa on englannin kielen aakkoset. Se ei muuta mui
 
 Kaikki 3 salausta toimivat lineaarisessa ajassa O(n) sekä salatessa, että purkaessa salausta. Salauksissa syöte käydään kerran läpi salaten teksti. Caesar Cipher käy läpi salattavan syötteen ja salaa sen samalla salausavaimella (numerolla). Vigenere Cipher muodostaa annetusta avaimesta ensin tekstin mittaisen avaimen ja käy sen jälkeen salattavan tekstin läpi muodostaen joka avaimen kirjaimen kohdalle sen vaatiman määrän siirtoa merkille. Blowfish salaus salaa syötteen 64 bitin lohkoissa tehden joka salausta 16 kierrosta. Salauksen avaus on Blowfishissa sama toiminto vastakkaiseen suuntaan. 
 
-Erot avainten pituudessa eivät vaikuttaneet merkittävästi salausaikaan. Vigenere salauksen murrossa joudutaan käymään teksti läpi useaan kertaan, kun tekstistä ensin etsitään yhteisiä tekijöitä ja niitä käydään läpi uudelleen. Murtoa saattaa myös hidastaa oma HashMap toteutus. Salausten ja niiden purkamisen, sekä murtojen ja murtoyritysten toteutuneita aikoja voi nähdä testausdokumentin suorituskykytestaus osiossa.
+Erot avainten pituudessa eivät vaikuttaneet merkittävästi salausaikaan. Vigenere salauksen murrossa joudutaan käymään teksti läpi useaan kertaan, kun tekstistä ensin etsitään yhteisiä tekijöitä ja niitä käydään läpi uudelleen. Murtoa saattaa myös hidastaa oma HashMap toteutus. Salausten ja niiden purkamisen, sekä murtojen ja murtoyritysten toteutuneita aikoja voi nähdä [testausdokumentin](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/documentation/testausdokumentti.md) suorituskykytestaus osiossa.
 
 
 ### Lähteet
