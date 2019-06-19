@@ -33,7 +33,7 @@ Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. T
 
 ![alt text](./pics/kayttoohje_caesar.png)
 
-Caesarilla salatun tekstin kirjainjakaumaa voi tarkastella kohdasta Frequency Chart. Tyypillisessä englanninkielisessä tekstissä yleisin kirjain on E ja toiseksi yleisin kirjain on T. Tästä ohjelma voi päätellä, mikä siirto tarvitaan eli mikä avain on kyseessä.
+Caesarilla salatun tekstin kirjainjakaumaa voi tarkastella kohdasta Frequency Chart. Tyypillisessä englanninkielisessä tekstissä yleisin kirjain on E ja toiseksi yleisin kirjain on T. Tästä ohjelma voi päätellä, mikä siirto tarvitaan eli mikä avain on kyseessä. Allaolevassa kuvassa salaus on toteutettu avaimella 1. 
 
 ![alt text](./pics/kayttoohje_fre.png)
 
@@ -48,4 +48,4 @@ Blowfish salaus toimii Ascii merkistöllä, se ei avaa salauksesta kaikkia muita
  
 Ohjelmassa voidaan myös salata tekstitiedostoja. Tiedostonäkymiin pitää myös syöttää salausavain. Tämän jälkeen tulee kirjoittaa avattavan tiedoston polku ja koko nimi. Alimpaan tekstikenttään tulee syöttää uuden tiedoston polku sekä nimi (ilman tiedostopäätettä) ja painaa Encrypt nappia. Tekstin purkamisessa tulee syöttää samat tiedot, jolloin salatusta tekstitiedostosta luodaan avattu tiedosto painamalla Decrypt nappia.  
 
-![alt text](./pics/kayttoohjefile.png)
+![alt text](./pics/kayttoohje_file.png)
