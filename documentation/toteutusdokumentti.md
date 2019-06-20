@@ -1,6 +1,6 @@
 # Toteutusdokumentti
 
-Ohjelma toteuttaa kolme eri salausargoritmia: Caesar Cipher, Vigenere Cipher ja lohkosalausalgoritmin Blowfish. Caasar Cipher ja Vigenere Cipher ovat yksinkertaisempia salausmenetelmiä ja ohjelma toteuttaa myös niiden murtamisyritykset, silloin kun salausavain ei ole tiedossa. 
+Ohjelma toteuttaa kolme eri salausargoritmia: Caesar Cipher, Vigenere Cipher ja lohkosalausalgoritmin Blowfish. Caesar Cipher ja Vigenere Cipher ovat yksinkertaisempia salausmenetelmiä ja ohjelma toteuttaa myös niiden murtamisyritykset, silloin kun salausavain ei ole tiedossa. 
 
 JavaDoc generoidaan komennolla
 
@@ -63,7 +63,7 @@ Blowfishin pseudokoodi:
 
 ### Salausten toteutus
 
-Caesar salaus salaa tekstin, jossa on käytössä englannin kielen aakkosia. Se ei muuta muita merkkejä salauksessa, joten ne pysyvät salatessa ja purkaessa ennallaan. Tämä johtuu siitä, että Caesarin alkuperäisessä salauksessa salausavaimia on 26 ja salausta suoritetaan vain perustekstille. Myös vigenere cipher salaa vain kirjaimet ja jättää erikoismerkit ennalleen. Se käyttää avaimen kirjaimista muodostamiaan siirtoja samoin kuin Caesar. Molemmat salaukset purkavat oikealla avaimella tekstit takaisin oikeaan muotoonsa, myös erikoismerkit. Vigeneren avainsanassa tulee käuttää vain merkkejä a-z tai A-Z tai avaus ei toimi oikein. Myöskään välilyöntiä ei tule käyttää. 
+Caesar salaus salaa tekstin, jossa on käytössä englannin kielen aakkosia. Se ei muuta muita merkkejä salauksessa, joten ne pysyvät salatessa ja purkaessa ennallaan. Tämä johtuu siitä, että Caesarin alkuperäisessä salauksessa salausavaimia on 26 ja salausta suoritetaan vain perustekstille. Myös vigenere cipher salaa vain kirjaimet ja jättää erikoismerkit ennalleen. Se käyttää avaimen kirjaimista muodostamiaan siirtoja samoin kuin Caesar. Molemmat salaukset purkavat oikealla avaimella tekstit takaisin oikeaan muotoonsa, myös erikoismerkit. Vigeneren avainsanassa tulee käyttää vain merkkejä a-z tai A-Z tai avaus ei toimi oikein. Myöskään välilyöntiä ei tule käyttää. 
 
 Murroissa yritetään saada selville salauksessa käytetty avain ja yksinkertaisen Caesarin tapauksessa tämä onnistuu myös käyden läpi 26 eri vaihtoehtoa. Nopeampi murto saavutetaan käyttämällä hyväksi frekvenssianalyysiä. Frekvenssianalyysiä käytettäessä tekstin tulee olla tarpeeksi pitkä ja noudattaa englannin kielen todennäköisyyksiä, jotta sen onnistuu murtaa oikea avain. Vigeneren murrossa toimii parhaiten teksti, jossa ei ole välilyöntejä, sillä murrossa tunnistetaan 3 kirjaimen yhdistelmiä, jolloin niitä saadaan näin enemmän. Toisaalta tällöin vaikuttaa eri sanojen yhdistelmät tekstissä. 
 

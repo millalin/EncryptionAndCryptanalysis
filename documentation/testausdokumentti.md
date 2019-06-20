@@ -125,7 +125,7 @@ Salauksen purku 128 bittisellä avaimella:
 
 #### Oman Blowfish toteutuksen ja Javan valmiin Blowfish salauksen vertailu
 
-Oma toteutus vaikuttaa salaavan Javan valmista versiota nopeammin. Javan valmiissa versiossa salauksen alustukseen kuluu aikaa aina noin 150-200 millisekuntia silloin kun siihen haluaa asettaa oman salausavaimen ja omalla toteutuksella alustukseen kuluu noin 30-70 millisekuntia. Myös Javan toteutuksen salaus vaikuttaisi olevan hitaampi testatuilla tekstitiedostoilla. Allaolevassa taulukossa on vertailu mitatuista ajoista (keskiarvo mittauksista).
+Oma toteutus vaikuttaa salaavan Javan valmista versiota nopeammin. Javan valmiissa versiossa salauksen alustukseen kuluu aikaa aina noin 150-200 millisekuntia silloin kun siihen haluaa asettaa oman salausavaimen ja omalla toteutuksella alustukseen kuluu noin 30-70 millisekuntia. Myös Javan toteutuksen salaus vaikuttaisi olevan hitaampi testatuilla tekstitiedostoilla. Allaolevassa taulukossa on vertailu mitatuista ajoista (keskiarvo mittauksista). Javan valmiin toteutuksen tutkimiseen ja sen toimintatapaan ei tutustuttu tässä sen tarkemmin. 
  
 
 Tiedostokoko | Java kokonaisaika | Java vain salaus |  Oma kokonaisaika | Oma vain salaus
