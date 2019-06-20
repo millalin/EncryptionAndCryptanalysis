@@ -17,7 +17,7 @@ Toteutetaan tunnettuja salausmenetelmiä aloittaen yksinkertaisesta Caesar salak
 
 Lisäksi toteutetaan [frekvenssianalyysi](https://learncryptography.com/attack-vectors/frequency-analysis), jota käytetään salakirjoituksen purkamiseen yksinkertaisessa korvaussalakirjoituksessa. Toteutus tehdään englannin kielellä. [Kasinskin menetelmää](https://en.wikipedia.org/wiki/Kasiski_examination) käytetään salausavaimen pituuden selvittämiseen Vigenère cipherin murtamisessa. 
 
-Salausalgoritmit toteutetaan taulukoita käyttäen. Salauksen purkamisessa käytetään hajautustaulua ja taulukkolistaa. 
+Salausalgoritmit toteutetaan taulukoita käyttäen. Salauksen murtamisessa käytetään hajautustaulua ja taulukkolistaa. 
 
 #### Valinnat
 
@@ -25,13 +25,13 @@ Valinnat on tehty sen pohjalta, että halutaan nähdä, miten yksinkertaisempia 
 
 #### Mitä syötteitä saa ja miten käytetään
 
-Tarkoituksena on, että salattava tieto annetaan tekstimuodossa (String). 
+Tarkoituksena on, että salattava tieto annetaan tekstimuodossa (String). Tämä muutetaan tavuiksi ja käsitellään tavuina tai bitteinä.  
 
 ### Tavoitteena olevat aika- ja tilavaativuudet
 
 Salausalgoritmien luomisen ja salaamisen aikavaativuus on yleensä lineaarinen. Encrypt ja decrypt aikavaativuudet ovat siis O(n), jossa n on tekstin pituus.
 
-Ceasar cipherissä joka kirjainta siirretään vakio x määrän, joka tuottaa vain 26 mahdollista yhdistelmää. Vigenère cipher on moniaakkosellinen salakirjoitus, jossa siirto on erilainen joka merkillä. Tällöin arvauksien määrä kasvaa eksponentiaalisesti. Salauksen murtamisaika riippuu tekstin pituudesta. Toisaalta murtaminen muuttuu todennäköisemmäksi esimerkiksi Vigeneressä, mitä pidempi teksti on kyseessä suhteessa avaimen pituuteen. Vigeneren salauksen murtamisessa selvitettäessä avaimen pituutta käytetään HashMapia, jonka haun keskimääräinen aikavaativuus on 0(1) ja lisäksi syöte käydään läpi muodostaen toistuvia kirjainyhdistelmiä, joka vie ajan O(n).    
+Ceasar cipherissä joka kirjainta siirretään vakio x määrän, joka tuottaa vain 26 mahdollista yhdistelmää. Vigenère cipher on moniaakkosellinen salakirjoitus, jossa siirto on erilainen joka merkillä. Tällöin arvauksien määrä kasvaa eksponentiaalisesti. Vigeneren murtoa voidaan tehostaa Kasiskin menetelmän ja frekvenssianalyysin avulla. Salauksen murtamisaika riippuu tekstin pituudesta. Toisaalta murtaminen muuttuu todennäköisemmäksi esimerkiksi Vigeneressä, mitä pidempi teksti on kyseessä suhteessa avaimen pituuteen. Vigeneren salauksen murtamisessa selvitettäessä avaimen pituutta käytetään HashMapia, jonka haun keskimääräinen aikavaativuus on 0(1) sekä taulukkolistaa. Syöte käydään läpi muodostaen toistuvia kirjainyhdistelmiä, joka vie ajan O(n).    
 
 ### Lähteet      
 

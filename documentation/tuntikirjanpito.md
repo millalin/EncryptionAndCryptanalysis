@@ -26,4 +26,5 @@ päivä |  aika |  mitä tein
 14.6 | 4 | Suorituskykytestausta, testausdokumentin, käyttöohjedokumentin sekä toteutusdokumentin kirjoitusta 
 18.6 | 4 | Koodin siistimistä, dokumentaation kirjoitusta, javadoc, testien muokkaus
 19.6 | 5 | Dokumentaation kirjoitusta, koodin muokkausta ja viimeistelyä, Jar luominen
-yht | 126| 
+20.6 | 2 | Dokumentaation viimeistelyä
+yht | 128| 

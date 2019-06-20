@@ -29,7 +29,7 @@ Kattavuusraportti on tarkasteltavissa selaimella avaamalla tiedosto sijainnista 
 
 ### Salaukset
 
-Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. Tämän jälkeen haluttu teksti voidaan salata tai purkaa. Options napista saa salatusta tekstistä näkyviin kaikki mahdolliset vaihtoehdot eri salausavaimilla. Frekvenssinapista on nähtävissä salatun tekstin aakkosten jakauma. Break napista saa näkyviin ohjelman laskeman arvauksen salatussa tekstissä käytetystä salausavaimesta.
+Caesar salauksessa tulee valita salausavain (numero) valikosta väliltä 1-26. Tämän jälkeen haluttu teksti voidaan salata tai purkaa. Options napista saa salatusta tekstistä näkyviin kaikki mahdolliset vaihtoehdot eri salausavaimilla. Frekvenssinapista on nähtävissä salatun tekstin aakkosten jakauma. Find key napista saa näkyviin ohjelman laskeman arvauksen salatussa tekstissä käytetystä salausavaimesta.
 
 ![alt text](./pics/kayttoohje_caesar.png)
 
@@ -41,7 +41,7 @@ Vigenere salauksessa ylälaatikkoon tulee kirjoittaa salauksessa tai sen avaamis
 
 ![alt text](./pics/kayttoohje_vigenere.png)
 
-Blowfish salaus toimii Ascii merkistöllä, se ei avaa salauksesta kaikkia muita erikoismerkkejä oikein. Salausavaimessa voi käyttää salatessa myös esimerkiksi merkkejä !/%&?. Yläkenttään kirjoitetaan käytettävä salausavain (32-448 bittiä) ja tekstikenttään salattava teksti. Teksti voidaan salata Encrypt napista. Valmiiksi salattu teksti voidaan purkaa kirjoittamalla oikea salausavain ja lisäämällä teksti oikeanpuoleiseen tekstikenttään. Decrypt napista avattu teksti ilmestyy vasenmpaan kenttään.
+Blowfish salaus toimii Ascii merkistöllä, se ei avaa salauksesta kaikkia muita erikoismerkkejä oikein. Salausavaimessa voi käyttää salatessa myös esimerkiksi merkkejä !/%&?. Yläkenttään kirjoitetaan käytettävä salausavain (32-448 bittiä) ja tekstikenttään salattava teksti. Teksti voidaan salata Encrypt napista. Valmiiksi salattu teksti voidaan purkaa kirjoittamalla oikea salausavain ja lisäämällä teksti oikeanpuoleiseen tekstikenttään. Decrypt napista avattu teksti ilmestyy vasempaan kenttään.
 
 ![alt text](./pics/kayttoohje_blowfish.png)
 

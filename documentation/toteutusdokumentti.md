@@ -20,20 +20,20 @@ Sisältää graafisen käyttöliittymän ja on myös ohjelman pääluokka, joka 
 
 #### cryptanalysis.blowfish
 
-Sisältää luokan Blowfish, joka toteuttaa Blowfish salauksen ja purkamisen. Pakkauksessa sijaitseva Boxes luokka sisältää S-boxit ja P-boxit, joita käytetään alustuksessa ja salauksessa. 
+Sisältää luokan [Blowfish.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/blowfish/Blowfish.java), joka toteuttaa Blowfish salauksen ja purkamisen. Pakkauksessa sijaitseva Boxes luokka sisältää S-boxit ja P-boxit, joita käytetään alustuksessa ja salauksessa. 
 
 #### cryptanalysis.ciphers
 
-Sisältää luokan Caesar Cipher ja Vigenere Cipher, jotka toteuttavat kyseiset salaukset ja niiden purkamisen.
+Sisältää luokan [CaesarCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/ciphers/CaesarCipher.java) ja [VigenereCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/ciphers/VigenereCipher.java), jotka toteuttavat kyseiset salaukset ja niiden purkamisen.
 
 
 #### cryptanalysis.breaking
 
-Sisältää luokat BreakingCaesarCipher.java, BreakingVigenereCipher.java ja FrequencyAnalysis.java. Näissä yritetään murtaa salauksia tietämättä salausavainta.
+Sisältää luokat [BreakingCaesarCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/breaking/BreakingCaesarCipher.java), [BreakingVigenereCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/breaking/BreakingVigenereCipher.java) ja [FrequencyAnalysis.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/breaking/FrequencyAnalysis.java). Näissä yritetään murtaa salauksia tietämättä salausavainta.
 
 #### cryptanalusis.datastructures
 
-Sisältää kaikkien omien tietorakenteiden toteutukset. Sisältää luokat MyArrayList.java ja MyHashMap.java sekä KeyValue.java. 
+Sisältää kaikkien omien tietorakenteiden toteutukset. Sisältää luokat [MyArrayList.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/datastructures/MyArrayList.java) ja [MyHashMap.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/datastructures/MyHashMap.java) sekä KeyValue.java. 
 
 #### cryptanalysis.cipherTest
 
@@ -63,7 +63,11 @@ Blowfishin pseudokoodi:
 
 ### Salausten toteutus
 
-Caesar salaus salaa tekstin, jossa on englannin kielen aakkoset. Se ei muuta muita merkkejä salauksessa, joten ne pysyvät salatessa ja purkaessa ennallaan. Tämä johtuu siitä, että Caesarin alkuperäisessä salauksessa salausavaimia on 26 ja salausta suoritetaan vain perustekstille. Myös vigenere cipher salaa vain kirjaimet ja jättää erikoismerkit ennalleen. Se käyttää avaimen kirjaimista muodostamiaan siirtoja samoin kuin Caesar. Molemmat salaukset purkavat oikealla avaimella tekstit takaisin oikeaan muotoonsa, myös erikoismerkit. Vigeneren avainsanassa ei tule käyttää kuin merkkejä a-z tai A-Z tai avaus ei toimi oikein. Myöskään välilyöntiä ei tule käyttää. Murroissa yritetään saada selville salauksessa käytetty avain ja yksinkertaisen Caesarin tapauksessa tämä onnistuu myös käyden läpi 26 eri vaihtoehtoa. Nopeampi murto saavutetaan käyttämällä hyväksi frekvenssianalyysiä. Frekvenssianalyysiä käytettäessä tekstin tulee olla tarpeeksi pitkä ja noudattaa englannin kielen todennäköisyyksiä, jotta sen onnistuu murtaa oikea avain. Vigeneren murrossa toimii parhaiten teksti, jossa ei ole välilyöntejä, sillä murrossa tunnistetaan 3 kirjaimen yhdistelmiä, jolloin niitä saadaan näin enemmän. Toisaalta tällöin vaikuttaa eri sanojen yhdistelmät tekstissä. Blowfish salaus salaa tekstin monipuolisemmin 64 bitin lohkoissa. Se ottaa huomioon ASCII merkistön merkit ja salaa ja purkaa jokaisen merkin. Blowfish toteutus salaa tekstin heksadesimaalimuotoon. Tutkittaessa salauksia, Blowfish toteutus salaa tarvittavat kierrokset ja tekee alustukset S-boxeille ja P-boxille. Salauksen pituus eroaa isoissa, erikoisissa tekstitiedostoissa Javan toteutuksen salauksen pituudesta. Lyhyillä teksteillä salauksien pituudet ovat samat. Myös salattu teksti eroaa Javan toteutuksesta. Blowfish toteutus purkaa salatun tekstin oikein, silloin kun sillä on oikea salausavain. Salauksessa ja avauksessa teksti käydään läpi kerran.  
+Caesar salaus salaa tekstin, jossa on käytössä englannin kielen aakkosia. Se ei muuta muita merkkejä salauksessa, joten ne pysyvät salatessa ja purkaessa ennallaan. Tämä johtuu siitä, että Caesarin alkuperäisessä salauksessa salausavaimia on 26 ja salausta suoritetaan vain perustekstille. Myös vigenere cipher salaa vain kirjaimet ja jättää erikoismerkit ennalleen. Se käyttää avaimen kirjaimista muodostamiaan siirtoja samoin kuin Caesar. Molemmat salaukset purkavat oikealla avaimella tekstit takaisin oikeaan muotoonsa, myös erikoismerkit. Vigeneren avainsanassa tulee käuttää vain merkkejä a-z tai A-Z tai avaus ei toimi oikein. Myöskään välilyöntiä ei tule käyttää. 
+
+Murroissa yritetään saada selville salauksessa käytetty avain ja yksinkertaisen Caesarin tapauksessa tämä onnistuu myös käyden läpi 26 eri vaihtoehtoa. Nopeampi murto saavutetaan käyttämällä hyväksi frekvenssianalyysiä. Frekvenssianalyysiä käytettäessä tekstin tulee olla tarpeeksi pitkä ja noudattaa englannin kielen todennäköisyyksiä, jotta sen onnistuu murtaa oikea avain. Vigeneren murrossa toimii parhaiten teksti, jossa ei ole välilyöntejä, sillä murrossa tunnistetaan 3 kirjaimen yhdistelmiä, jolloin niitä saadaan näin enemmän. Toisaalta tällöin vaikuttaa eri sanojen yhdistelmät tekstissä. 
+
+Blowfish salaus salaa tekstin monipuolisemmin 64 bitin lohkoissa. Se ottaa huomioon ASCII merkistön merkit ja salaa ja purkaa jokaisen merkin. Blowfish toteutus salaa tekstin heksadesimaalimuotoon. Tutkittaessa salauksia, Blowfish toteutus salaa tarvittavat kierrokset ja tekee alustukset S-boxeille ja P-boxille. Salauksen pituus eroaa isoissa, erikoisissa tekstitiedostoissa Javan toteutuksen salauksen pituudesta. Lyhyillä teksteillä salauksien pituudet ovat samat. Myös salattu teksti eroaa Javan toteutuksesta. Blowfish toteutus purkaa salatun tekstin oikein, silloin kun sillä on oikea salausavain. Salauksessa ja avauksessa teksti käydään läpi kerran.  
 
 ### Saavutetut aikavaativuudet
 

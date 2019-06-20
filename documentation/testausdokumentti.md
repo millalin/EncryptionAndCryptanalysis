@@ -2,7 +2,7 @@
 
 ### Yksikkötestaus
 
-Testeissä on testattu, että salaukset toimivat oikein ja myös purkavat salauksen oikein takaisin. Testit on tehty käyttäen JUnitia. Testien oikeat salaustulokset on tarkistettu myös osin käsin sekä valmiilla salausohjelmilla. 
+Testeissä on testattu, että salaukset toimivat oikein ja myös purkavat salauksen oikein takaisin. Testeissä on myös testattu omien tietorakenteiden oikein toimivuutta. Testit on tehty käyttäen JUnitia. Testien oikeat salaustulokset on tarkistettu myös osin käsin sekä valmiilla salausohjelmilla. 
 
 Testit voidaan suorittaa komennolla
 
@@ -33,15 +33,15 @@ Ohjelman alkunäkymässä on 3 eri nappia (file Caesar, file Vigenere ja file Bl
 
 Luokassa TimeTesting.java voidaan suorittaa testauksia tehdyn Blowfish toteutuksen ja Javan valmiin Blowfish toteutuksen välillä. Käyttöliittymäluokasta poistamalla kommentit, saadaan laskettua eroja näiden välillä.
  
-### Testauksen tuloksia ja suorituskyky
+## Testauksen tuloksia ja suorituskyky
 
 Salauksien nopeuksia sekä murtoyrityksien nopeuksia tutkitaan Javan System.currenttimeMillis() -metodin avulla. 
 
-#### Caesar Cipher
+### Caesar Cipher
 
 Toteutettua Caesar salausta testattiin erikokoisilla tekstitiedostoilla, joissa teksti oli kerätty yleisestä englanninkielen artikkelista tiedostoon ja muodostettu näin erikokoisia tekstitiedostoja.
 
-Caesar Cipher testattiin tekstitiedostoilla, joiden koko oli 1 MB, 3 MB, 5 MB, 7.2 MB sekä 10 MB. Toistoja tehtiin useita, ja mitä pienempi tiedosto oli, sitä useammin salaus ja murto tapahtui samassa ajassa. Pienempiä tiedostoja testattiin myös, mutta koska aika oli niin nopea, ei niiden tulosten lisääminen kaavioon ole mielekästä. Kaaviosta nähdään, että salaus tapahtuu lineaarisessa ajassa ja siinä on merkitty mittausten keskiarvot kullekin tiedostokoolle. 
+Caesar Cipher testattiin tekstitiedostoilla, joiden koko oli 1 MB, 3 MB, 5 MB, 7.2 MB sekä 10 MB. Toistoja tehtiin useita, ja mitä pienempi tiedosto oli, sitä useammin salaus ja murto tapahtui täysin samassa ajassa. Pienempiä tiedostoja testattiin myös, mutta koska aika oli niin nopea, ei niiden tulosten lisääminen kaavioon ole mielekästä. Kaaviosta nähdään, että salaus tapahtuu lineaarisessa ajassa ja siinä on merkitty mittausten keskiarvot kullekin tiedostokoolle. 
 
 ![alt text](./pics/caesarencryption.png)
 
@@ -50,7 +50,7 @@ Ohjelmassa testattiin myös Caesar Cipher murron nopeutta tietämättä salausav
 ![alt text](./pics/caesar_breaking.png)
 
    
-#### Vigenère Cipher
+### Vigenère Cipher
 
 Vigenère Cipher salaus testattiin tekstitiedostoilla, kooltaan 1, 3, 5, 7.2 ja 10 MB.
 
@@ -100,9 +100,9 @@ Käytetty avainpituus | Käytetty avain | Löydetty avainpituus |  Löydetty ava
 
 
 
-#### Blowfish 
+### Blowfish 
 
-Blowfish salattiin ja avattiin tekstitiedostoilla, joiden koot olivat 1 MB, 3 MB, 5 MB, 7,2 MBn sekä 10 MB. Salaukset toteutettiin 64-, 128- ja 448-bittisillä avaimilla. Jokaisen tiedostokoon salausksen/purun ajasta laskettiin keskiarvot, jotka on nähdävillä allaolevissa kaavioissa. Saman tiedostokoon salaus- ja purkuaika eri bittikoon avaimilla oli hyvin lähellä toisiaan, vaihtelua keskiarvoissa oli vain muutamia millisekunteja. Salausaikoihin ei ole laskettu tiedostosta lukemista, eikä tiedostoon kirjoittamista. Aika on mitattu vain itse salauksesta. 
+Blowfish salattiin ja avattiin tekstitiedostoilla, joiden koot olivat 1 MB, 3 MB, 5 MB, 7,2 MB sekä 10 MB. Salaukset toteutettiin 64-, 128- ja 448-bittisillä avaimilla. Jokaisen tiedostokoon salauksen/purun ajasta laskettiin keskiarvot, jotka on nähtävillä allaolevissa kaavioissa. Saman tiedostokoon salaus- ja purkuaika eri bittikoon avaimilla oli hyvin lähellä toisiaan, vaihtelua keskiarvoissa oli vain muutamia millisekunteja. Salausaikoihin ei ole laskettu tiedostosta lukemista, eikä tiedostoon kirjoittamista. Aika on mitattu vain itse salauksesta ja sekä salaus että salauksen purku toteutui lineaarisessa ajassa.
 
 Salaus 64 bittisellä avaimella:
 
