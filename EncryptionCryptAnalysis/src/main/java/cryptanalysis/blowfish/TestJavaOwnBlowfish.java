@@ -12,6 +12,10 @@ import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Encoder;
 
 /**
+ * java version of Blowfish encryption. This class is to test how it compares
+ * with my own implementation. There are own data structures of Java in this
+ * class but these are not used in actual program, only for testing and
+ * comparing speed and encryption functions.
  *
  * @author milla
  */
@@ -22,16 +26,13 @@ public class TestJavaOwnBlowfish {
     }
 
     /**
-     * java version of Blowfish encryption. This class is to test how it
-     * compares with my own implementation.
+     * java version of Blowfish encryption.
      *
      * @param text text to encrypted
      * @return encrypted text
      * @throws Exception throws exception
      */
     public String te(String text) throws Exception {
-        KeyGenerator generator = KeyGenerator.getInstance("blowfish");
-        SecretKey secretKey = generator.generateKey();
         String hex = "";
         String key = "sosecretkeyhello";
         byte[] keyData = key.getBytes();
@@ -43,19 +44,12 @@ public class TestJavaOwnBlowfish {
         long alku = System.currentTimeMillis();
         byte[] encrypt = cipher.doFinal(input.getBytes());
 
-        //    System.out.println("java väli "+encrypt);
         hex = this.changeToHex(encrypt);
         long loppu = System.currentTimeMillis();
 
         long aika = loppu - alku;
         System.out.println("java time only encryption " + aika);
 
-        // decrypt message
-        /* cipher.init(Cipher.DECRYPT_MODE, ks);
-        byte[] decrypted = cipher.doFinal(encrypt);
-
-        String e = new String(encrypt.toString());
-        String d = new String(decrypted); */
         return hex;
     }
 

@@ -22,6 +22,8 @@ Sisältää graafisen käyttöliittymän ja on myös ohjelman pääluokka, joka 
 
 Sisältää luokan [Blowfish.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/blowfish/Blowfish.java), joka toteuttaa Blowfish salauksen ja purkamisen. Pakkauksessa sijaitseva Boxes luokka sisältää S-boxit ja P-boxit, joita käytetään alustuksessa ja salauksessa. 
 
+Sisältää myös luokan TestJavaOwnBlowfish.java, jota ei käytetä varsinaisessa ohjelmassa ja sisältää Javan valmiin Blowfish toteutuksen testejä. Luokkaa on käytetty ainoastaan verrattaessa omaa Blowfish toteutusta Javan valmiiseen toteutukseen.
+
 #### cryptanalysis.ciphers
 
 Sisältää luokan [CaesarCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/ciphers/CaesarCipher.java) ja [VigenereCipher.java](https://github.com/millalin/EncryptionAndCryptanalysis/blob/master/EncryptionCryptAnalysis/src/main/java/cryptanalysis/ciphers/VigenereCipher.java), jotka toteuttavat kyseiset salaukset ja niiden purkamisen.
