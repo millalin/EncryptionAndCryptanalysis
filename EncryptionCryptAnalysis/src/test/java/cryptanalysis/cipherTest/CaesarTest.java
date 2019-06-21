@@ -30,10 +30,6 @@ public class CaesarTest {
         breaking = new BreakingCaesarCipher();
     }
 
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void ceasarCipherEncryptsTextRightKey1() {

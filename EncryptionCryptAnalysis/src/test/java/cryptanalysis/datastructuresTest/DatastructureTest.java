@@ -8,7 +8,6 @@ package cryptanalysis.datastructuresTest;
 import cryptanalysis.datastructures.MyArrayList;
 import cryptanalysis.datastructures.MyHashMap;
 import java.util.ArrayList;
-import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;

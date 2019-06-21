@@ -20,10 +20,6 @@ public class BlowfishTest {
 
     Blowfish bf = new Blowfish("hellotestmessage", "blowfish");
 
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void lengthOfEncryptionIsRight() {
@@ -84,11 +80,11 @@ public class BlowfishTest {
     }
 
     @Test
-    public void to() {
-        String salattu = "b6ff8274954a2c24";
-        String avattu = bf.decryption(salattu);
+    public void decryptsRight() {
+        String encrypted = "b6ff8274954a2c24";
+        String decrypted = bf.decryption(encrypted);
 
-        assertEquals(avattu, "blowfish");
+        assertEquals(decrypted, "blowfish");
     }
 
 }

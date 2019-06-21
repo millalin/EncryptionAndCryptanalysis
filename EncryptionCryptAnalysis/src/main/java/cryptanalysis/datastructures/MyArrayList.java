@@ -1,7 +1,7 @@
 package cryptanalysis.datastructures;
 
 /**
- * My own implemention of ArrayList.
+ * My own implementation of ArrayList.
  *
  * @author milla
  */
